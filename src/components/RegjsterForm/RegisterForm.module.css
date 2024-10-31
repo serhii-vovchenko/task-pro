@@ -15,7 +15,6 @@
   justify-content: center;
   border-radius: 8px;
   width: 335px;
-  height: 363px;
 }
 
 .linksContainer {
@@ -40,9 +39,14 @@
   color: #fff;
 }
 
+.passwordContainer {
+  width: 100%;
+  position: relative;
+}
+
 .formInput {
   display: inline-flex;
-  padding: 14px 157px 14px 18px;
+  padding: 14px 18px;
   align-items: center;
   border-radius: 8px;
   border: 1px solid #bedbb0;
@@ -71,6 +75,27 @@
   opacity: 1;
 }
 
+.iconButton {
+  position: absolute;
+  top: 38%;
+  right: 18px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  stroke: rgba(255, 255, 255, 0.3);
+}
+
+.icon:hover,
+.icon:focus {
+  stroke: rgba(136, 130, 130, 0.3);
+}
+
 .formBottom {
   background-color: #bedbb0;
   border: none;
@@ -85,6 +110,7 @@
   line-height: normal;
   letter-spacing: -0.02em;
   transition: opacity 0.3s ease, border 0.3s ease;
+  width: 100%;
 }
 
 .formBottom:hover,
@@ -95,13 +121,5 @@
 @media (min-width: 768px) {
   .formBlock {
     width: 424px;
-    height: 395px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .formBlock {
-    width: 500px;
-    height: auto;
   }
 }
