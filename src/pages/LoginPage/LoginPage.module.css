@@ -1,0 +1,127 @@
+.pageContainer {
+  background: linear-gradient(to bottom, white, #bedbb0);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formBlock {
+  background-color: #151515;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  width: 335px;
+  height: 363px;
+}
+
+.linksContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.formLink {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.activeLink {
+  color: #fff;
+}
+
+.passwordContainer {
+  width: 100%;
+  position: relative;
+}
+
+.formInput {
+  display: inline-flex;
+  padding: 14px 18px;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #bedbb0;
+  opacity: 0.4;
+  background: #1f1f1f;
+  box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+  width: 100%;
+  margin-bottom: 14px;
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  outline: none;
+  transition: opacity 0.3s ease, border 0.3s ease;
+}
+
+.formInput:last-of-type {
+  margin-bottom: 24px;
+}
+
+.formBlock .formInput:focus,
+.formBlock .formInput:hover,
+.formBlock .formInput:active {
+  opacity: 1;
+}
+
+.iconButton {
+  position: absolute;
+  top: 38%;
+  right: 18px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  stroke: rgba(255, 255, 255, 0.3);
+}
+
+.icon:hover,
+.icon:focus {
+  stroke: rgba(136, 130, 130, 0.3);
+}
+
+.formBottom {
+  background-color: #bedbb0;
+  border: none;
+  padding: 14px 99px;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #161616;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  transition: opacity 0.3s ease, border 0.3s ease;
+  width: 100%;
+}
+
+.formBottom:hover,
+.formBottom:focus {
+  background-color: #9dc888;
+}
+
+@media (min-width: 768px) {
+  .formBlock {
+    width: 424px;
+    height: 395px;
+  }
+}
