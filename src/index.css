@@ -1,4 +1,7 @@
 @import 'modern-normalize';
+@import '@fontsource/poppins';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
 
 html {
   scroll-behavior: smooth;
@@ -9,6 +12,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 h1,
