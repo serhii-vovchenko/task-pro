@@ -15,7 +15,6 @@
   justify-content: center;
   border-radius: 8px;
   width: 335px;
-  height: 363px;
 }
 
 .linksContainer {
@@ -122,6 +121,5 @@
 @media (min-width: 768px) {
   .formBlock {
     width: 424px;
-    height: 395px;
   }
 }
