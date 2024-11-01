@@ -1,0 +1,127 @@
+.welcomeSection {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(196, 196, 196, 0) 25%,
+    #bedbb0 92.19%
+  );
+}
+.container {
+  display: flex;
+
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 20px;
+  max-width: 375px;
+  min-height: 100vh;
+}
+.welcomeImg {
+  width: 124px;
+  height: 124px;
+  margin-bottom: 14px;
+}
+.logoWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.logoIcon {
+  stroke: white;
+  width: 40px;
+  height: 40px;
+}
+
+.logoText {
+  color: #161616;
+  font-family: Poppins;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -1.12px;
+}
+
+.welcomeParagraph {
+  color: #161616;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: -0.28px;
+  margin-bottom: 48px;
+}
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.registerBtn {
+  display: flex;
+  width: 335px;
+  padding: 14px 0px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #161616;
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+
+.loginBtn {
+  color: #161616;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+
+/* media screens */
+@media (min-width: 769px) and (max-width: 1440px) {
+  .container {
+    padding: 0 148px;
+    max-width: 768px;
+  }
+
+  .welcomeImg {
+    width: 162px;
+    height: 162px;
+    margin-bottom: 24px;
+  }
+
+  .logoIcon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .logoText {
+    font-size: 40px;
+  }
+
+  .registerBtn {
+    width: 344px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    padding: 0 484px;
+    max-width: 1440px;
+  }
+}
