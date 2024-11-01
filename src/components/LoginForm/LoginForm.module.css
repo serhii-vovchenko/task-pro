@@ -1,5 +1,5 @@
 .pageContainer {
-  background: linear-gradient(to bottom, white, #bedbb0);
+  background: linear-gradient(to bottom, var(--white), var(--pale-green));
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -7,7 +7,7 @@
 }
 
 .formBlock {
-  background-color: #151515;
+  background-color: var(--very-dark-grey);
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@
 }
 
 .formLink {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--almost-grey);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -35,14 +35,22 @@
   text-decoration: none;
 }
 
+.formLink:hover,
+.formLink:focus {
+  color: var(--white);
+}
+
 .activeLink {
-  color: #fff;
+  color: var(--white);
 }
 
 .passwordContainer {
   width: 100%;
-  position: relative;
   margin-bottom: 24px;
+}
+
+.passwordBlock {
+  position: relative;
 }
 
 .formInput {
@@ -50,13 +58,12 @@
   padding: 14px 18px;
   align-items: center;
   border-radius: 8px;
-  border: 1px solid #bedbb0;
+  border: 1px solid var(--pale-green);
   opacity: 0.4;
-  background: #1f1f1f;
-  box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+  background: var(--charcoal);
+  box-shadow: 0px 4px 16px 0px var(--charcoal-shadow);
   width: 100%;
-  margin-bottom: 14px;
-  color: #fff;
+  color: var(--white);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -64,6 +71,18 @@
   letter-spacing: -0.02em;
   outline: none;
   transition: opacity 0.3s ease, border 0.3s ease;
+}
+
+.firstInput {
+  margin-bottom: 14px;
+}
+
+.formInput:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px var(--charcoal) inset;
+  box-shadow: 0 0 0 30px var(--charcoal) inset;
+  -webkit-text-fill-color: var(--white);
+  caret-color: var(--white);
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .formBlock .formInput:focus,
@@ -74,7 +93,7 @@
 
 .iconButton {
   position: absolute;
-  top: 38%;
+  top: 50%;
   right: 18px;
   transform: translateY(-50%);
   background: none;
@@ -85,21 +104,37 @@
 .icon {
   width: 18px;
   height: 18px;
-  stroke: rgba(255, 255, 255, 0.3);
+  stroke: var(--almost-grey);
 }
 
 .icon:hover,
 .icon:focus {
-  stroke: rgba(136, 130, 130, 0.3);
+  stroke: var(--soft-gray);
+}
+
+.errorEmail {
+  color: var(--pale-green);
+  text-align: left;
+  display: block;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.errorPassword {
+  margin-top: 14px;
+  color: var(--pale-green);
+  text-align: left;
+  display: block;
+  width: 100%;
 }
 
 .formBottom {
-  background-color: #bedbb0;
+  background-color: var(--pale-green);
   border: none;
   padding: 14px 99px;
   cursor: pointer;
   border-radius: 8px;
-  color: #161616;
+  color: var(--almost-black);
   text-align: center;
   font-size: 14px;
   font-style: normal;
@@ -112,7 +147,7 @@
 
 .formBottom:hover,
 .formBottom:focus {
-  background-color: #9dc888;
+  background-color: var(--fresh-green);
 }
 
 @media (min-width: 768px) {
