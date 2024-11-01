@@ -3,6 +3,7 @@ import React from 'react';
 import s from './WelcomePageView.module.css';
 import { Link } from 'react-router-dom';
 import welcomeImage from '../../img/welcomePageImg.png';
+import sprite from '../../../src/img/icons.svg';
 
 const WelcomePageView = () => {
   return (
@@ -12,7 +13,7 @@ const WelcomePageView = () => {
 
         <div className={s.logoWrapper}>
           <svg className={s.logoIcon} height="40" width="40">
-            <use href="/src/img/icons.svg#icon-icon" />
+            <use href={`${sprite}#icon-icon`} />
           </svg>
 
           <p className={s.logoText}>Task Pro</p>
