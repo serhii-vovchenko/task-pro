@@ -1,11 +1,63 @@
 @import 'modern-normalize';
 
+/* Regular */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Regular.woff2') format('woff2'),
+    url('/fonts/Poppins-Regular.woff') format('woff'),
+    url('/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Medium */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Medium.woff2') format('woff2'),
+    url('/fonts/Poppins-Medium.woff') format('woff'),
+    url('/fonts/Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-SemiBold.woff2') format('woff2'),
+    url('/fonts/Poppins-SemiBold.woff') format('woff'),
+    url('/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+:root {
+  --white: #ffffff;
+  --off-white: #FCFCFC;
+  --lightest-grey: #F6F6F7;
+  --light-grey: #E8E8E8;
+  --very-dark-grey: #151515;
+  --backdrop: rgba(21, 21, 21, 0.3);
+  --almost-black: #161616;
+  --deep-charcoal: #121212;
+  --charcoal: #1F1F1F;
+  --soft-pink: #E09CB5;
+  --pale-green: #BEDBB0;
+  --fresh-green: #9DC888;
+  --pale-lavender: #ECEDFD;
+  --lavender: #B8BCFD;
+  --lavender-blue: #979CEA;
+  --periwinkle: #7B7EDE;
+  --soft-blue: #8FA1D0;
+  --bold-blue: #5255BC;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
 body {
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
@@ -44,6 +96,32 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+/* Mobile screen */
+.container {
+  margin: 0 auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  max-width: 375px;
+}
+
+/* Tablet screen */
+@media screen and (min-width: 768px) {
+  .container {
+    padding-right: 32px;
+    padding-left: 32px;
+    max-width: 768px;
+  }
+}
+
+/* Desctop screen */
+@media screen and (min-width: 1440px) {
+  .container {
+    padding-right: 24px;
+    padding-left: 24px;
+    max-width: 1440px;
+  }
 }
 
 button {
