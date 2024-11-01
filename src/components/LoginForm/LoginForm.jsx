@@ -1,10 +1,10 @@
 import { Formik, Field, Form } from 'formik';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import css from './LoginForm.module.css';
 import { useState } from 'react';
+import sprite from '../../../src/img/icons.svg';
 
 const LoginForm = () => {
-  const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -16,19 +16,12 @@ const LoginForm = () => {
       <Formik>
         <Form className={css.formBlock}>
           <div className={css.linksContainer}>
-            <Link
-              to="/register"
-              className={`${css.formLink} ${
-                location.pathname === '/register' ? css.activeLink : ''
-              }`}
-            >
+            <Link to="/auth/register" className={`${css.formLink}`}>
               Registration
             </Link>
             <Link
-              to="/login"
-              className={`${css.formLink} ${
-                location.pathname === '/login' ? css.activeLink : ''
-              }`}
+              to="/auth/login"
+              className={`${css.formLink} ${css.activeLink}`}
             >
               Log In
             </Link>
@@ -51,7 +44,7 @@ const LoginForm = () => {
               className={css.iconButton}
             >
               <svg className={css.icon}>
-                <use href="/src/icons.svg#icon-eye" />
+                <use href={`${sprite}#icon-eye`} />
               </svg>
             </button>
           </div>
