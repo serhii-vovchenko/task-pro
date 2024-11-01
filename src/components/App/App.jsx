@@ -1,19 +1,16 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import HomePage from '../../pages/HomePage/HomePage';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import WelcomePage from '../../pages/WelcomePage/WelcomePage';
 import NotFoundPage from '../../pages/NotFound/NotFoundPage';
-import { DashboardPage } from '../../pages/DashboardPage/DashboardPage';
-import LoginPage from '../../pages/LoginPage/LoginPage';
-import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
+import AuthPage from '../../pages/AuthPage/AuthPage';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/" element={<Navigate to="/welcome" replace />} />
+        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/auth/:id" element={<AuthPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

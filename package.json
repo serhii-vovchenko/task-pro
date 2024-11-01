@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/poppins": "^5.1.0",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.3",
     "clsx": "^2.1.1",
