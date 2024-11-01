@@ -12,7 +12,7 @@ const WelcomePageView = () => {
 
         <div className={s.logoWrapper}>
           <svg className={s.logoIcon} height="40" width="40">
-            <use href="/src/icons.svg#icon-icon" />
+            <use href="/src/img/icons.svg#icon-icon" />
           </svg>
 
           <p className={s.logoText}>Task Pro</p>
