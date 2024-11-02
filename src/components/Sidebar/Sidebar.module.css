@@ -1,0 +1,149 @@
+.sidebar {
+    width: 260px; 
+    height: 100vh; 
+    background-color: #121212; 
+    color: #ffffff; 
+    padding: 20px; 
+    display: flex;
+    flex-direction: column; 
+    border-right: 2px solid #4caf50; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    transition: transform 0.3s ease; 
+}
+
+.sidebar.open {
+    transform: translateX(0); 
+}
+
+.title {
+    font-size: 24px; 
+    margin-bottom: 20px; 
+}
+
+.subTitle {
+    font-size: 20px; 
+    margin: 10px 0; 
+}
+
+.createBoard {
+    display: flex;
+    margin-bottom: 20px; 
+}
+
+.boardInput {
+    flex-grow: 1; 
+    padding: 10px; 
+    border: 1px solid #333; 
+    border-radius: 5px; 
+    margin-right: 10px; 
+    background-color: #333; 
+    color: #ffffff; 
+}
+
+.addButton {
+    background-color: #4caf50; 
+    color: white; 
+    border: none; 
+    padding: 10px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 20px; 
+    width: 40px; 
+    height: 40px; 
+}
+
+.addButton:hover {
+    background-color: #45a049; 
+}
+
+.boardList {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+.boardItem {
+    margin: 10px 0; 
+}
+
+.boardLink {
+    color: #ffffff; 
+    text-decoration: none; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.editButton,
+.deleteButton {
+    background: none; 
+    color: #ffffff; 
+    border: none; 
+    cursor: pointer; 
+}
+
+.projectTitle {
+    margin: 10px 0; 
+    font-size: 20px; 
+}
+
+.supportSection {
+    margin-top: auto; 
+    padding: 10px;
+    background-color: #1e1e1e; 
+    border-radius: 5px; 
+}
+
+.helpButton {
+    background-color: #4caf50; 
+    color: white; 
+    border: none; 
+    padding: 10px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.helpButton:hover {
+    background-color: #45a049; 
+}
+
+.logoutButton {
+    background-color: #ff5722; 
+    color: #ffffff; 
+    border: none; 
+    padding: 10px; 
+    border-radius: 5px; 
+    margin-top: 10px; 
+    cursor: pointer; 
+}
+
+.logoutButton:hover {
+    background-color: #e64a19; 
+}
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; 
+        height: auto; 
+        position: absolute; 
+        top: 68px; 
+        left: 0; 
+        padding: 10px; 
+        display: none; 
+    }
+
+    .sidebar.open {
+        display: flex; 
+    }
+
+    .createBoard {
+        flex-direction: column; 
+    }
+
+    .createBoard input {
+        margin-bottom: 10px; 
+        margin-right: 0; 
+    }
+}
