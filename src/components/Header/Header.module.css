@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #161616;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-bottom: 2px solid #4caf50;
+    height: 68px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .menuIcon {
+    cursor: pointer;
+    font-size: 24px;
+  }
+  
+  .themeSelector {
+    margin-right: 20px;
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .userAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+  
+  .userName {
+    font-size: 16px;
+  }
+  
