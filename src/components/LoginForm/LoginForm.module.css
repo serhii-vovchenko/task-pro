@@ -131,7 +131,7 @@
 .formBottom {
   background-color: var(--pale-green);
   border: none;
-  padding: 14px 99px;
+  padding: 14px;
   cursor: pointer;
   border-radius: 8px;
   color: var(--almost-black);

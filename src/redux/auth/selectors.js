@@ -1,3 +1,3 @@
-export const selectIsLoggedIn = state => state.authReducer.isLoggedIn;
-export const selectUser = state => state.authReducer.user;
-export const selectToken = state => state.authReducer.token;
+export const selectIsLoggedIn = state => state.auth.isLoggedIn;
+export const selectUser = state => state.auth.user;
+export const selectToken = state => state.auth.token;
