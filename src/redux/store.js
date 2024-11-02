@@ -1,19 +1,27 @@
-// import { configureStore } from '@reduxjs/toolkit';
-
-// export const store = configureStore({
-//   reducer: {
-//     // Some code
-//   },
-// });
-import { createStore, combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { authReducer } from './auth/slice.js';
 import boardReducer from './reducers/boardReducer';
 import themeReducer from './reducers/themeReducer';
 import userReducer from './reducers/userReducer';
 
-const rootReducer = combineReducers({
-  board: boardReducer,
-  theme: themeReducer,
-  user: userReducer,
+export const store = configureStore({
+  reducer: {
+    auth: authReducer,
+    board: boardReducer,
+    theme: themeReducer,
+    user: userReducer,
+  },
 });
 
-export const store = createStore(rootReducer);
+// import { createStore, combineReducers } from 'redux';
+// import boardReducer from './reducers/boardReducer';
+// import themeReducer from './reducers/themeReducer';
+// import userReducer from './reducers/userReducer';
+
+// const rootReducer = combineReducers({
+//   board: boardReducer,
+//   theme: themeReducer,
+//   user: userReducer,
+// });
+
+// export const store = createStore(rootReducer);

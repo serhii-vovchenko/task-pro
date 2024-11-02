@@ -1,9 +1,12 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import css from './LoginForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginThunk } from '../../redux/auth/operations.js';
+import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -21,18 +24,21 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const initialValues = {
     email: '',
     password: '',
   };
+  const dispatch = useDispatch();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    dispatch(loginThunk(values));
     actions.resetForm();
 
-    navigate('/home');
+    // navigate('/home');
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -40,6 +46,10 @@ const LoginForm = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/home" />;
+  }
 
   return (
     <div className={css.pageContainer}>

@@ -4,6 +4,8 @@ import css from './RegisterForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { registerThunk } from '../../redux/auth/operations.js';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -26,6 +28,7 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const initialValues = {
     name: '',
     email: '',
@@ -36,6 +39,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (values, actions) => {
     console.log(values);
+    dispatch(registerThunk(values));
     actions.resetForm();
 
     navigate('/home');
