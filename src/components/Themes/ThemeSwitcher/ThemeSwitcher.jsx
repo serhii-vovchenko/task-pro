@@ -18,7 +18,7 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <div>
+    <div className={s.themeSwitcher}>
       <label htmlFor="theme-select" className={s.themeLabel}></label>
       <select
         id="theme-select"

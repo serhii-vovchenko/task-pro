@@ -15,7 +15,6 @@ const HomePage = () => {
 
   return (
     <div className={s.homePage}>
-      <ThemeSwitcher />
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className={s.columnTwo}>
         <Header toggleSidebar={toggleSidebar} />
