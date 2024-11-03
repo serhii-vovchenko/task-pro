@@ -228,6 +228,10 @@
   font-weight: 500;
   line-height: normal;
 
+  &:hover {
+    color: var(--fresh-green);
+  }
+
   &:hover .logoutBtnIcon {
     stroke: var(--fresh-green);
   }

@@ -43,7 +43,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       <div>
         <div className={s.logoBox}>
           <svg className={s.logoIcon} height="32" width="32">
-            <use href={`${sprite}#icon-icon`} />
+            <use href={`${sprite}#icon-logo`} />
           </svg>
           <h2 className={s.title}>Task Pro</h2>
         </div>
