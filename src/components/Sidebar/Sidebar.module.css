@@ -1,149 +1,265 @@
 .sidebar {
-    width: 260px; 
-    height: 100vh; 
-    background-color: #121212; 
-    color: #ffffff; 
-    padding: 20px; 
-    display: flex;
-    flex-direction: column; 
-    border-right: 2px solid #4caf50; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    transition: transform 0.3s ease; 
+  width: 225px;
+  height: 100vh;
+  background-color: var(--deep-charcoal);
+  color: var(--white);
+  padding: 14px 14px 24px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
 }
 
-.sidebar.open {
-    transform: translateX(0); 
+.logoBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 70px;
+}
+
+.logoIcon {
+  fill: var(--white);
+  width: 32px;
+  height: 32px;
 }
 
 .title {
-    font-size: 24px; 
-    margin-bottom: 20px; 
+  color: var(--white);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.64px;
 }
 
 .subTitle {
-    font-size: 20px; 
-    margin: 10px 0; 
+  color: rgba(255, 255, 255, 0.5); /* додати колір в змінні */
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.24px;
 }
 
-.createBoard {
-    display: flex;
-    margin-bottom: 20px; 
+.createBoardBox {
+  padding: 14px 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* додати колір в змінні */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* додати колір в змінні */
+  margin-bottom: 40px;
 }
 
-.boardInput {
-    flex-grow: 1; 
-    padding: 10px; 
-    border: 1px solid #333; 
-    border-radius: 5px; 
-    margin-right: 10px; 
-    background-color: #333; 
-    color: #ffffff; 
+.text {
+  width: 76px;
+  color: var(--white);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
 }
 
 .addButton {
-    background-color: #4caf50; 
-    color: white; 
-    border: none; 
-    padding: 10px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    font-size: 20px; 
-    width: 40px; 
-    height: 40px; 
+  width: 40px;
+  height: 36px;
+  background-color: var(--pale-green);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.addButton:hover {
-    background-color: #45a049; 
+.plusIconBtn {
+  width: 20px;
+  height: 20px;
+  stroke: var(--deep-charcoal);
 }
 
 .boardList {
-    list-style-type: none; 
-    padding: 0; 
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: -14px;
+  margin-right: -14px;
+  overflow-y: auto;
+  flex-grow: 1;
 }
-
 .boardItem {
-    margin: 10px 0; 
+  display: flex;
+  justify-content: space-between;
+  background: var(--charcoal);
+  padding: 0 14px;
+  height: 61px;
 }
 
-.boardLink {
-    color: #ffffff; 
-    text-decoration: none; 
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
+.titleBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.editButton,
-.deleteButton {
-    background: none; 
-    color: #ffffff; 
-    border: none; 
-    cursor: pointer; 
+.titleBoxIcon {
+  width: 18px;
+  height: 18px;
+  fill: var(--white);
 }
 
-.projectTitle {
-    margin: 10px 0; 
-    font-size: 20px; 
+.titleBoxTitle {
+  color: var(--white);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
 }
 
-.supportSection {
-    margin-top: auto; 
-    padding: 10px;
-    background-color: #1e1e1e; 
-    border-radius: 5px; 
+.btnBox {
+  display: flex;
+  gap: 8px;
+
+  &::after {
+    content: '';
+    width: 4px;
+    height: 61px;
+    background-color: var(--pale-green);
+    border-radius: 4px 0 0 4px;
+    margin-right: -14px;
+  }
+}
+
+.btnBoxButton {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: transparent;
+  outline: transparent;
+}
+
+.btnBoxIcon {
+  width: 16px;
+  height: 16px;
+  stroke: rgba(255, 255, 255, 0.5); /* додати колір в змінні */
+}
+
+.helpBox {
+  background-color: var(--charcoal);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 24px 0 0 0;
+}
+
+.plantImg {
+  width: 54px;
+  height: 78px;
+  margin-bottom: 14px;
+}
+
+.helpBoxText {
+  color: var(--white);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: -0.24px;
+
+  & span {
+    color: var(--pale-green);
+  }
 }
 
 .helpButton {
-    background-color: #4caf50; 
-    color: white; 
-    border: none; 
-    padding: 10px; 
-    border-radius: 5px; 
-    cursor: pointer; 
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: transparent;
+  outline: transparent;
+  gap: 8px;
+  color: var(--white);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.24px;
+  padding: 0;
+  margin-top: 18px;
 }
 
-.helpButton:hover {
-    background-color: #45a049; 
+.helpBtnIcon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--white);
 }
 
 .logoutButton {
-    background-color: #ff5722; 
-    color: #ffffff; 
-    border: none; 
-    padding: 10px; 
-    border-radius: 5px; 
-    margin-top: 10px; 
-    cursor: pointer; 
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-left: 10px;
+  background-color: transparent;
+  border: transparent;
+  outline: transparent;
+  padding: 0 0 0 10px;
+  margin-top: 24px;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-.logoutButton:hover {
-    background-color: #e64a19; 
+.logoutBtnIcon {
+  stroke: var(--pale-green);
+  width: 32px;
+  height: 32px;
 }
 
-/* Мобильные стили */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%; 
-        height: auto; 
-        position: absolute; 
-        top: 68px; 
-        left: 0; 
-        padding: 10px; 
-        display: none; 
-    }
+@media (min-width: 768px) {
+  .sidebar {
+    width: 260px;
+    padding: 24px;
+  }
 
-    .sidebar.open {
-        display: flex; 
-    }
+  .logoBox {
+    margin-bottom: 60px;
+  }
 
-    .createBoard {
-        flex-direction: column; 
-    }
+  .boardList {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
 
-    .createBoard input {
-        margin-bottom: 10px; 
-        margin-right: 0; 
+  .boardItem {
+    padding: 0 24px;
+  }
+
+  .btnBox {
+    &::after {
+      margin-right: -24px;
     }
+  }
+
+  .helpBox {
+    margin: 24px 0 0 0;
+    padding: 20px;
+  }
+
+  .helpBoxText {
+    font-size: 14px;
+    letter-spacing: -0.28px;
+  }
+
+  .helpButton {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1440px) {
 }

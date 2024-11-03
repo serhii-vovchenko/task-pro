@@ -9,17 +9,18 @@ const HomePage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); 
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
     <div className={s.homePage}>
-      <Header toggleSidebar={toggleSidebar} /> 
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} /> 
-      <ScreensPage />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div>
+        {/* <Header toggleSidebar={toggleSidebar} />
+        <ScreensPage /> */}
+      </div>
     </div>
   );
 };
 
 export default HomePage;
-

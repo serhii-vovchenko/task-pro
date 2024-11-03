@@ -84,5 +84,10 @@
 <symbol id="icon-arrow-up" viewBox="0 0 32 32">
 <path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M22 19l-6-6-6 6"></path>
 </symbol>
+<symbol id="icon-logout" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M11.867 10.080c0.413-4.8 2.88-6.76 8.28-6.76h0.173c5.96 0 8.347 2.387 8.347 8.347v8.693c0 5.96-2.387 8.347-8.347 8.347h-0.173c-5.36 0-7.827-1.933-8.267-6.653"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M2.667 16h17.173"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M16.867 11.533l4.467 4.467-4.467 4.467"></path>
+</symbol>
 </defs>
 </svg>
