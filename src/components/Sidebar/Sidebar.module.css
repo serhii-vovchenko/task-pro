@@ -1,8 +1,8 @@
 .sidebar {
   width: 225px;
   height: 100vh;
-  background-color: var(--deep-charcoal);
-  color: var(--white);
+  background-color: var(--background-default);
+  color: var(--primary-light);
   padding: 14px 14px 24px 14px;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
 }
 
 .title {
-  color: var(--white);
+  color: var(--text-primary);
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
@@ -34,7 +34,7 @@
 }
 
 .subTitle {
-  color: rgba(255, 255, 255, 0.5); /* додати колір в змінні */
+  color: var(--text-secondary);
   font-family: Poppins;
   font-size: 12px;
   font-style: normal;
@@ -47,14 +47,14 @@
   padding: 14px 0;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* додати колір в змінні */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* додати колір в змінні */
+  border-top: 1px solid var(--primary-contrastText);
+  border-bottom: 1px solid var(--primary-contrastText);
   margin-bottom: 40px;
 }
 
 .text {
   width: 76px;
-  color: var(--white);
+  color: var(--text-primary);
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
@@ -66,7 +66,7 @@
 .addButton {
   width: 40px;
   height: 36px;
-  background-color: var(--pale-green);
+  background-color: var(--primary-dark);
   border-radius: 6px;
   display: flex;
   justify-content: center;
@@ -76,7 +76,7 @@
 .plusIconBtn {
   width: 20px;
   height: 20px;
-  stroke: var(--deep-charcoal);
+  stroke: var(--background-default);
 }
 
 .boardList {
@@ -91,7 +91,7 @@
 .boardItem {
   display: flex;
   justify-content: space-between;
-  background: var(--charcoal);
+  background: var(--bg-screen);
   padding: 0 14px;
   height: 61px;
 }
@@ -109,7 +109,7 @@
 }
 
 .titleBoxTitle {
-  color: var(--white);
+  color: var(--text-primary);
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
@@ -126,7 +126,7 @@
     content: '';
     width: 4px;
     height: 61px;
-    background-color: var(--pale-green);
+    background-color: var(--label-green);
     border-radius: 4px 0 0 4px;
     margin-right: -14px;
   }
@@ -147,7 +147,7 @@
 }
 
 .helpBox {
-  background-color: var(--charcoal);
+  background-color: var(--bg-screen);
   border-radius: 8px;
   padding: 15px;
   margin: 24px 0 0 0;
@@ -160,7 +160,7 @@
 }
 
 .helpBoxText {
-  color: var(--white);
+  color: var(--text-primary);
   font-family: Poppins;
   font-size: 12px;
   font-style: normal;
@@ -169,7 +169,7 @@
   letter-spacing: -0.24px;
 
   & span {
-    color: var(--pale-green);
+    color: var(--label-green);
   }
 }
 
