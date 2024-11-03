@@ -3,9 +3,11 @@ import { createBoard } from '../../redux/actions/boardActions';
 import s from './Sidebar.module.css';
 import sprite from '../../../src/img/icons.svg';
 import plant from '../../img/plant_2x.webp';
+import { useNavigate } from 'react-router-dom';
+import { logoutThunk } from '../../redux/auth/operations';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const boards = useSelector(state => state.board.boards);
   // const [newBoardName, setNewBoardName] = useState('');
   // const [selectedIcon, setSelectedIcon] = useState('icon1');
@@ -29,6 +31,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   //   setError('');
   //   toggleSidebar();
   // };
+
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    dispatch(logoutThunk());
+    navigate('/');
+  };
 
   return (
     <aside className={`${s.sidebar} ${isOpen ? s.open : ''}`}>
@@ -95,7 +103,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <span>Need help?</span>
           </button>
         </div>
-        <button className={s.logoutButton}>
+        <button className={s.logoutButton} onClick={handleLogOut}>
           <svg className={s.logoutBtnIcon} height="32" width="32">
             <use href={`${sprite}#icon-logout`} />
           </svg>
