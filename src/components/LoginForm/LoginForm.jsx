@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from '../../redux/auth/operations.js';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
+import Loader from '../Loader/Loader.jsx';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -25,6 +26,7 @@ const validationSchema = Yup.object({
 
 const LoginForm = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
     email: '',
@@ -34,9 +36,16 @@ const LoginForm = () => {
 
   // const navigate = useNavigate();
 
-  const handleSubmit = (values, actions) => {
-    dispatch(loginThunk(values));
-    actions.resetForm();
+  const handleSubmit = async (values, actions) => {
+    try {
+      setIsLoading(true);
+      await dispatch(loginThunk(values));
+      actions.resetForm();
+    } catch (error) {
+      console.error('Error during login:', error);
+    } finally {
+      setIsLoading(false);
+    }
 
     // navigate('/home');
   };
@@ -53,6 +62,7 @@ const LoginForm = () => {
 
   return (
     <div className={css.pageContainer}>
+      {isLoading && <Loader width="100" height="100" />}
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
