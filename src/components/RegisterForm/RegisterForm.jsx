@@ -6,6 +6,7 @@ import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { registerThunk } from '../../redux/auth/operations.js';
+import Loader from '../Loader/Loader.jsx';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -28,6 +29,7 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const initialValues = {
     name: '',
@@ -37,12 +39,17 @@ const RegisterForm = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (values, actions) => {
-    console.log(values);
-    dispatch(registerThunk(values));
-    actions.resetForm();
-
-    navigate('/home');
+  const handleSubmit = async (values, actions) => {
+    try {
+      setIsLoading(true);
+      await dispatch(registerThunk(values));
+      actions.resetForm();
+      navigate('/home');
+    } catch (error) {
+      console.error('Registration failed:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -53,6 +60,7 @@ const RegisterForm = () => {
 
   return (
     <div className={css.pageContainer}>
+      {isLoading && <Loader width="100" height="100" />}
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
