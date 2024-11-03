@@ -15,9 +15,9 @@ const HomePage = () => {
   return (
     <div className={s.homePage}>
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <div>
-        {/* <Header toggleSidebar={toggleSidebar} />
-        <ScreensPage /> */}
+      <div className={s.columnTwo}>
+        <Header toggleSidebar={toggleSidebar} />
+        <ScreensPage />
       </div>
     </div>
   );
