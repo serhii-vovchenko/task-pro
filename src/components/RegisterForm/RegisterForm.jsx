@@ -76,14 +76,22 @@ const RegisterForm = () => {
             placeholder="Enter your name"
             className={css.formInput}
           />
-          <ErrorMessage name="name" component="span" className={css.error} />
+          <ErrorMessage
+            name="name"
+            component="span"
+            className={`${css.error} ${css.errorName}`}
+          />
           <Field
             type="email"
             name="email"
             placeholder="Enter your email"
             className={css.formInput}
           />
-          <ErrorMessage name="email" component="span" className={css.error} />
+          <ErrorMessage
+            name="email"
+            component="span"
+            className={`${css.error} ${css.errorEmail}`}
+          />
 
           <div className={css.passwordContainer}>
             <div className={css.passwordBlock}>
