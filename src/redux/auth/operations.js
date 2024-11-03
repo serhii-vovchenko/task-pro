@@ -25,3 +25,22 @@ export const loginThunk = createAsyncThunk(
     }
   }
 );
+
+export const logoutThunk = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      const response = await api.post('auth/logout');
+      if (response.status === 204 || response.status === 200) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        return { message: 'Logout successful' };
+      } else {
+        throw new Error(`Logout failed with status code ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
