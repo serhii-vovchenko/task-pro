@@ -21,9 +21,7 @@ import { useEffect, useRef } from 'react';
       };
   
       document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
+     
     }, [toggleSidebar]);
     return (
       <aside
