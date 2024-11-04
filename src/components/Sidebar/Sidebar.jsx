@@ -7,23 +7,24 @@ import Logout from './Logout/Logout';
 import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const sidebarRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = event => {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        toggleSidebar();
-      }
-    };
+ 
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [toggleSidebar]);
+  const Sidebar = ({ isOpen, toggleSidebar }) => {
+    const sidebarRef = useRef(null);
 
-  const Sidebar = () => {
+    useEffect(() => {
+      const handleClickOutside = event => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+          toggleSidebar();
+        }
+      };
+  
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [toggleSidebar]);
     return (
       <aside
         ref={sidebarRef}
@@ -45,6 +46,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     isOpen: PropTypes.bool.isRequired,
     toggleSidebar: PropTypes.func.isRequired,
   };
-};
+
 
 export default Sidebar;
