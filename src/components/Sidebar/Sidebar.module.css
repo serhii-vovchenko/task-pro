@@ -9,6 +9,14 @@
   justify-content: space-between;
   transition: transform 0.3s ease;
   flex-shrink: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  z-index: 1000;
+}
+.sidebar.isOpen {
+  transform: translateX(0);
 }
 
 @media (min-width: 768px) {

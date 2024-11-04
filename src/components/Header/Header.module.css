@@ -1,37 +1,67 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   align-items: center;
-  background-color: var(--background-paper);
-  color: #ffffff;
-  padding: 10px 20px;
-  /* border-bottom: 2px solid #4caf50; */
-  height: 68px;
+  padding: 18px 20px; 
+  height: 60px;
+  background-color: var(--background-default);
+  z-index: 999;
 }
 
-.container {
+.headerContainer {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  align-items: center; 
+  width: 100%; 
 }
 
 .menuIcon {
-  cursor: pointer;
-  font-size: 24px;
+  cursor: pointer; 
+  font-size: 24px; 
+  color: var(--text-primary); 
+  display: flex;
+}
+
+.arrowIcon {
+  width: 16px; 
+  height: 16px; 
+  color: var(background-default)
 }
 
 .userInfo {
   display: flex;
-  align-items: center;
+  align-items: center; 
 }
 
 .userAvatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-left: 10px;
+  width: 100%; 
+  border-radius: 50%; 
+  margin-left: 8px; 
+  display: flex;
+  align-items: center;
 }
 
 .userName {
-  font-size: 16px;
+  color: var(--text-primary);
+  font-size: 16px; 
+  margin-left: 14px;
 }
+@media (min-width: 769px) and (max-width: 1440px) {
+  .container {
+    padding: 0 148px;
+    max-width: 768px;
+  }
+  .header {
+    padding: 18px 32px; 
+    height: 68px;
+
+  
+}}
+
+@media (min-width: 1440px) {
+  .container {
+    padding: 0 484px;
+    max-width: 1440px;
+  }
+}
+
+  
