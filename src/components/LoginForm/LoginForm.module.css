@@ -120,9 +120,9 @@
   text-align: left;
   display: block;
   width: 75%;
-  font-size: 12px;
+  font-size: 11px;
   position: absolute;
-  top: 49%;
+  top: 49.3%;
   left: 43px;
   transform: translateY(-50%);
   z-index: 100;
@@ -134,7 +134,7 @@
   text-align: left;
   display: block;
   width: 75%;
-  font-size: 12px;
+  font-size: 11px;
   position: absolute;
   top: 114%;
   left: 18px;

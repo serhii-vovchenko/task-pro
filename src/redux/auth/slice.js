@@ -17,13 +17,13 @@ const slice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(registerThunk.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })
       .addCase(logoutThunk.pending, state => {
