@@ -19,6 +19,7 @@ export const loginThunk = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await api.post('auth/login', credentials);
+      localStorage.setItem('accessToken', data.data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -30,13 +31,17 @@ export const logoutThunk = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      const accessToken = localStorage.getItem('accessToken'); // Get the access token
+      const accessToken = localStorage.getItem('accessToken');
 
-      const response = await api.post('auth/logout', null, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const response = await api.post(
+        'auth/logout',
+        { accessToken },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
 
       if (response.status === 204 || response.status === 200) {
         localStorage.removeItem('accessToken');
