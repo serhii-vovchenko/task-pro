@@ -1,0 +1,78 @@
+.helpBox {
+  background-color: var(--bg-screen);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 24px 0 0 0;
+}
+
+.plantImg {
+  width: 54px;
+  height: 78px;
+  margin-bottom: 14px;
+}
+
+.helpBoxText {
+  color: var(--text-primary);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: -0.24px;
+
+  & span {
+    color: var(--label-green);
+  }
+}
+
+.helpButton {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: transparent;
+  outline: transparent;
+  gap: 8px;
+  color: var(--white);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.24px;
+  padding: 0;
+  margin-top: 18px;
+
+  &:hover {
+    color: var(--fresh-green);
+  }
+
+  &:hover .helpBtnIcon {
+    stroke: var(--fresh-green);
+  }
+}
+
+.helpBtnIcon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--white);
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .helpBox {
+    margin: 24px 0 0 0;
+    padding: 20px;
+  }
+
+  .helpBoxText {
+    font-size: 14px;
+    letter-spacing: -0.28px;
+  }
+
+  .helpButton {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1440px) {
+}
