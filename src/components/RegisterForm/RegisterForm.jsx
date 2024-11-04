@@ -1,12 +1,13 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import css from './RegisterForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerThunk } from '../../redux/auth/operations.js';
 import Loader from '../Loader/Loader.jsx';
+import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -29,6 +30,7 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const initialValues = {
@@ -37,14 +39,14 @@ const RegisterForm = () => {
     password: '',
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
     try {
       setIsLoading(true);
       await dispatch(registerThunk(values));
       actions.resetForm();
-      navigate('/home');
+      // navigate('/home');
     } catch (error) {
       console.error('Registration failed:', error);
     } finally {
@@ -57,6 +59,10 @@ const RegisterForm = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/home" />;
+  }
 
   return (
     <div className={css.pageContainer}>
