@@ -30,7 +30,14 @@ export const logoutThunk = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      const response = await api.post('auth/logout');
+      const accessToken = localStorage.getItem('accessToken'); // Get the access token
+
+      const response = await api.post('auth/logout', null, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
       if (response.status === 204 || response.status === 200) {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
