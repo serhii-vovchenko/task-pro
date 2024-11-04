@@ -13,16 +13,16 @@ import { useEffect, useRef } from 'react';
   const Sidebar = ({ isOpen, toggleSidebar }) => {
     const sidebarRef = useRef(null);
 
-    useEffect(() => {
-      const handleClickOutside = event => {
-        if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-          toggleSidebar();
-        }
-      };
+    // useEffect(() => {
+    //   const handleClickOutside = event => {
+    //     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+    //       toggleSidebar();
+    //     }
+    //   };
   
-      document.addEventListener('mousedown', handleClickOutside);
+    //   document.addEventListener('mousedown', handleClickOutside);
      
-    }, [toggleSidebar]);
+    // }, [toggleSidebar]);
     return (
       <aside
         ref={sidebarRef}
