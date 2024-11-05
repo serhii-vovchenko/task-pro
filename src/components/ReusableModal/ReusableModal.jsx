@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import css from './Modal.module.css'
+import css from './ReusableModal.module.css'
 import sprite from '../../img/icons.svg'
 
 const customStyles = {
