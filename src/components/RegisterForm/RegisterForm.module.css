@@ -120,12 +120,12 @@
   text-align: left;
   display: block;
   width: 75%;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .errorName {
   position: absolute;
-  top: 40.5%;
+  top: 40.3%;
   left: 44px;
   transform: translateY(-50%);
   z-index: 100;

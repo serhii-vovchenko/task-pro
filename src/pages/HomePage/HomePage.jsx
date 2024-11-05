@@ -4,13 +4,13 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import ScreensPage from '../../components/ScreensPage/ScreensPage';
 import { useState } from 'react';
 import s from './HomePage.module.css';
-import ThemeSwitcher from '../../components/Themes/ThemeSwitcher/ThemeSwitcher';
+
 
 const HomePage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsSidebarOpen(prevState => !prevState);
   };
 
   return (

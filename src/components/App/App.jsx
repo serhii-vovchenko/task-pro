@@ -1,24 +1,36 @@
 import './App.css';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import WelcomePage from '../../pages/WelcomePage/WelcomePage';
-import NotFoundPage from '../../pages/NotFound/NotFoundPage';
-import AuthPage from '../../pages/AuthPage/AuthPage';
-import HomePage from '../../pages/HomePage/HomePage';
-import BoardPage from '../../pages/HomePage/HomePage';
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { PrivateRoute } from '../../routes/PrivateRoute';
+import Loader from '../Loader/Loader';
 
-function App() {
+// Динамическая загрузка компонентов LAZY
+
+const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage'));
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const NotFoundPage = lazy(() => import('../../pages/NotFound/NotFoundPage'));
+// const ScreensPage = lazy(() => import('../ScreensPage/ScreensPage')); //нужно елемент  боард заменить на скрин пейдж
+
+// -------------------------------------------ROUTES-------------------------------------------------//
+
+const App = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Navigate to="/welcome" replace />} />
-        <Route path="/welcome" element={<WelcomePage />} />
-        <Route path="/auth/:id" element={<AuthPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/board/:boardName" element={<BoardPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </>
+    <div>
+      <Suspense fallback={<Loader width="100" height="100" />}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/welcome" replace />} />
+          <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/auth/:id" element={<AuthPage />} />
+          <Route
+            path="/home"
+            element={<PrivateRoute>{<HomePage />} </PrivateRoute>}
+          />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </div>
   );
-}
+};
 
 export default App;

@@ -1,8 +1,8 @@
-import React from 'react';
+// import React from 'react';
 import s from './ScreensPage.module.css';
-import Column from './Column'; 
+// import Column from './Column';
 
-const Board = () => {
+const ScreensPage = () => {
   return (
     <div className={s.board}>
       {/* <Column title="To Do" />
@@ -12,5 +12,4 @@ const Board = () => {
   );
 };
 
-export default Board;
-
+export default ScreensPage;
