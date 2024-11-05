@@ -17,18 +17,15 @@ const NotFoundPage = lazy(() => import('../../pages/NotFound/NotFoundPage'));
 const App = () => {
   return (
     <div>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader width="100" height="100" />}>
         <Routes>
           <Route path="/" element={<Navigate to="/welcome" replace />} />
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/auth/:id" element={<AuthPage />} />
-          <Route path="/home" element={<HomePage />} />
-          {/* <Route
+          <Route
             path="/home"
-            element={<PrivateRoute element={<HomePage />} />}
-          /> */}
-          {/* <Route path="/home/:boardId" element={<ScreensPage />} /> */}
-
+            element={<PrivateRoute>{<HomePage />} </PrivateRoute>}
+          />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
