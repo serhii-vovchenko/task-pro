@@ -1,0 +1,71 @@
+.taskModal {
+    width: 287px;
+}
+
+.titleModal {
+    /*Треба через змінну якої ще немає*/
+    color: #161616;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.36px;
+    margin-bottom: 24px;
+}
+
+.fieldTitle {
+    border-radius: 8px;
+    border: 1px solid #5255BC;
+    box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+    color: #161616;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    padding: 14px 18px;
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.fieldDesc {
+    padding: 14px 18px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #5255BC;
+    box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+    height: 154px;
+    color: #161616;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    /* 128.571% */
+    letter-spacing: -0.28px;
+    margin-bottom: 24px;
+}
+
+.priorityCont>ul {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+input[value='low'] {}
+
+input[value='low']::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    background-color: brown;
+    border-radius: 14px;
+}
+
+input[value='low']:checked::before {
+    padding: 2px;
+    border: 1px solid brown;
+}
