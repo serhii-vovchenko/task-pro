@@ -22,6 +22,10 @@ const App = () => {
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/auth/:id" element={<AuthPage />} />
 
+          {/* <Route
+            path="/home"
+            element={<PrivateRoute>{<HomePage />} </PrivateRoute>}
+          /> */}
           <Route
             path="/home"
             element={<PrivateRoute>{<HomePage />} </PrivateRoute>}
