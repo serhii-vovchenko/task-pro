@@ -5,21 +5,23 @@ import ScreensPage from '../../components/ScreensPage/ScreensPage';
 import { useState } from 'react';
 import s from './HomePage.module.css';
 
+
 const HomePage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); 
+    setIsSidebarOpen(prevState => !prevState);
   };
 
   return (
     <div className={s.homePage}>
-      <Header toggleSidebar={toggleSidebar} /> 
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} /> 
-      <ScreensPage />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className={s.columnTwo}>
+        <Header toggleSidebar={toggleSidebar} />
+        <ScreensPage />
+      </div>
     </div>
   );
 };
 
 export default HomePage;
-

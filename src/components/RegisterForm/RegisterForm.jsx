@@ -1,9 +1,13 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import css from './RegisterForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerThunk } from '../../redux/auth/operations.js';
+import Loader from '../Loader/Loader.jsx';
+import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -26,19 +30,28 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const initialValues = {
     name: '',
     email: '',
     password: '',
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleSubmit = (values, actions) => {
-    console.log(values);
-    actions.resetForm();
-
-    navigate('/home');
+  const handleSubmit = async (values, actions) => {
+    try {
+      setIsLoading(true);
+      await dispatch(registerThunk(values));
+      actions.resetForm();
+      // navigate('/home');
+    } catch (error) {
+      console.error('Registration failed:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -47,8 +60,13 @@ const RegisterForm = () => {
     setShowPassword(!showPassword);
   };
 
+  if (isLoggedIn) {
+    return <Navigate to="/home" />;
+  }
+
   return (
     <div className={css.pageContainer}>
+      {isLoading && <Loader width="100" height="100" />}
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -72,14 +90,22 @@ const RegisterForm = () => {
             placeholder="Enter your name"
             className={css.formInput}
           />
-          <ErrorMessage name="name" component="span" className={css.error} />
+          <ErrorMessage
+            name="name"
+            component="span"
+            className={`${css.error} ${css.errorName}`}
+          />
           <Field
             type="email"
             name="email"
             placeholder="Enter your email"
             className={css.formInput}
           />
-          <ErrorMessage name="email" component="span" className={css.error} />
+          <ErrorMessage
+            name="email"
+            component="span"
+            className={`${css.error} ${css.errorEmail}`}
+          />
 
           <div className={css.passwordContainer}>
             <div className={css.passwordBlock}>

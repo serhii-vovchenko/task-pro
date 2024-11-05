@@ -1,0 +1,86 @@
+.boardList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: -14px;
+  margin-right: -14px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+.boardItem {
+  display: flex;
+  justify-content: space-between;
+  background: var(--bg-screen);
+  padding: 0 14px;
+  height: 61px;
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.titleBoxIcon {
+  width: 18px;
+  height: 18px;
+  fill: var(--white);
+}
+
+.titleBoxTitle {
+  color: var(--text-primary);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+
+.btnBox {
+  display: flex;
+  gap: 8px;
+
+  &::after {
+    content: '';
+    width: 4px;
+    height: 61px;
+    background-color: var(--label-green);
+    border-radius: 4px 0 0 4px;
+    margin-right: -14px;
+  }
+}
+
+.btnBoxButton {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: transparent;
+  outline: transparent;
+}
+
+.btnBoxIcon {
+  width: 16px;
+  height: 16px;
+  stroke: rgba(255, 255, 255, 0.5); /* додати колір в змінні */
+}
+
+@media (min-width: 768px) {
+  .boardList {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+
+  .boardItem {
+    padding: 0 24px;
+  }
+
+  .btnBox {
+    &::after {
+      margin-right: -24px;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+}

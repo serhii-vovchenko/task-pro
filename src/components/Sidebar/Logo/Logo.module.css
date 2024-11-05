@@ -1,0 +1,31 @@
+.logoBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 70px;
+}
+
+.logoIcon {
+  fill: var(--white);
+  width: 32px;
+  height: 32px;
+}
+
+.title {
+  color: var(--text-primary);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.64px;
+}
+
+@media (min-width: 768px) {
+  .logoBox {
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 1440px) {
+}

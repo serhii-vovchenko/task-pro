@@ -1,0 +1,53 @@
+:root {
+  --primary-light: #fcfcfc;
+  --primary-main: #bedbb0;
+  --primary-dark: #9dc888;
+  --primary-contrastText: rgba(22, 22, 22, 0.1);
+  --secondary-main: rgba(22, 22, 22, 0.1);
+  --background-default: #fff;
+  --background-paper: #fcfcfc;
+  --text-primary: #161616;
+  --text-secondary: rgba(22, 22, 22, 0.5);
+  --bg-scroll: #e8e8e8;
+  --bg-screen: #f6f6f7;
+  --label-blue: #8fa1d0;
+  --label-pink: #e09cb5;
+  --label-green: #bedbb0;
+  --label-grey: rgba(22, 22, 22, 0.3);
+}
+
+[data-theme='dark'] {
+  --primary-light: #161616;
+  --primary-main: #bedbb0;
+  --primary-dark: #9dc888;
+  --primary-contrastText: rgba(255, 255, 255, 0.1);
+  --secondary-main: rgba(255, 255, 255, 0.1);
+  --background-default: #121212;
+  --background-paper: #161616;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.5);
+  --bg-screen: #1f1f1f;
+  --bg-scroll: #121212;
+  --bg-screen: #f6f6f7;
+  --label-blue: #8fa1d0;
+  --label-pink: #e09cb5;
+  --label-green: #bedbb0;
+  --label-grey: rgba(22, 22, 22, 0.3);
+}
+
+[data-theme='violet'] {
+  --primary-light: #fff;
+  --primary-main: #5255bc;
+  --primary-dark: #7b7ede;
+  --primary-contrastText: rgba(96, 70, 70, 0.1);
+  --secondary-main: rgba(22, 22, 22, 0.1);
+  --background-default: #5255bc;
+  --background-paper: #fff;
+  --text-primary: #fff;
+  --text-secondary: rgba(225, 225, 225, 0.5);
+  --bg-screen: rgba(236, 237, 253, 0.4);
+  --label-blue: #8fa1d0;
+  --label-pink: #e09cb5;
+  --label-green: #bedbb0;
+  --label-grey: rgba(22, 22, 22, 0.3);
+}

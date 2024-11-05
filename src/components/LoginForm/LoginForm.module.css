@@ -15,6 +15,8 @@
   justify-content: center;
   border-radius: 8px;
   width: 335px;
+
+  position: relative;
 }
 
 .linksContainer {
@@ -47,6 +49,7 @@
 .passwordContainer {
   width: 100%;
   margin-bottom: 24px;
+  position: relative;
 }
 
 .passwordBlock {
@@ -113,25 +116,37 @@
 }
 
 .errorEmail {
-  color: var(--pale-green);
+  color: var(--soft-pink);
   text-align: left;
   display: block;
-  width: 100%;
-  margin-bottom: 14px;
+  width: 75%;
+  font-size: 11px;
+  position: absolute;
+  top: 49.3%;
+  left: 43px;
+  transform: translateY(-50%);
+  z-index: 100;
+  background: var(--very-dark-grey);
 }
 
 .errorPassword {
-  margin-top: 14px;
-  color: var(--pale-green);
+  color: var(--soft-pink);
   text-align: left;
   display: block;
-  width: 100%;
+  width: 75%;
+  font-size: 11px;
+  position: absolute;
+  top: 114%;
+  left: 18px;
+  transform: translateY(-50%);
+  z-index: 100;
+  background: var(--very-dark-grey);
 }
 
 .formBottom {
   background-color: var(--pale-green);
   border: none;
-  padding: 14px 99px;
+  padding: 14px;
   cursor: pointer;
   border-radius: 8px;
   color: var(--almost-black);

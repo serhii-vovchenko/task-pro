@@ -1,0 +1,55 @@
+.subTitle {
+  color: var(--text-secondary);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.24px;
+}
+
+.createBoardBox {
+  padding: 14px 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--primary-contrastText);
+  border-bottom: 1px solid var(--primary-contrastText);
+  margin-bottom: 40px;
+}
+
+.text {
+  width: 76px;
+  color: var(--text-primary);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+
+.addButton {
+  width: 40px;
+  height: 36px;
+  background-color: var(--primary-dark);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--fresh-green);
+  }
+}
+
+.plusIconBtn {
+  width: 20px;
+  height: 20px;
+  stroke: var(--background-default);
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1440px) {
+}
