@@ -8,28 +8,38 @@ const TaskCard = () => {
                 <p className={s.taskDescription}>description</p>
                 <div className={s.lowerCont}>
                     <div>
-                        <p className={s.lowerContTitle}>Priority</p>
-                        <div className={s.priorityCircle}></div><span className={s.lowerContText}>Low</span>
-                    </div>
-                    <div>
-                        <p className={s.lowerContTitle}>Deadline</p>
-                        <p className={s.lowerContText}>Date</p>
+                        <div className={s.contWithMarkings}>
+                            <p className={s.lowerContTitle}>Priority</p>
+                            <div className={s.contWithCircle}>
+                                <span className={s.priorityCircle}></span><span className={s.lowerContText}>Low</span>
+                            </div>
+                        </div>
+                        <div className={s.contWithMarkings}>
+                            <p className={s.lowerContTitle}>Deadline</p>
+                            <p className={s.lowerContText}>Date</p>
+                        </div>
                     </div>
                     <ul>
                         <li>
-                            <svg className={s.icon} width="16px" height="16px">
-                                <use href={`${sprite}#icon-arrow-circle-broken-right`} />
-                            </svg>
+                            <button>
+                                <svg className={s.icon} width="16px" height="16px">
+                                    <use href={`${sprite}#icon-arrow-circle-broken-right`} />
+                                </svg>
+                            </button>
                         </li>
                         <li>
-                            <svg className={s.icon} width="16px" height="16px">
-                                <use href={`${sprite}#icon-pencil`}/>
-                            </svg>
+                            <button>
+                                <svg className={s.icon} width="16px" height="16px">
+                                    <use href={`${sprite}#icon-pencil`}/>
+                                </svg>
+                            </button>
                         </li>
                         <li>
-                            <svg className={s.icon} width="16px" height="16px">
-                                <use href={`${sprite}#icon-trash`} />
-                            </svg>
+                            <button>
+                                <svg className={s.icon} width="16px" height="16px">
+                                    <use href={`${sprite}#icon-trash`} />
+                                </svg>
+                            </button>
                         </li>
                     </ul>
                 </div>
