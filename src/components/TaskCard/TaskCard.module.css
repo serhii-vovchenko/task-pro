@@ -1,5 +1,5 @@
 .cardTask {
-    background-color: var(--background-default);
+    background-color: var(--background-paper);
     width: 335px;
     padding: 14px 14px 14px 24px;
     border-radius: 4px 8px 8px 4px;
@@ -88,6 +88,10 @@
 .icon {
     fill: transparent;
     stroke: var(--text-secondary);
+}
+
+.icon:hover {
+    stroke: var(--primary-main);
 }
 
 .contWithMarkings {
