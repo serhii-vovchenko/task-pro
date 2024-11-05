@@ -39,6 +39,7 @@
   --soft-gray: rgba(136, 130, 130, 0.3);
   --light-grey: #e8e8e8;
   --charcoal-shadow: rgba(22, 22, 22, 0.08);
+  --charcoal-veil: rgba(22, 22, 22, 0.4);
   --very-dark-grey: #151515;
   --backdrop: rgba(21, 21, 21, 0.3);
   --almost-black: #161616;
@@ -46,6 +47,7 @@
   --charcoal: #1f1f1f;
   --soft-pink: #e09cb5;
   --pale-green: #bedbb0;
+  --soft-green-mist: rgba(190, 219, 176, 0.4);
   --fresh-green: #9dc888;
   --pale-lavender: #ecedfd;
   --lavender: #b8bcfd;
@@ -53,6 +55,9 @@
   --periwinkle: #7b7ede;
   --soft-blue: #8fa1d0;
   --bold-blue: #5255bc;
+
+  --transition-time: 300ms;
+  --transition-func: ease-in-out;
 }
 
 html {
@@ -140,5 +145,5 @@ button {
   font-weight: 500;
   cursor: pointer;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-time) var(--transition-func);
 }
