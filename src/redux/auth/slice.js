@@ -14,6 +14,16 @@ const initialState = {
 const slice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    resetAuthState: state => {
+      state.user = {
+        name: '',
+        email: '',
+      };
+      state.token = '';
+      state.isLoggedIn = false;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(registerThunk.fulfilled, (state, action) => {
@@ -41,4 +51,5 @@ const slice = createSlice({
   },
 });
 
+export const { resetAuthState } = slice.actions;
 export const authReducer = slice.reducer;

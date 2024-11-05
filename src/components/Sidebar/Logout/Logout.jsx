@@ -1,14 +1,15 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import sprite from '../../../../src/img/icons.svg';
 import s from './Logout.module.css';
 import { useNavigate } from 'react-router-dom';
 import { logoutThunk } from '../../../redux/auth/operations';
 
 const Logout = () => {
+  const accessToken = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogOut = () => {
-    dispatch(logoutThunk());
+    dispatch(logoutThunk(accessToken));
     navigate('/');
   };
 
