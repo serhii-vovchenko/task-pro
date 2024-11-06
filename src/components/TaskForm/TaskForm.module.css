@@ -46,6 +46,18 @@
     /* 128.571% */
     letter-spacing: -0.28px;
     margin-bottom: 24px;
+    resize: none;
+}
+
+.labelTitle {
+    color: rgba(22, 22, 22, 0.50);
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.24px;
+    margin-bottom: 4px;
 }
 
 .priorityCont>ul {
@@ -96,24 +108,7 @@ input[name="priority"]:checked+.radioLabel::before {
     border-radius: 50%;
 }
 
-
-
-/* 
-input[value='low'] {
-    color: brown;
+.dateCont {
+    display: flex;
+    flex-direction: column;
 }
-
-input[value='low']::before {
-    content: '';
-    width: 13px;
-    height: 13px;
-    position: absolute;
-    border: 2px solid brown;
-    background-color: brown;
-    border-radius: 14px;
-}
-
-input[value='low']:checked::before {
-    padding: 2px;
-    border: 1px solid brown;
-} */
