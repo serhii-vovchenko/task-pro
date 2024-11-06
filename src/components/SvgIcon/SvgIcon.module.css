@@ -1,15 +1,27 @@
 .icon {
+  color: var(--charcoal-haze);
+  transition: color 0.3s ease;
+}
+
+.icon:hover,
+.icon.active {
+  color: var(--almost-black);
+}
+
+.icon.dark {
   color: var(--half-white);
+  transition: color 0.3s ease;
+}
+
+.icon.dark :hover,
+.icon.dark.active {
+  color: var(--white);
   transition: color 0.3s ease;
 }
 
 .icon svg {
   width: 100%;
   height: 100%;
-}
-
-.icon:hover {
-  color: var(--white);
 }
 
 .icon path {
