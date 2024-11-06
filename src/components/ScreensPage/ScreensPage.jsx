@@ -3,9 +3,7 @@ import s from './ScreensPage.module.css';
 const ScreensPage = () => {
   return (
     <div className={s.screenPage}>
-      {/* <Column title="To Do" />
-      <Column title="In Progress" />
-      <Column title="Done" /> */}
+      <h1>Screens Page</h1>
     </div>
   );
 };
