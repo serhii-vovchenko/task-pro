@@ -1,21 +1,18 @@
 .themeContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;  
-  align-items: center;  
-  margin-left: auto;
-  gap: 4px; 
-  cursor: pointer; 
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
   position: relative;
- 
 }
 
 .themeLabel {
   color: var(--text-primary);
-   display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .arrowIcon {
@@ -27,31 +24,24 @@
 
 .dropdownMenu {
   display: flex;
-  flex-direction: column; 
-  position: absolute; 
-  top: 100%; 
-  left: 50%; 
-  width: 160px;   
-  background-color: var(--primary-light); 
-  border-radius: 8px; 
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1); 
-  z-index: 10; 
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 160px;
+  background-color: var(--background-paper);
+  border-radius: 8px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  z-index: 10;
   border: 1px solid var(--primary-main);
   color: var(--text-primary);
-
 }
 
 .themeButton {
   padding: 10px;
-  border: none; 
-  background: none; 
-  cursor: pointer; 
-  text-align: center; 
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: center;
   color: var(--text-primary);
- 
-
 }
-
-/* .themeButton:hover { */
-  /* background-color: #f0f0f0;  */
-

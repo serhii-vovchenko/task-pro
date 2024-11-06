@@ -1,10 +1,8 @@
-// import React from 'react';
 import s from './ScreensPage.module.css';
-// import Column from './Column';
 
 const ScreensPage = () => {
   return (
-    <div className={s.board}>
+    <div className={s.screenPage}>
       {/* <Column title="To Do" />
       <Column title="In Progress" />
       <Column title="Done" /> */}

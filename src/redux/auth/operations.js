@@ -53,3 +53,18 @@ export const logoutThunk = createAsyncThunk(
     }
   }
 );
+export const updateUserProfile = createAsyncThunk(
+  'auth/updateUserProfile',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch('/api/user/profile', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

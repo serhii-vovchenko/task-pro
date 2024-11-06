@@ -1,5 +1,5 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import css from './RegisterForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerThunk } from '../../redux/auth/operations.js';
 import Loader from '../Loader/Loader.jsx';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
+import { toast, Toaster } from 'react-hot-toast';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -32,6 +33,7 @@ const validationSchema = Yup.object({
 const RegisterForm = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isLoading, setIsLoading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const dispatch = useDispatch();
   const initialValues = {
     name: '',
@@ -39,19 +41,21 @@ const RegisterForm = () => {
     password: '',
   };
 
-  // const navigate = useNavigate();
-
   const handleSubmit = async (values, actions) => {
-    try {
-      setIsLoading(true);
-      await dispatch(registerThunk(values));
+    setIsLoading(true);
+
+    const result = await dispatch(registerThunk(values));
+
+    if (registerThunk.fulfilled.match(result)) {
       actions.resetForm();
-      // navigate('/home');
-    } catch (error) {
-      console.error('Registration failed:', error);
-    } finally {
-      setIsLoading(false);
+      toast.success('Registration successful! Welcome aboard!');
+      setTimeout(() => setRedirect(true), 1500);
+    } else if (registerThunk.rejected.match(result)) {
+      toast.error(
+        'Registration failed. Please check your details and try again.'
+      );
     }
+    setIsLoading(false);
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -60,12 +64,13 @@ const RegisterForm = () => {
     setShowPassword(!showPassword);
   };
 
-  if (isLoggedIn) {
+  if (isLoggedIn && redirect) {
     return <Navigate to="/home" />;
   }
 
   return (
     <div className={css.pageContainer}>
+      <Toaster position="top-center" reverseOrder={false} />
       {isLoading && <Loader width="100" height="100" />}
       <Formik
         initialValues={initialValues}
