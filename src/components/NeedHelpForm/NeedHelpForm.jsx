@@ -1,6 +1,11 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import css from './NeedHelpForm.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitNeedHelpThunk } from '../../redux/dashboard/need-help-form/operations';
+import { selectNeedHelpError, selectNeedHelpSuccess, selectNeedHelpLoading } from '../../redux/dashboard/need-help-form/selectors';
+import Loader from '../Loader/Loader.jsx';
+
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -17,17 +22,35 @@ const validationSchema = Yup.object({
 });
 
 const NeedHelpForm = () => {
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectNeedHelpLoading);
+  const error = useSelector(selectNeedHelpError);
+  const success = useSelector(selectNeedHelpSuccess);
+
   const initialValues = {
     email: '',
     comment: '',
   };
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
-    actions.resetForm();
+    try {
+      const { comment, ...restValues } = values;
+      const modifiedValues = {
+        ...restValues,
+        userMessage: values.comment,
+      };
+
+      dispatch(submitNeedHelpThunk(modifiedValues));
+
+      actions.resetForm();
+    } catch (error) {
+      console.error('Error during form submission:', error);
+    }
   };
 
-  return (
+
+  return (<> {isLoading && <Loader width="100" height="100" />}
     <div className={css['form-container']}>
       <h2 className={css.title}>Need help</h2>
       <Formik
@@ -57,6 +80,7 @@ const NeedHelpForm = () => {
         </Form>
       </Formik>
     </div>
+  </>
   );
 };
 

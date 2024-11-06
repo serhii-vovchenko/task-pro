@@ -1,67 +1,42 @@
 .header {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
-  padding: 18px 20px; 
+  padding: 18px 20px;
   height: 60px;
-  background-color: var(--background-default);
-  z-index: 999;
+  background-color: var(--background-paper);
 }
 
-.headerContainer {
+.menuIconBox {
   display: flex;
-  align-items: center; 
-  width: 100%; 
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
 }
 
 .menuIcon {
-  cursor: pointer; 
-  font-size: 24px; 
-  color: var(--text-primary); 
-  display: flex;
+  width: 32px;
+  height: 32px;
+  stroke: var(--text-primary);
 }
 
-.arrowIcon {
-  width: 16px; 
-  height: 16px; 
-  color: var(background-default)
-}
-
-.userInfo {
-  display: flex;
-  align-items: center; 
-}
-
-.userAvatar {
-  width: 100%; 
-  border-radius: 50%; 
-  margin-left: 8px; 
+.userBox {
   display: flex;
   align-items: center;
+  gap: 14px;
 }
 
-.userName {
-  color: var(--text-primary);
-  font-size: 16px; 
-  margin-left: 14px;
-}
-@media (min-width: 769px) and (max-width: 1440px) {
-  .container {
-    padding: 0 148px;
-    max-width: 768px;
-  }
+@media (min-width: 768px) {
   .header {
-    padding: 18px 32px; 
+    padding: 18px 32px;
     height: 68px;
-
-  
-}}
+  }
+}
 
 @media (min-width: 1440px) {
-  .container {
-    padding: 0 484px;
-    max-width: 1440px;
+  .menuIcon {
+    display: none;
   }
 }
-
-  

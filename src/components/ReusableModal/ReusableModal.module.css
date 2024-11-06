@@ -1,0 +1,24 @@
+.button{
+display: flex;
+
+position: absolute;
+top: 14px;
+right: 14px;
+
+padding: 0px;
+border-radius: 0px;
+
+background-color: transparent;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    stroke: var(--almost-black);
+    transition: stroke var(--transition-time) var(--transition-func)
+  }
+  
+  .button:hover .icon,
+  .button:focus .icon {
+    stroke: rgb(22, 22, 22, 0.5);
+  }

@@ -3,6 +3,7 @@ import { authReducer } from './auth/slice.js';
 import boardReducer from './reducers/boardReducer';
 import themeReducer from './reducers/themeReducer';
 import userReducer from './reducers/userReducer';
+import { needHelpReducer } from './dashboard/need-help-form/slice.js';
 import {
   persistStore,
   persistReducer,
@@ -28,6 +29,7 @@ export const store = configureStore({
     board: boardReducer,
     theme: themeReducer,
     user: userReducer,
+    needHelp: needHelpReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -38,16 +40,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// import { createStore, combineReducers } from 'redux';
-// import boardReducer from './reducers/boardReducer';
-// import themeReducer from './reducers/themeReducer';
-// import userReducer from './reducers/userReducer';
-
-// const rootReducer = combineReducers({
-//   board: boardReducer,
-//   theme: themeReducer,
-//   user: userReducer,
-// });
-
-// export const store = createStore(rootReducer);

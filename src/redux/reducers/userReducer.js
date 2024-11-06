@@ -9,10 +9,17 @@ const initialState = {
       case 'SET_USER':
         return {
           ...state,
-          ...action.payload,
-          name: action.payload.name,
-          photo: action.payload.photo,
+        name: action.payload.name,
+        email: action.payload.email,
+        photo: action.payload.photo,
         };
+        case 'UPDATE_USER_PROFILE':
+          return {
+            ...state,
+            name: action.payload.name || state.name,
+            email: action.payload.email || state.email,
+            photo: action.payload.photo || state.photo,
+          };
       case 'LOGOUT':
         return initialState; 
       default:
