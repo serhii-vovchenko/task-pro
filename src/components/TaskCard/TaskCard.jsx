@@ -4,15 +4,12 @@ import { useState } from "react"
 import ReusableModal from "../Modal/Modal"
 import TaskForm from "../TaskForm/TaskForm"
 
-
 const taskObj = {
     title: "Title card 1",
     description: "decription card 1",
     priority: "low",
     deadline: "08/10/2024"
 }
-
-
 
 const TaskCard = () => {
 
