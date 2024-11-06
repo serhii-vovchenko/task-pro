@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import s from "./TaskForm.module.css"
+import DatePickerField from "../DatePickerField/DatePickerField";
 
 
 const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
@@ -16,7 +17,7 @@ const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
                     <Field className={s.fieldTitle} type="text" name="title"/>
                     <Field className={s.fieldDesc} type="text" as="textarea" name="description" />
                     <div className={s.priorityCont}>
-                        <label>Priority</label>
+                        <label className={s.labelTitle}>Label color</label>
                         <ul>
                             <li>
                                 <Field type="radio" name="priority" value="low"/>
@@ -35,6 +36,10 @@ const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
                                 <label className={s.radioLabel} htmlFor="" style={{ '--customColor': 'rgba(22, 22, 22, 0.3)' }}></label>
                             </li>
                         </ul>
+                    </div>
+                    <div className={s.dateCont}>
+                        <label className={s.labelTitle} htmlFor="">Deadline</label>
+                        <Field name="deadline" component={DatePickerField} minDate={new Date()} />
                     </div>
                     <button type="submit">{typeOfPopUp}</button>
                 </Form>
