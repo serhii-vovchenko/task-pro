@@ -28,7 +28,6 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isLoading, setIsLoading] = useState(false);
-  const [redirect, setRedirect] = useState(false);
 
   const initialValues = {
     email: '',
@@ -44,12 +43,11 @@ const LoginForm = () => {
     if (loginThunk.fulfilled.match(result)) {
       actions.resetForm();
       toast.success('Login successful! Welcome back!');
-      setTimeout(() => setRedirect(true), 1500);
+      setTimeout(() => setIsLoading(false), 1500);
     } else if (loginThunk.rejected.match(result)) {
       toast.error('Login failed. Please check your email and password.');
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -58,7 +56,7 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
-  if (isLoggedIn && redirect) {
+  if (isLoggedIn && !isLoading) {
     return <Navigate to="/home" />;
   }
 

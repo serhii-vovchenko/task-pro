@@ -5,9 +5,11 @@ import { resetAuthState } from './slice.js';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
-  async (credentials, thunkAPI) => {
+  async (registerCredentials, thunkAPI) => {
     try {
-      const { data } = await api.post('auth/register', credentials);
+      let { name, ...loginCredentials } = registerCredentials;
+      await api.post('auth/register', registerCredentials);
+      const { data } = await api.post('auth/login', loginCredentials);
       setToken(data.accessToken);
       return data;
     } catch (error) {
