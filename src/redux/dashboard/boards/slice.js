@@ -6,12 +6,22 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: 'boards',
+  name: 'board',
   initialState,
   extraReducers: builder => {
-    builder.addCase(getBoardThunk.fulfilled, (state, action) => {
-      state.boards = action.payload.data;
-    });
+    builder
+      .addCase(getBoardThunk.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getBoardThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.boards = action.payload;
+      })
+      .addCase(getBoardThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 

@@ -9,6 +9,7 @@ const HomePage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+
   const toggleSidebar = () => {
     setIsSidebarOpen(prevState => !prevState);
   };
@@ -19,6 +20,7 @@ const HomePage = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 768);
@@ -30,6 +32,7 @@ const HomePage = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
   useEffect(() => {
     const handleClickOutside = event => {
       if (isSidebarOpen && !event.target.closest('.sidebar')) {
