@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskCard from './TaskCard'; 
+import TaskCard from '../TaskCard';
 import s from './ScreensPage.module.css';
 
 const Column = ({ title }) => {
@@ -14,4 +14,3 @@ const Column = ({ title }) => {
 };
 
 export default Column;
-

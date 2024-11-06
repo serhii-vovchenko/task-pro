@@ -14,6 +14,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { columnsReducer } from './dashboard/columns/slise.js';
 
 const persistConfig = {
   key: 'auth',
@@ -28,6 +29,7 @@ export const store = configureStore({
     board: boardReducer,
     theme: themeReducer,
     user: userReducer,
+    columns: columnsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
