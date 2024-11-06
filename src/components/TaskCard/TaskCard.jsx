@@ -8,7 +8,7 @@ import TaskForm from "../TaskForm/TaskForm"
 const taskObj = {
     title: "Title card 1",
     description: "decription card 1",
-    priority: "Low card 1",
+    priority: "low",
     deadline: "08/10/2024"
 }
 
