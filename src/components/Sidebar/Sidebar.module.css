@@ -24,7 +24,12 @@
     width: 260px;
     padding: 24px;
   }
+  .sidebar {
+    transform: translateX(0); 
+   
+  }
 }
 
 @media (min-width: 1440px) {
+  
 }

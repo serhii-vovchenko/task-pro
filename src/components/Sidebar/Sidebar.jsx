@@ -5,27 +5,18 @@ import CreateBoard from './CreateBoard/CreateBoard';
 import NeedHelp from './NeedHelp/NeedHelp';
 import Logout from './Logout/Logout';
 import PropTypes from 'prop-types';
-import { useEffect, useRef } from 'react';
+
 
 
  
 
   const Sidebar = ({ isOpen, toggleSidebar }) => {
-    const sidebarRef = useRef(null);
+    
 
-    // useEffect(() => {
-    //   const handleClickOutside = event => {
-    //     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-    //       toggleSidebar();
-    //     }
-    //   };
   
-    //   document.addEventListener('mousedown', handleClickOutside);
-     
-    // }, [toggleSidebar]);
     return (
       <aside
-        ref={sidebarRef}
+        
         className={`${s.sidebar} ${isOpen ? s.isOpen : ''}`}
       >
         <div>

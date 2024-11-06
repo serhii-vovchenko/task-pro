@@ -51,7 +51,10 @@ const ThemeSwitcher = () => {
               onClick={handleThemeChange}
               className={s.themeButton} 
               style={{
-                color: currentTheme === theme ? '#BEDBB0' : '#000' 
+                color: currentTheme === theme ? '#BEDBB0' : currentTheme === 'dark' ? '#FFF' : '#000', // Текст зеленый для выбранной темы, белый для темной темы, черный для остальных
+                backgroundColor: 'transparent', // Фон прозрачный
+                border: 'none', // Убираем границу
+                cursor: 'pointer', // Курсор указывает на возможность клика
               }}
             >
               {theme.charAt(0).toUpperCase() + theme.slice(1)}
