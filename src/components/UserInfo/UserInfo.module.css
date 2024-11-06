@@ -1,0 +1,18 @@
+.userInfo {
+    display: flex;
+    align-items: center; 
+  }
+  
+  .userAvatar {
+    width: 100%; 
+    border-radius: 50%; 
+    margin-left: 8px; 
+    display: flex;
+    align-items: center;
+  }
+  
+  .userName {
+    color: var(--text-primary);
+    font-size: 16px; 
+    margin-left: 14px;
+  }

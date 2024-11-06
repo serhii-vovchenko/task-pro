@@ -4,9 +4,9 @@ import s from './Header.module.css';
 import { FaBars } from 'react-icons/fa';
 import ThemeSwitcher from '../Themes/ThemeSwitcher/ThemeSwitcher';
 import PropTypes from 'prop-types';
-
-const Header = ({ toggleSidebar }) => {
-  const userName = useSelector((state) => state.user.name) || 'Guest';
+import UserInfo from '../UserInfo/UserInfo';
+const Header = ({ toggleSidebar, onUserPhotoClick  }) => {
+  // const userName = useSelector((state) => state.user.name) || 'Guest';
   const userPhoto = useSelector((state) => state.user.photo) || 'path/to/default-avatar.png'; 
 
   return (
@@ -16,9 +16,10 @@ const Header = ({ toggleSidebar }) => {
           <FaBars />
         </div>
         <ThemeSwitcher /> 
-        <div className={s.userInfo}>
-          <span className={s.userName}>{userName}</span>        
-          <img src={userPhoto} alt={userName} className={s.userAvatar} />
+        <div className={s.userInfo} onClick={onUserPhotoClick}>
+        <UserInfo onUserPhotoClick={onUserPhotoClick} />
+          {/* <span className={s.userName}>{userName}</span>        
+          <img src={userPhoto} alt={userName} className={s.userAvatar} /> */}
         </div>
       </div>
     </header>
@@ -26,7 +27,8 @@ const Header = ({ toggleSidebar }) => {
 };
 
 Header.propTypes = {
-  toggleSidebar: PropTypes.func.isRequired, 
+  toggleSidebar: PropTypes.func.isRequired,
+  onUserPhotoClick: PropTypes.func.isRequired, 
 };
 
 export default Header;
