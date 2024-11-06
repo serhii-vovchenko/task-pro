@@ -1,13 +1,17 @@
 import s from './BoardList.module.css';
 import sprite from '../../../../src/img/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
-// import { selectBoards } from '../../../redux/dashboard/boards/selectors';
+import { selectBoards } from '../../../redux/dashboard/boards/selectors';
 import { useEffect } from 'react';
-import { getBoardThunk } from '../../../redux/dashboard/boards/operations';
+import {
+  getBoardById,
+  getBoardThunk,
+} from '../../../redux/dashboard/boards/operations';
+import SvgIcon from '../../SvgIcon/SvgIcon';
+import clsx from 'clsx';
 
 const BoardList = () => {
-  // const { boards } = useSelector(selectBoards);
-  const boards = [];
+  const { boards } = useSelector(selectBoards);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,12 +21,25 @@ const BoardList = () => {
   return (
     <ul className={s.boardList}>
       {boards.map(board => (
-        <li key={board.id} className={s.boardItem}>
+        <li
+          key={board._id}
+          className={clsx(s.boardItem, board.isActive && s.activeBoard)}
+          onClick={() => dispatch(getBoardById(board._id))}
+        >
           <div className={s.titleBox}>
-            <svg className={s.titleBoxIcon} height="18" width="18">
-              <use href={`${sprite}#icon-project`} />
-            </svg>
-            <p className={s.titleBoxTitle}>{board.title || 'Project office'}</p>
+            {board.isActive ? (
+              <SvgIcon url={board.icon.iconUrl} active />
+            ) : (
+              <SvgIcon url={board.icon.iconUrl} />
+            )}
+            <p
+              className={clsx(
+                s.titleBoxTitle,
+                board.isActive && s.titleBoxTitleActive
+              )}
+            >
+              {board.title}
+            </p>
           </div>
           <div className={s.btnBox}>
             <button className={s.btnBoxButton}>
