@@ -1,0 +1,108 @@
+.iconCalendar {
+    right: 0;
+}
+
+/* .customCal {
+    color: var(--text-primary);
+    background-color: var(--background-paper);
+}
+
+.customCal>div>div {
+    background-color: var(--background-paper);
+}
+
+.calendar .react-datepicker__day {
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    margin: 4px 0;
+    padding: 5px;
+    color: var(--text-primary);
+} */
+
+
+.customCal {
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid #5255BC;
+    color: var(--Main, #101828);
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    padding: 18px;
+}
+
+.customCal>button {
+    top: 24px;
+
+    &:hover {
+        stroke: rgba(82, 85, 188, 1);
+    }
+}
+
+.customCal>div>div {
+    background-color: #fff;
+    border: none;
+    padding-bottom: 0;
+}
+
+.customCal>div>div>h2 {
+    color: #161616;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(22, 22, 22, 0.2);
+}
+
+.customCal>div>div>h2+div {
+    padding-top: 14px;
+}
+
+.customCal .dayCalendar {
+    text-align: center;
+    margin: 0;
+    margin-top: 11px;
+    padding: 5px;
+    color: #161616;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    /* 128.571% */
+    letter-spacing: -0.28px;
+}
+
+.customCal>div>div>div {
+    display: flex;
+    justify-content: center;
+    gap: 11px;
+}
+
+
+.customCal .weekCalendar {
+    color: rgba(22, 22, 22, 0.50);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    margin: 0;
+}
+
+
+.customCal .react-datepicker__day--selected {
+    background-color: var(--Text);
+    border-radius: 32px;
+}
