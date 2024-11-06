@@ -1,18 +1,13 @@
 import './App.css';
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { PrivateRoute } from '../../routes/PrivateRoute';
 import Loader from '../Loader/Loader';
-
-// Динамическая загрузка компонентов LAZY
 
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage'));
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFound/NotFoundPage'));
-// const ScreensPage = lazy(() => import('../ScreensPage/ScreensPage')); //нужно елемент  боард заменить на скрин пейдж
-
-// -------------------------------------------ROUTES-------------------------------------------------//
 
 const App = () => {
   return (

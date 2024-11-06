@@ -1,26 +1,19 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
 import s from './Header.module.css';
-import { FaBars } from 'react-icons/fa';
+import sprite from '../../../src/img/icons.svg';
 import ThemeSwitcher from '../Themes/ThemeSwitcher/ThemeSwitcher';
 import PropTypes from 'prop-types';
 import UserInfo from '../UserInfo/UserInfo';
-const Header = ({ toggleSidebar, onUserPhotoClick  }) => {
-  // const userName = useSelector((state) => state.user.name) || 'Guest';
-  const userPhoto = useSelector((state) => state.user.photo) || 'path/to/default-avatar.png'; 
-
+const Header = ({ toggleSidebar, onUserPhotoClick }) => {
   return (
     <header className={s.header}>
-      <div className={s.headerContainer}>
-      <div className={s.menuIcon} onClick={toggleSidebar}>
-          <FaBars />
-        </div>
-        <ThemeSwitcher /> 
-        <div className={s.userInfo} onClick={onUserPhotoClick}>
+      <div className={s.menuIconBox} onClick={toggleSidebar}>
+        <svg className={s.menuIcon} height="32" width="32">
+          <use href={`${sprite}#icon-menu`} />
+        </svg>
+      </div>
+      <div className={s.userBox}>
+        <ThemeSwitcher />
         <UserInfo onUserPhotoClick={onUserPhotoClick} />
-          {/* <span className={s.userName}>{userName}</span>        
-          <img src={userPhoto} alt={userName} className={s.userAvatar} /> */}
-        </div>
       </div>
     </header>
   );
@@ -28,8 +21,7 @@ const Header = ({ toggleSidebar, onUserPhotoClick  }) => {
 
 Header.propTypes = {
   toggleSidebar: PropTypes.func.isRequired,
-  onUserPhotoClick: PropTypes.func.isRequired, 
+  onUserPhotoClick: PropTypes.func.isRequired,
 };
 
 export default Header;
-
