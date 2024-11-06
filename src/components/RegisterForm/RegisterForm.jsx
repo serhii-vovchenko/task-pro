@@ -43,19 +43,18 @@ const RegisterForm = () => {
 
   const handleSubmit = async (values, actions) => {
     setIsLoading(true);
-
     const result = await dispatch(registerThunk(values));
 
     if (registerThunk.fulfilled.match(result)) {
       actions.resetForm();
       toast.success('Registration successful! Welcome aboard!');
-      setTimeout(() => setRedirect(true), 1500);
+      setTimeout(() => setIsLoading(false), 1500);
     } else if (registerThunk.rejected.match(result)) {
       toast.error(
         'Registration failed. Please check your details and try again.'
       );
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -64,7 +63,7 @@ const RegisterForm = () => {
     setShowPassword(!showPassword);
   };
 
-  if (isLoggedIn && redirect) {
+  if (isLoggedIn && !isLoading) {
     return <Navigate to="/home" />;
   }
 
