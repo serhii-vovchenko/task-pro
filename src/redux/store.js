@@ -15,6 +15,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { boardsReducer } from './dashboard/boards/slice.js';
 import { columnsReducer } from './dashboard/columns/slice.js';
+import { getCurrentBoardReducer } from './dashboard/currentBoard/slice.js';
 
 const persistConfig = {
   key: 'auth',
@@ -30,6 +31,7 @@ export const store = configureStore({
     needHelp: needHelpReducer,
     boards: boardsReducer,
     modals: modalsReducer,
+    currentBoard: getCurrentBoardReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
