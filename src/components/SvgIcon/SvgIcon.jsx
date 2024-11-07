@@ -5,13 +5,14 @@ import { useSelector } from 'react-redux';
 import { selectUserTheme } from '../../redux/auth/selectors';
 import s from './SvgIcon.module.css';
 
-// active - це простий пропс-прапорець для іконки активної дошки в списку всіх дошок
-//використання: <SvgIcon url={iconUrl} active/> - для активної дошки
-//              <SvgIcon url={iconUrl} /> - для неактивної дошки або створенні нової дошки
-
-// eslint-disable-next-line react/prop-types
 const SvgIcon = ({ url, active, width = 18, height = 18 }) => {
   const currentTheme = useSelector(selectUserTheme);
+
+  // Check if url is defined before rendering ReactSVG
+  if (!url) {
+    return null; // Or a placeholder/fallback icon
+  }
+
   return (
     <div
       className={clsx(

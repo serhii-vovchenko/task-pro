@@ -219,6 +219,6 @@
 .addBtnIcon {
   width: 20px;
   height: 20px;
-  fill: none;
+  fill: var(--text-primary);
   stroke: var(--text-primary);
 }

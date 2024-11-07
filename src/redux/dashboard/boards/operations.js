@@ -1,17 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api, setToken, clearToken } from '../../../config/api';
+import { api } from '../../../config/api';
 
-export const getBoardThunk = createAsyncThunk('board', async (_, thunkAPI) => {
+export const getBoardThunk = createAsyncThunk('boards', async (_, thunkAPI) => {
   try {
     const state = thunkAPI.getState();
     const accessToken = state.auth.token;
-
     const { data } = await api.get('boards', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-
     return data.data;
   } catch (error) {
     console.log(error);
@@ -25,7 +23,6 @@ export const getBoardById = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const accessToken = state.auth.token;
-
       const { data } = await api.get(`/boards/${boardId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -63,15 +60,16 @@ export const addBoard = createAsyncThunk(
   'boards/addBoard',
   async (data, thunkAPI) => {
     const state = thunkAPI.getState();
-    const token = state.auth.token;
+    const accessToken = state.auth.token;
 
-    if (!token) {
+    if (!accessToken) {
       return thunkAPI.rejectWithValue('Token not found');
     }
 
     try {
-      setToken(token);
-      const response = await api.post('/board', data);
+      const response = await api.post('boards', data, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -83,15 +81,14 @@ export const updateBoard = createAsyncThunk(
   'boards/updateBoard',
   async ({ boardId, data }, thunkAPI) => {
     const state = thunkAPI.getState();
-    const token = state.auth.token;
+    const accessToken = state.auth.token;
 
-    if (!token) {
+    if (!accessToken) {
       return thunkAPI.rejectWithValue('Token not found');
     }
 
     try {
-      setToken(token);
-      const response = await api.put(`/board/${boardId}`, data);
+      const response = await api.put(`/boards/${boardId}`, data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -103,15 +100,14 @@ export const deleteBoard = createAsyncThunk(
   'boards/deleteBoard',
   async (boardId, thunkAPI) => {
     const state = thunkAPI.getState();
-    const token = state.auth.token;
+    const accessToken = state.auth.token;
 
-    if (!token) {
+    if (!accessToken) {
       return thunkAPI.rejectWithValue('Token not found');
     }
 
     try {
-      setToken(token);
-      await api.delete(`/board/${boardId}`);
+      await api.delete(`/boards/${boardId}`);
       return boardId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
