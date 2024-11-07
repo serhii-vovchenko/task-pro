@@ -64,6 +64,7 @@
   height: 20px;
   fill: none;
   stroke: var(--plus-sidebar-icon);
+}
 
 @media (min-width: 768px) {
   .sidebar {
