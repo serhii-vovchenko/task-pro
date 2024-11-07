@@ -6,12 +6,12 @@ import { useEffect } from 'react';
 import {
   getBoardById,
   getBoardThunk,
-} from '../../../redux/dashboard/boards/operations.js';
+} from '../../../redux/dashboard/boards/operations';
 import SvgIcon from '../../SvgIcon/SvgIcon';
 import clsx from 'clsx';
 
 const BoardList = () => {
-  const { boards = [] } = useSelector(selectBoards);
+  const { boards } = useSelector(selectBoards);
   const dispatch = useDispatch();
 
   useEffect(() => {
