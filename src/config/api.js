@@ -9,5 +9,5 @@ export const setToken = token => {
 };
 
 export const clearToken = () => {
-  api.defaults.headers.common.Authorization = ``;
+  api.defaults.headers.common.Authorization = '';
 };
