@@ -13,8 +13,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { columnsReducer } from './dashboard/columns/slise.js';
 import { boardsReducer } from './dashboard/boards/slice.js';
+import { columnsReducer } from './dashboard/columns/slice.js';
 
 const persistConfig = {
   key: 'auth',

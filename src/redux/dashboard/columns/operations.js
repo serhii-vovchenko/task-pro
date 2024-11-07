@@ -3,9 +3,9 @@ import { api } from '../../../config/api.js';
 
 export const addColumn = createAsyncThunk(
   'columns/create',
-  async ({ boardId, ...body }, thunkAPI) => {
+  async (body, thunkAPI) => {
     try {
-      const { data } = await api.post('columns/create', { boardId, ...body });
+      const { data } = await api.post('columns', body);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -30,6 +30,7 @@ export const deleteColumn = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       await api.delete(`columns/${id}`);
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

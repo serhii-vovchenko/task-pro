@@ -1,10 +1,10 @@
-import s from './AddColumn.module.css';
-import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { editColumn } from '../../../redux/dashboard/columns/operations.js';
 import sprite from '../../../../src/img/icons.svg';
+import { selectColumn } from '../../../redux/dashboard/columns/selectors.js';
+import s from './EditColumn.module.css';
 
 const columnSchema = Yup.object().shape({
   title: Yup.string()
@@ -13,18 +13,20 @@ const columnSchema = Yup.object().shape({
     .required('This field is required!'),
 });
 
-const EditColumn = ({ columnTitle, columnId }) => {
+const EditColumn = () => {
+  const { id, title } = useSelector(selectColumn);
   const dispatch = useDispatch();
 
   const initialValues = {
-    title: columnTitle,
+    title: title || '',
   };
 
   const handleSubmit = (values, actions) => {
     const newColumn = {
-      id: columnId,
+      id: id,
       body: { title: values.title },
     };
+
     dispatch(editColumn(newColumn));
     actions.resetForm();
   };
@@ -38,21 +40,12 @@ const EditColumn = ({ columnTitle, columnId }) => {
       <Form className={s.form}>
         <label className={s.label}>
           <p className={s.title}>Edit Column</p>
-          <Field
-            className={s.input}
-            type="text"
-            name="title"
-            placeholder=""
-          ></Field>
-          <ErrorMessage
-            name="title"
-            component="p"
-            className={s.error}
-          ></ErrorMessage>
+          <Field className={s.input} type="text" name="title"></Field>
+          <ErrorMessage name="title" component="p" className={s.error} />
         </label>
 
         <button type="submit" className={s.button}>
-          <svg className={s.icon}>
+          <svg className={s.icon} height="28" width="28">
             <use href={`${sprite}#icon-plus`} />
           </svg>
           <span className={s.text}>Edit</span>

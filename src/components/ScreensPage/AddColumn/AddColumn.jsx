@@ -1,10 +1,9 @@
-import s from './AddColumn.module.css';
-import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addColumn } from '../../../redux/dashboard/columns/operations.js';
 import sprite from '../../../../src/img/icons.svg';
+import s from './AddColumn.module.css';
 
 const columnSchema = Yup.object().shape({
   title: Yup.string()
@@ -18,11 +17,13 @@ const AddColumn = () => {
 
   const initialValues = {
     title: '',
+    boardId: '672cb51fff390c38170298a7',
   };
 
   const handleSubmit = (values, actions) => {
     const newColumn = {
       title: values.title,
+      boardId: '672cb51fff390c38170298a7',
     };
     dispatch(addColumn(newColumn));
     actions.resetForm();
@@ -43,15 +44,11 @@ const AddColumn = () => {
             name="title"
             placeholder="Title"
           ></Field>
-          <ErrorMessage
-            name="title"
-            component="p"
-            className={s.error}
-          ></ErrorMessage>
+          <ErrorMessage name="title" component="p" className={s.error} />
         </label>
 
         <button type="submit" className={s.button}>
-          <svg className={s.icon}>
+          <svg className={s.icon} height="28" width="28">
             <use href={`${sprite}#icon-plus`} />
           </svg>
           <span className={s.text}>Add</span>

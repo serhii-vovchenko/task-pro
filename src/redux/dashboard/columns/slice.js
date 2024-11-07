@@ -5,11 +5,18 @@ const initialState = {
   items: [],
   isLoading: false,
   isError: null,
+  selectedColumnId: null,
 };
 
 const slice = createSlice({
   name: 'columns',
   initialState,
+
+  reducers: {
+    setSelectedColumnId: (state, action) => {
+      state.selectedColumnId = action.payload;
+    },
+  },
 
   extraReducers: builder => {
     builder
@@ -51,4 +58,5 @@ const slice = createSlice({
   },
 });
 
+export const { setSelectedColumnId } = slice.actions;
 export const columnsReducer = slice.reducer;
