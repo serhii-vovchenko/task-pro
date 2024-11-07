@@ -1,17 +1,11 @@
-import s from "./TaskCard.module.css"
-import sprite from "../../img/icons.svg"
 import { useState } from "react"
-import ReusableModal from "../Modal/Modal"
+import ReusableModal from "../ReusableModal/ReusableModal"
 import TaskForm from "../TaskForm/TaskForm"
+import sprite from "../../img/icons.svg"
+import s from "./TaskCard.module.css"
 
-const taskObj = {
-    title: "Title card 1",
-    description: "decription card 1",
-    priority: "low",
-    deadline: "08/10/2024"
-}
 
-const TaskCard = () => {
+const TaskCard = ({taskObj}) => {
 
     const [isOpen, setIsOpen] = useState(false)
 
