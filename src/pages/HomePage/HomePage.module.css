@@ -1,5 +1,6 @@
 .homePage {
   display: flex;
+  background-color: var(--background-paper);
 }
 
 .columnTwo {

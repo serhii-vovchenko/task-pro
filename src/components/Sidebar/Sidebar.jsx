@@ -30,9 +30,10 @@ const Sidebar = () => {
           <Logout />
         </div>
       </aside>
-      {isSidebarOpen && (
-        <div className={s.overlay} onClick={closeSidebar}></div>
-      )}
+      <div
+        className={clsx(s.overlay, isSidebarOpen && s.overlayIsVisible)}
+        onClick={closeSidebar}
+      ></div>
     </>
   );
 };

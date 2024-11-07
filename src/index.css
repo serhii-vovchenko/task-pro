@@ -71,6 +71,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--background-paper);
 }
 
 h1,

@@ -7,12 +7,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
   flex-shrink: 0;
   position: fixed;
   left: 0;
   top: 0;
-  transform: translateX(-100%);
+  transform: translateX(-101%);
   z-index: 9;
 }
 .sidebarIsOpen {
@@ -25,8 +25,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(21, 21, 21, 0.3);
+  background-color: var(--modal-overlay);
   z-index: 0;
+  transform: translateX(-101%);
+  transition: transform 0.3s ease;
+}
+
+.overlayIsVisible {
+  transform: translateX(0);
 }
 
 @media (min-width: 768px) {
