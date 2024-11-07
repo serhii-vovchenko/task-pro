@@ -112,3 +112,43 @@ input[name="priority"]:checked+.radioLabel::before {
     display: flex;
     flex-direction: column;
 }
+
+
+input[name="deadline"] {
+    background-color: transparent;
+    border: none;
+    pointer-events: none;
+    padding: 0;
+}
+
+
+.btnSubmit {
+    border-radius: 8px;
+    background: #5255BC;
+    width: 100%;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btnSubmit>span {
+    background-color: #FFF;
+    padding: 7px;
+    border-radius: 5px;
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+}
+
+.btnSubmit>span>svg {
+    stroke: black;
+}

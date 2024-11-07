@@ -1,5 +1,7 @@
 import { Field, Form, Formik } from "formik";
+import { format, isToday } from "date-fns";
 import DatePickerField from "../DatePickerField/DatePickerField";
+import sprite from "../../img/icons.svg"
 import s from "./TaskForm.module.css"
 
 
@@ -10,19 +12,21 @@ const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
             title: values.title,
             description: values.description,
             priority: values.priority,
-            deadline: values.deadline.toString()
+            deadline: format(values.deadline, "yyyy-MM-dd")
         }
-
-
         console.log(formData);
-        console.log(new Date());
     }
+
+    const formatDeadline = (date) => {
+        return isToday(date) ? `Today, ${format(date, "MMMM d")}` : format(date, "MMMM d");
+    };
 
     return (
         <div className={s.taskModal}>  
             <h3 className={s.titleModal}>{typeOfPopUp} Card</h3>
             <Formik initialValues={initialTaskValue} onSubmit={handleSubmit}>
-                <Form>
+                {({ values, setFieldValue }) => (
+                    <Form>
                     <Field className={s.fieldTitle} type="text" name="title"/>
                     <Field className={s.fieldDesc} type="text" as="textarea" name="description" />
                     <div className={s.priorityCont}>
@@ -47,11 +51,22 @@ const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
                         </ul>
                     </div>
                     <div className={s.dateCont}>
-                        <label className={s.labelTitle} htmlFor="">Deadline</label>
-                        <Field name="deadline" component={DatePickerField} minDate={new Date()} />
+                            <label className={s.labelTitle} htmlFor="">Deadline</label>
+                            <Field name="deadline" value={values.deadline ? formatDeadline(values.deadline) : "No date selected"} component={DatePickerField} minDate={new Date()} />
+                        
                     </div>
-                    <button type="submit">{typeOfPopUp}</button>
+                        <button className={s.btnSubmit} type="submit">
+                            <span>
+                                <svg height='14px' width="14px">
+                                    <use href={`${sprite}#icon-plus`} />
+                                </svg>
+                            </span>
+                            
+                            {typeOfPopUp}
+                        </button>
                 </Form>
+                )}
+                
             </Formik>
         </div>
     );
