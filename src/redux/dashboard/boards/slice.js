@@ -1,19 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   getBoards,
   getBoardById,
   addBoard,
   updateBoard,
   deleteBoard,
+  getBoardThunk,
 } from './operations';
+
+const initialState = {
+  boards: [],
+  loading: false,
+  error: null,
+};
 
 const boardsSlice = createSlice({
   name: 'boards',
-  initialState: {
-    boards: [],
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {},
   extraReducers: builder => {
     builder

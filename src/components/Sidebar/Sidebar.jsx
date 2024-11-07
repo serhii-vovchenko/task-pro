@@ -12,9 +12,6 @@ import sprite from '../../img/icons.svg';
 
 const Sidebar = () => {
   const isSidebarOpen = useSelector(state => state.modals.isSidebarOpen);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   const dispatch = useDispatch();
   const closeSidebar = () => {
@@ -29,7 +26,6 @@ const Sidebar = () => {
     <aside className={clsx(s.sidebar, isSidebarOpen && s.sidebarIsOpen)}>
       <div>
         <Logo />
-        <CreateBoard />
       </div>
       <h2 className={s.sidebarTitle}>My boards</h2>
       <div className={s.createBoard}>
@@ -42,7 +38,7 @@ const Sidebar = () => {
       </div>
       <BoardList />
       <div>
-        <NeedHelp closeModal={closeModal} />
+        <NeedHelp closeModal={closeAddBoard} />
         <Logout />
       </div>
       {isAddBoardOpen && (
