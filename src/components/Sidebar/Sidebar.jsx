@@ -4,26 +4,37 @@ import Logo from './Logo/Logo';
 import CreateBoard from './CreateBoard/CreateBoard';
 import NeedHelp from './NeedHelp/NeedHelp';
 import Logout from './Logout/Logout';
-import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleSidebar } from '../../redux/dashboard/modals/slice';
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const Sidebar = () => {
+  const isSidebarOpen = useSelector(state => state.modals.isSidebarOpen);
+
+  const dispatch = useDispatch();
+
+  const closeSidebar = () => {
+    dispatch(toggleSidebar());
+  };
+
   return (
-    <aside className={`${s.sidebar} ${isOpen ? s.isOpen : ''}`}>
-      <div>
-        <Logo />
-        <CreateBoard />
-      </div>
-      <BoardList />
-      <div>
-        <NeedHelp />
-        <Logout />
-      </div>
-    </aside>
+    <>
+      <aside className={clsx(s.sidebar, isSidebarOpen && s.sidebarIsOpen)}>
+        <div>
+          <Logo />
+          <CreateBoard />
+        </div>
+        <BoardList />
+        <div>
+          <NeedHelp />
+          <Logout />
+        </div>
+      </aside>
+      {isSidebarOpen && (
+        <div className={s.overlay} onClick={closeSidebar}></div>
+      )}
+    </>
   );
-};
-Sidebar.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  toggleSidebar: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

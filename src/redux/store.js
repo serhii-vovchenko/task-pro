@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/slice.js';
 import { needHelpReducer } from './dashboard/need-help-form/slice.js';
+import { modalsReducer } from './dashboard/modals/slice.js';
 import {
   persistStore,
   persistReducer,
@@ -26,6 +27,7 @@ export const store = configureStore({
     auth: persistReducer(persistConfig, authReducer),
     needHelp: needHelpReducer,
     boards: boardsReducer,
+    modals: modalsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

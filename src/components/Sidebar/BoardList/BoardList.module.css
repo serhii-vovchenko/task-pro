@@ -84,12 +84,6 @@
   .boardItem {
     padding: 0 24px;
   }
-
-  .activeBoard {
-    &::after {
-      right: 0;
-    }
-  }
 }
 
 @media (min-width: 1440px) {

@@ -41,18 +41,21 @@ const BoardList = () => {
               {board.title}
             </p>
           </div>
-          <div className={s.btnBox}>
-            <button className={s.btnBoxButton}>
-              <svg className={s.btnBoxIcon} height="16" width="16">
-                <use href={`${sprite}#icon-pencil`} />
-              </svg>
-            </button>
-            <button className={s.btnBoxButton}>
-              <svg className={s.btnBoxIcon} height="16" width="16">
-                <use href={`${sprite}#icon-trash`} />
-              </svg>
-            </button>
-          </div>
+
+          {board.isActive && (
+            <div className={s.btnBox}>
+              <button className={s.btnBoxButton}>
+                <svg className={s.btnBoxIcon} height="16" width="16">
+                  <use href={`${sprite}#icon-pencil`} />
+                </svg>
+              </button>
+              <button className={s.btnBoxButton}>
+                <svg className={s.btnBoxIcon} height="16" width="16">
+                  <use href={`${sprite}#icon-trash`} />
+                </svg>
+              </button>
+            </div>
+          )}
         </li>
       ))}
     </ul>
