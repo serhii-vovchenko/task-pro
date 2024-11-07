@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, setToken, clearToken } from '../../../config/api';
 
-export const getBoardThunk = createAsyncThunk('board', async (_, thunkAPI) => {
+export const getBoardThunk = createAsyncThunk('boards', async (_, thunkAPI) => {
   try {
     const state = thunkAPI.getState();
     const accessToken = state.auth.token;
@@ -71,7 +71,7 @@ export const addBoard = createAsyncThunk(
 
     try {
       setToken(token);
-      const response = await api.post('/board', data);
+      const response = await api.post('/boards', data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -91,7 +91,7 @@ export const updateBoard = createAsyncThunk(
 
     try {
       setToken(token);
-      const response = await api.put(`/board/${boardId}`, data);
+      const response = await api.put(`/boards/${boardId}`, data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -111,7 +111,7 @@ export const deleteBoard = createAsyncThunk(
 
     try {
       setToken(token);
-      await api.delete(`/board/${boardId}`);
+      await api.delete(`/boards/${boardId}`);
       return boardId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

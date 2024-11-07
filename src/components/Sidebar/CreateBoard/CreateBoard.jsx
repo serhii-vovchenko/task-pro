@@ -8,14 +8,14 @@ import noBack from '../../../img/bg/bg-10-desk.jpg';
 import { addBoard } from '../../../redux/dashboard/boards/operations.js';
 
 const icons = [
-  { id: 'icon-project', name: 'Project' },
-  { id: 'icon-star', name: 'Star' },
-  { id: 'icon-loading', name: 'Loading' },
-  { id: 'icon-container', name: 'Container' },
-  { id: 'icon-lightning', name: 'Lightning' },
-  { id: 'icon-colors', name: 'Colors' },
-  { id: 'icon-hexagon', name: 'Hexagon' },
-  { id: 'icon-pencil', name: 'Pencil' },
+  { id: 'icon-project', name: 'Project', iconName: '1_icon-project' },
+  { id: 'icon-star', name: 'Star', iconName: '2_icon-star' },
+  { id: 'icon-loading', name: 'Loading', iconName: '3_icon-loading' },
+  { id: 'icon-container', name: 'Container', iconName: '3_icon-container' },
+  { id: 'icon-lightning', name: 'Lightning', iconName: '3_icon-lightning' },
+  { id: 'icon-colors', name: 'Colors', iconName: '3_icon-colors' },
+  { id: 'icon-hexagon', name: 'Hexagon', iconName: '3_icon-hexagon' },
+  { id: 'icon-pencil', name: 'Pencil', iconName: '3_icon-pencil' },
 ];
 
 const backgrounds = [
@@ -23,91 +23,91 @@ const backgrounds = [
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/vlk8bztf90uy6itveqjl.png',
     alt: 'cappodocia',
-    key: 'cappodocia',
+    key: 'bg-1',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/v0wt4bwax3bhdlag1ziv.png',
     alt: 'baloon',
-    key: 'baloon',
+    key: 'bg-2',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/c08fbwcqicwfqwksxsyx.png',
     alt: 'clouds',
-    key: 'clouds',
+    key: 'bg-3',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/sey0nharzdv7uzxpt98w.png',
     alt: 'fullMoon',
-    key: 'full-moon',
+    key: 'bg-4',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220069/backgrounds/mini/lfrtnx9rqh3koliovr7h.png',
     alt: 'halfMoon',
-    key: 'half-moon',
+    key: 'bg-5',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/oyfwjk41qpxsud8g8ri9.png',
     alt: 'magnolia',
-    key: 'magnolia',
+    key: 'bg-6',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/yjuxoyg5cjxzpk30oeoe.png',
     alt: 'mountains',
-    key: 'mountains',
+    key: 'bg-7',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/yjyionahp9lthpybw5sg.png',
     alt: 'nightTrailer',
-    key: 'night-trailer',
+    key: 'bg-8',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/sce6oy35czbj7yb9osoe.png',
     alt: 'palmLeaves',
-    key: 'palm-leaves',
+    key: 'bg-9',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/whne8ssdvejvamukn7sc.png',
     alt: 'rockyBeach',
-    key: 'rocky-beach',
+    key: 'bg-10',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/womdt7hq0ngnofzbuhgu.png',
     alt: 'sakura',
-    key: 'sakura',
+    key: 'bg-11',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/tqbovopj2qyuln6ing9o.png',
     alt: 'sea',
-    key: 'sea',
+    key: 'bg-12',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/csxhywowypy9arxzig17.png',
     alt: 'starrySky',
-    key: 'starry-sky',
+    key: 'bg-13',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/vaxhftlahpyrpje3itvb.png',
     alt: 'violetCircle',
-    key: 'violet-circle',
+    key: 'bg-14',
   },
   {
     source:
       'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/pgjqswykxm1qukwfyic0.png',
     alt: 'yacht',
-    key: 'yacht',
+    key: 'bg-15',
   },
 ];
 
@@ -121,8 +121,11 @@ export const NewBoard = ({ closeModal }) => {
   const dispatch = useDispatch();
 
   const handleTitleChange = event => setTitle(event.target.value);
-  const handleIconChange = event =>
-    setIconsSelected(event.currentTarget.dataset.source);
+  const handleIconChange = event => {
+    const selectedIconId = event.currentTarget.dataset.source;
+    const selectedIcon = icons.find(icon => icon.id === selectedIconId);
+    setIconsSelected(selectedIcon ? selectedIcon.iconName : '1_icon-project');
+  };
   const handleBackgroundChange = event =>
     setBackgroundSelected(event.currentTarget.dataset.source);
 
@@ -136,20 +139,20 @@ export const NewBoard = ({ closeModal }) => {
     document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside); // Очищаем обработчик при размонтировании
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [closeModal]);
 
   const newBoardObject = {
     title,
-    icon: iconsSelected,
-    background: backgroundSelected,
+    iconName: iconsSelected,
+    backgroundName: backgroundSelected,
   };
 
   const createNewBoard = () => {
     dispatch(addBoard(newBoardObject));
     closeModal();
-    navigate(`/${title}`);
+    // navigate(`boards/${title._id}`);
   };
 
   return (
