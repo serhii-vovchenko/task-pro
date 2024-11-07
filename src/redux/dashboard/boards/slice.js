@@ -36,6 +36,19 @@ const boardsSlice = createSlice({
           board.id === action.payload.id ? action.payload : board
         );
       })
+      .addCase(addBoard.fulfilled, (state, action) => {
+        state.boards.push(action.payload);
+      })
+      .addCase(updateBoard.fulfilled, (state, action) => {
+        state.boards = state.boards.map(board =>
+          board.id === action.payload.id ? action.payload : board
+        );
+      })
+      .addCase(deleteBoard.fulfilled, (state, action) => {
+        state.boards = state.boards.filter(
+          board => board.id !== action.meta.arg
+        );
+      })
       // .addCase(editBoardById.fulfilled, (state, action) => {
       //   state.loading = false;
       //   state.boards = action.payload;
@@ -82,20 +95,7 @@ const boardsSlice = createSlice({
         state => {
           state.loading = false;
         }
-      )
-      .addCase(addBoard.fulfilled, (state, action) => {
-        state.boards.push(action.payload);
-      })
-      .addCase(updateBoard.fulfilled, (state, action) => {
-        state.boards = state.boards.map(board =>
-          board.id === action.payload.id ? action.payload : board
-        );
-      })
-      .addCase(deleteBoard.fulfilled, (state, action) => {
-        state.boards = state.boards.filter(
-          board => board.id !== action.meta.arg
-        );
-      });
+      );
   },
 });
 

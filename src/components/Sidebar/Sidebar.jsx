@@ -23,30 +23,35 @@ const Sidebar = () => {
   const closeAddBoard = () => setIsAddBoardOpen(false);
 
   return (
-    <aside className={clsx(s.sidebar, isSidebarOpen && s.sidebarIsOpen)}>
-      <div>
-        <Logo />
-      </div>
-      <h2 className={s.sidebarTitle}>My boards</h2>
-      <div className={s.createBoard}>
-        <p className={s.createBoardTitle}>Create new board</p>
-        <button type="submit" className={s.addBtn} onClick={openAddBoard}>
-          <svg className={s.logoIcon} height="32" width="32">
-            <use href={`${sprite}#icon-plus`} />
-          </svg>
-        </button>
-      </div>
-      <BoardList />
-      <div>
-        <NeedHelp closeModal={closeAddBoard} />
-        <Logout />
-      </div>
-      {isAddBoardOpen && (
+    <>
+      <aside className={clsx(s.sidebar, isSidebarOpen && s.sidebarIsOpen)}>
         <div>
-          <CreateBoard closeModal={closeAddBoard} />
+          <Logo />
         </div>
+        <h2 className={s.sidebarTitle}>My boards</h2>
+        <div className={s.createBoard}>
+          <p className={s.createBoardTitle}>Create new board</p>
+          <button type="submit" className={s.addBtn} onClick={openAddBoard}>
+            <svg className={s.logoIcon} height="32" width="32">
+              <use href={`${sprite}#icon-plus`} />
+            </svg>
+          </button>
+        </div>
+        <BoardList />
+        <div>
+          <NeedHelp closeModal={closeAddBoard} />
+          <Logout />
+        </div>
+        {isAddBoardOpen && (
+          <div>
+            <CreateBoard closeModal={closeAddBoard} />
+          </div>
+        )}
+      </aside>
+      {isSidebarOpen && (
+        <div className={s.overlay} onClick={closeSidebar}></div>
       )}
-    </aside>
+    </>
   );
 };
 
