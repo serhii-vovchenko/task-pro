@@ -1,8 +1,6 @@
 import s from './ThemeSwitcher.module.css';
-
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeTheme } from '../../../redux/actions/themeActions';
 import sprite from '../../../img/icons.svg';
 
 const ThemeSwitcher = () => {
@@ -12,6 +10,11 @@ const ThemeSwitcher = () => {
     localStorage.getItem('theme') || 'light'
   );
   const dropdownRef = useRef(null);
+
+  const changeTheme = theme => ({
+    type: 'CHANGE_THEME',
+    payload: theme,
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', currentTheme);

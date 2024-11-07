@@ -4,15 +4,36 @@
   gap: 4px;
   margin-left: -14px;
   margin-right: -14px;
+  overflow-x: hidden;
   overflow-y: auto;
   flex-grow: 1;
 }
+
+.boardList::-webkit-scrollbar {
+  display: none;
+}
+
 .boardItem {
   display: flex;
   justify-content: space-between;
-  background: var(--bg-screen);
   padding: 0 14px;
-  height: 61px;
+  min-height: 61px;
+  cursor: pointer;
+  position: relative;
+}
+
+.activeBoard {
+  background: var(--bg-screen);
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 4px;
+    height: 61px;
+    background-color: var(--label-green);
+    border-radius: 4px 0 0 4px;
+    right: 0;
+  }
 }
 
 .titleBox {
@@ -21,34 +42,23 @@
   gap: 8px;
 }
 
-.titleBoxIcon {
-  width: 18px;
-  height: 18px;
-  fill: var(--white);
-}
-
 .titleBoxTitle {
-  color: var(--text-primary);
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
+  color: var(--drop-down-text);
+}
+
+.titleBoxTitleActive {
+  color: var(--text-primary);
 }
 
 .btnBox {
   display: flex;
   gap: 8px;
-
-  &::after {
-    content: '';
-    width: 4px;
-    height: 61px;
-    background-color: var(--label-green);
-    border-radius: 4px 0 0 4px;
-    margin-right: -14px;
-  }
 }
 
 .btnBoxButton {
@@ -73,12 +83,6 @@
 
   .boardItem {
     padding: 0 24px;
-  }
-
-  .btnBox {
-    &::after {
-      margin-right: -24px;
-    }
   }
 }
 

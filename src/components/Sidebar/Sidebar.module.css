@@ -13,9 +13,9 @@
   left: 0;
   top: 0;
   transform: translateX(-100%);
-  z-index: 1000;
+  z-index: 9;
 }
-.sidebar.isOpen {
+.sidebarIsOpen {
   transform: translateX(0);
 }
 
@@ -64,16 +64,12 @@
   height: 20px;
   fill: none;
   stroke: var(--plus-sidebar-icon);
-}
 
 @media (min-width: 768px) {
   .sidebar {
     width: 260px;
     padding: 24px;
   }
-  /* .sidebar {
-    transform: translateX(0);
-  } */
 }
 
 @media (min-width: 1440px) {
