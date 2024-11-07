@@ -25,7 +25,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       <div className={s.createBoard}>
         <p className={s.createBoardTitle}>Create new board</p>
         <button type="submit" className={s.addBtn} onClick={openAddBoard}>
-          <svg className={s.addBtnIcon} height="32" width="32">
+          <svg className={s.logoIcon} height="32" width="32">
             <use href={`${sprite}#icon-plus`} />
           </svg>
         </button>
