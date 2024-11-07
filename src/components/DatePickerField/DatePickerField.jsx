@@ -19,6 +19,9 @@ const DatePickerField = ({field, form, ...props}) => {
             weekClassName={date => s.week}
             shouldCloseOnSelect={false}
             disabledKeyboardNavigation
+            wrapperClassName={s.calendarWrapper}
+            popperClassName={s.popperCalendar}
+            showPopperArrow={false}
         />
     );
 }
