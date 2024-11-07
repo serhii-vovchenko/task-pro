@@ -73,14 +73,21 @@
     margin: 0;
     margin-top: 11px;
     padding: 5px;
-    color: #161616;
+    /* color: #161616; */
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
-    /* 128.571% */
     letter-spacing: -0.28px;
+    border-radius: 26px;
+    transition: all 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.customCal .dayCalendar:not([aria-disabled=true]):hover {
+    background-color: rgba(82, 85, 188, 1);
+    color: #fff;
+    border-radius: 26px;
 }
 
 .customCal>div>div>div {
@@ -99,10 +106,4 @@
     line-height: normal;
     letter-spacing: -0.28px;
     margin: 0;
-}
-
-
-.customCal .react-datepicker__day--selected {
-    background-color: var(--Text);
-    border-radius: 32px;
 }
