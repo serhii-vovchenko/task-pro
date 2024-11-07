@@ -36,6 +36,53 @@ const boardsSlice = createSlice({
           board.id === action.payload.id ? action.payload : board
         );
       })
+      // .addCase(editBoardById.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.boards = action.payload;
+      // })
+
+      // .addCase(deleteBoardById.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.boards = action.payload;
+      // })
+
+      .addMatcher(
+        isAnyOf(
+          getBoardThunk.pending,
+          getBoardById.pending
+          // editBoardById.pending
+          // deleteBoardById.pending
+        ),
+        state => {
+          state.loading = true;
+          state.error = false;
+        }
+      )
+
+      .addMatcher(
+        isAnyOf(
+          getBoardThunk.rejected,
+          getBoardById.rejected
+          // editBoardById.rejected
+          // deleteBoardById.rejected
+        ),
+        state => {
+          state.loading = false;
+          state.error = true;
+        }
+      )
+
+      .addMatcher(
+        isAnyOf(
+          getBoardThunk.fulfilled,
+          getBoardById.fulfilled
+          // editBoardById.rejected
+          // deleteBoardById.fulfilled
+        ),
+        state => {
+          state.loading = false;
+        }
+      )
       .addCase(addBoard.fulfilled, (state, action) => {
         state.boards.push(action.payload);
       })
