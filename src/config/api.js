@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'https://task-pro-backend-mcfs.onrender.com/',
 });
 
 export const setToken = token => {
