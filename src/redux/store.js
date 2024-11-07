@@ -26,9 +26,6 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    board: boardReducer,
-    theme: themeReducer,
-    user: userReducer,
     columns: columnsReducer,
     needHelp: needHelpReducer,
     boards: boardsReducer,
