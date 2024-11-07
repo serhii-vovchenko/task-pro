@@ -20,17 +20,17 @@ const BoardList = () => {
 
   return (
     <ul className={s.boardList}>
-      {boards.map(board => (
+      {boards.map((board, index) => (
         <li
-          key={board._id}
+          key={board._id || index}
           className={clsx(s.boardItem, board.isActive && s.activeBoard)}
           onClick={() => dispatch(getBoardById(board._id))}
         >
           <div className={s.titleBox}>
             {board.isActive ? (
-              <SvgIcon url={board.icon.iconUrl} active />
+              <SvgIcon url={board.icon?.iconUrl} active />
             ) : (
-              <SvgIcon url={board.icon.iconUrl} />
+              <SvgIcon url={board.icon?.iconUrl} />
             )}
             <p
               className={clsx(

@@ -6,113 +6,13 @@ import { useNavigate } from 'react-router';
 import sprite from '../../../img/icons.svg';
 import noBack from '../../../img/bg/bg-10-desk.jpg';
 import { addBoard } from '../../../redux/dashboard/boards/operations.js';
+import { icons } from '../../../../public/db/icons.js';
+import { backgrounds } from '../../../../public/db/backgrounds.js';
 
-const icons = [
-  { id: 'icon-project', name: 'Project', iconName: '1_icon-project' },
-  { id: 'icon-star', name: 'Star', iconName: '2_icon-star' },
-  { id: 'icon-loading', name: 'Loading', iconName: '3_icon-loading' },
-  { id: 'icon-container', name: 'Container', iconName: '3_icon-container' },
-  { id: 'icon-lightning', name: 'Lightning', iconName: '3_icon-lightning' },
-  { id: 'icon-colors', name: 'Colors', iconName: '3_icon-colors' },
-  { id: 'icon-hexagon', name: 'Hexagon', iconName: '3_icon-hexagon' },
-  { id: 'icon-pencil', name: 'Pencil', iconName: '3_icon-pencil' },
-];
-
-const backgrounds = [
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/vlk8bztf90uy6itveqjl.png',
-    alt: 'cappodocia',
-    key: 'bg-1',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/v0wt4bwax3bhdlag1ziv.png',
-    alt: 'baloon',
-    key: 'bg-2',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/c08fbwcqicwfqwksxsyx.png',
-    alt: 'clouds',
-    key: 'bg-3',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/sey0nharzdv7uzxpt98w.png',
-    alt: 'fullMoon',
-    key: 'bg-4',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220069/backgrounds/mini/lfrtnx9rqh3koliovr7h.png',
-    alt: 'halfMoon',
-    key: 'bg-5',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/oyfwjk41qpxsud8g8ri9.png',
-    alt: 'magnolia',
-    key: 'bg-6',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/yjuxoyg5cjxzpk30oeoe.png',
-    alt: 'mountains',
-    key: 'bg-7',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/yjyionahp9lthpybw5sg.png',
-    alt: 'nightTrailer',
-    key: 'bg-8',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220071/backgrounds/mini/sce6oy35czbj7yb9osoe.png',
-    alt: 'palmLeaves',
-    key: 'bg-9',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/whne8ssdvejvamukn7sc.png',
-    alt: 'rockyBeach',
-    key: 'bg-10',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/womdt7hq0ngnofzbuhgu.png',
-    alt: 'sakura',
-    key: 'bg-11',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/tqbovopj2qyuln6ing9o.png',
-    alt: 'sea',
-    key: 'bg-12',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/csxhywowypy9arxzig17.png',
-    alt: 'starrySky',
-    key: 'bg-13',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/vaxhftlahpyrpje3itvb.png',
-    alt: 'violetCircle',
-    key: 'bg-14',
-  },
-  {
-    source:
-      'https://res.cloudinary.com/dbxyhtguo/image/upload/v1693220070/backgrounds/mini/pgjqswykxm1qukwfyic0.png',
-    alt: 'yacht',
-    key: 'bg-15',
-  },
-];
+import SvgIcon from '../../SvgIcon/SvgIcon';
 
 export const NewBoard = ({ closeModal }) => {
-  const [iconsSelected, setIconsSelected] = useState('icon-project');
+  const [iconsSelected, setIconsSelected] = useState('1_icon-project');
   const [backgroundSelected, setBackgroundSelected] = useState('no-background');
   const [title, setTitle] = useState('');
   const modalRef = useRef(null);
@@ -122,9 +22,7 @@ export const NewBoard = ({ closeModal }) => {
 
   const handleTitleChange = event => setTitle(event.target.value);
   const handleIconChange = event => {
-    const selectedIconId = event.currentTarget.dataset.source;
-    const selectedIcon = icons.find(icon => icon.id === selectedIconId);
-    setIconsSelected(selectedIcon ? selectedIcon.iconName : '1_icon-project');
+    setIconsSelected(event.currentTarget.dataset.source);
   };
   const handleBackgroundChange = event =>
     setBackgroundSelected(event.currentTarget.dataset.source);
@@ -180,21 +78,30 @@ export const NewBoard = ({ closeModal }) => {
 
           <h3 className={s.textIcons}>Icons</h3>
           <ul className={s.listDarkIcons}>
-            {icons.map(icon => (
-              <li key={icon.id}>
-                <input
-                  type="radio"
-                  value={icon.id}
-                  name="icons"
-                  className={s.inputRad}
-                  checked={iconsSelected === icon.id}
-                  onChange={handleIconChange}
-                />
-                <svg className={s.svgIcon} width="24" height="24">
-                  <use href={`${sprite}#${icon.id}`} />
-                </svg>
-              </li>
-            ))}
+            {icons.map(
+              (
+                icon,
+                index // Add index here
+              ) => (
+                <li key={index}>
+                  {' '}
+                  {/* Use index as key */}
+                  <input
+                    type="radio"
+                    value={icon.name}
+                    name="icons"
+                    className={s.inputRad}
+                    data-source={icon.name}
+                    checked={iconsSelected === icon.name}
+                    onChange={handleIconChange}
+                  />
+                  <SvgIcon
+                    url={icon.iconUrl}
+                    active={iconsSelected === icon.name}
+                  />
+                </li>
+              )
+            )}
           </ul>
           <h3 className={s.textBackground}>Background</h3>
           <ul className={s.listColorIcons}>
@@ -215,22 +122,22 @@ export const NewBoard = ({ closeModal }) => {
               />
               <img src={noBack} alt="no-background" className={s.img_back} />
             </li>
-            {backgrounds.map(bg => (
+            {backgrounds.map((bg, index) => (
               <li
-                key={bg.key}
+                key={index}
                 className={
-                  backgroundSelected === bg.key ? s.listItemActive : s.listItem
+                  backgroundSelected === bg.name ? s.listItemActive : s.listItem
                 }
               >
                 <input
                   type="radio"
                   name="backgrounds"
-                  data-source={bg.key}
+                  data-source={bg.name}
                   className={s.inputBack}
-                  checked={backgroundSelected === bg.key}
+                  checked={backgroundSelected === bg.name}
                   onChange={handleBackgroundChange}
                 />
-                <img src={bg.source} alt={bg.alt} className={s.img_back} />
+                <img src={bg.modalUrl} alt={bg.name} className={s.img_back} />
               </li>
             ))}
           </ul>
