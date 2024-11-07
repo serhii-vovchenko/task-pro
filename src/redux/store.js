@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/slice.js';
-import boardReducer from './reducers/boardReducer';
-import themeReducer from './reducers/themeReducer';
-import userReducer from './reducers/userReducer';
+import { needHelpReducer } from './dashboard/need-help-form/slice.js';
+import { modalsReducer } from './dashboard/modals/slice.js';
 import {
   persistStore,
   persistReducer,
@@ -14,6 +13,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { boardsReducer } from './dashboard/boards/slice.js';
 
 const persistConfig = {
   key: 'auth',
@@ -25,9 +25,9 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    board: boardReducer,
-    theme: themeReducer,
-    user: userReducer,
+    needHelp: needHelpReducer,
+    boards: boardsReducer,
+    modals: modalsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -38,16 +38,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// import { createStore, combineReducers } from 'redux';
-// import boardReducer from './reducers/boardReducer';
-// import themeReducer from './reducers/themeReducer';
-// import userReducer from './reducers/userReducer';
-
-// const rootReducer = combineReducers({
-//   board: boardReducer,
-//   theme: themeReducer,
-//   user: userReducer,
-// });
-
-// export const store = createStore(rootReducer);

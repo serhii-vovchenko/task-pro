@@ -7,15 +7,31 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
   flex-shrink: 0;
   position: fixed;
   left: 0;
   top: 0;
-  transform: translateX(-100%);
-  z-index: 1000;
+  transform: translateX(-101%);
+  z-index: 9;
 }
-.sidebar.isOpen {
+.sidebarIsOpen {
+  transform: translateX(0);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-overlay);
+  z-index: 0;
+  transform: translateX(-101%);
+  transition: transform 0.3s ease;
+}
+
+.overlayIsVisible {
   transform: translateX(0);
 }
 
@@ -27,4 +43,15 @@
 }
 
 @media (min-width: 1440px) {
+  .sidebar {
+    position: initial;
+    left: initial;
+    top: initial;
+    transform: translateX(0);
+    z-index: initial;
+  }
+
+  .overlay {
+    display: none;
+  }
 }

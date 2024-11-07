@@ -1,53 +1,148 @@
 :root {
   --primary-light: #fcfcfc;
   --primary-main: #bedbb0;
-  --primary-dark: #9dc888;
+  --primary-main-transparent: rgba(190, 219, 176, 0.4);
+  --primary-dark: #0b5c15;
   --primary-contrastText: rgba(22, 22, 22, 0.1);
   --secondary-main: rgba(22, 22, 22, 0.1);
   --background-default: #fff;
   --background-paper: #fcfcfc;
   --text-primary: #161616;
-  --text-secondary: rgba(22, 22, 22, 0.5);
+  --text-secondary: rgba(22, 22, 22, 0.8);
+
+  --bg-scroll-track: #e8e8e8;
+
+  --accent-sidebar: #f6f6f7;
+  --accent-sidebar-color: #161616;
+  --accent-sidebar-btn: #bedbb0;
+  --sidebar-light: rgba(22, 22, 22, 0.5);
+  --plus-sidebar-icon: #121212;
+  --hover-sidebar-btn: #9dc888;
+  --hover-sidebar-element: #bedbb0;
   --bg-scroll: #e8e8e8;
+
   --bg-screen: #f6f6f7;
   --label-blue: #8fa1d0;
   --label-pink: #e09cb5;
   --label-green: #bedbb0;
   --label-grey: rgba(22, 22, 22, 0.3);
+
+  --button-text: #161616;
+  --bg-scroll: rgba(22, 22, 22, 0.1);
+  --bottom-scroll: #fff;
+  --bg-scroll-thumb: rgba(22, 22, 22, 0.1);
+  --stroke-btn: #fff;
+
+  --modal-overlay: rgba(21, 21, 21, 0.3);
+  --modal-bg: #fcfcfc;
+  --modal-input-border: #bedbb0;
+  --modal-btn: #bedbb0;
+  --hover-modal-btn: #9dc888;
+  --modal-btn-text: #161616;
+  --modal-plus-icon: #fff;
+  --modal-icon-wrap: #161616;
+
+  --drop-down-text: #161616;
+  --btn: #bedbb0;
+  --btn-hover: #9dc888;
+  --btn-add-color: #161616;
+  --bg-modal: #fff;
+
+  --logo-icon-wrapper: #1f1f1f;
+  --logo-icon: #fff;
+  --logo-title: #161616;
 }
 
 [data-theme='dark'] {
   --primary-light: #161616;
   --primary-main: #bedbb0;
-  --primary-dark: #9dc888;
+  --primary-main-transparent: rgba(190, 219, 176, 0.4);
+  --primary-dark: #1b1c21;
   --primary-contrastText: rgba(255, 255, 255, 0.1);
   --secondary-main: rgba(255, 255, 255, 0.1);
   --background-default: #121212;
   --background-paper: #161616;
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.5);
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --accent-sidebar: #1f1f1f;
+  --plus-sidebar-icon: #121212;
+  --accent-sidebar-color: #fff;
+  --accent-sidebar-btn: #bedbb0;
+  --hover-sidebar-btn: #9dc888;
+  --sidebar-light: rgba(255, 255, 255, 0.5);
+  --hover-sidebar-element: #bedbb0;
   --bg-screen: #1f1f1f;
+
+  --button-text: #161616;
   --bg-scroll: #121212;
-  --bg-screen: #f6f6f7;
-  --label-blue: #8fa1d0;
-  --label-pink: #e09cb5;
-  --label-green: #bedbb0;
-  --label-grey: rgba(22, 22, 22, 0.3);
+  --bg-scroll-track: rgba(255, 255, 255, 0.1);
+  --bottom-scroll: #121212;
+  --bg-scroll-thumb: rgba(255, 255, 255, 0.1);
+  --stroke-btn: #fff;
+
+  --modal-overlay: rgba(21, 21, 21, 0.5);
+  --modal-bg: #151515;
+  --modal-input-border: #bedbb0;
+  --modal-btn: #bedbb0;
+  --hover-modal-btn: #9dc888;
+  --modal-btn-text: #161616;
+  --modal-plus-icon: #fff;
+  --modal-icon-wrap: #161616;
+
+  --drop-down-text: rgba(255, 255, 255, 0.5);
+  --btn: #bedbb0;
+  --btn-hover: #9dc888;
+  --btn-add-color: #161616;
+  --bg-modal: #151515;
+
+  --logo-icon-wrapper: #1f1f1f;
+  --logo-icon: #fff;
+  --logo-title: #fff;
 }
 
 [data-theme='violet'] {
   --primary-light: #fff;
   --primary-main: #5255bc;
-  --primary-dark: #7b7ede;
-  --primary-contrastText: rgba(96, 70, 70, 0.1);
+  --primary-main-transparent: rgba(82, 85, 188, 0.4);
+  --primary-dark: #b8bcfd;
+  --primary-contrastText: rgba(255, 255, 255, 0.1);
   --secondary-main: rgba(22, 22, 22, 0.1);
   --background-default: #5255bc;
   --background-paper: #fff;
-  --text-primary: #fff;
-  --text-secondary: rgba(225, 225, 225, 0.5);
-  --bg-screen: rgba(236, 237, 253, 0.4);
-  --label-blue: #8fa1d0;
-  --label-pink: #e09cb5;
-  --label-green: #bedbb0;
-  --label-grey: rgba(22, 22, 22, 0.3);
+  --text-primary: #161616;
+  --text-secondary: rgba(22, 22, 22, 0.8);
+  --accent-sidebar: rgba(236, 237, 253, 0.4);
+  --plus-sidebar-icon: #fff;
+  --accent-sidebar-color: #fff;
+  --accent-sidebar-btn: #b8bcfd;
+  --hover-sidebar-btn: #979cea;
+  --sidebar-light: rgba(255, 255, 255, 0.5);
+  --hover-sidebar-element: #fff;
+  --bg-screen: #ecedfd;
+
+  --button-text: #fff;
+  --bg-scroll: #b8bcfd;
+  --bg-scroll-track: #fff;
+  --bottom-scroll: #fff;
+  --bg-scroll-thumb: #b8bcfd;
+  --stroke-btn: #161616;
+
+  --modal-overlay: rgba(21, 21, 21, 0.3);
+  --modal-bg: #fcfcfc;
+  --modal-input-border: #b8bcfd;
+  --modal-btn: #5255bc;
+  --hover-modal-btn: #7b7ede;
+  --modal-btn-text: #fff;
+  --modal-plus-icon: #161616;
+  --modal-icon-wrap: #fff;
+
+  --drop-down-text: #161616;
+  --btn: #5255bc;
+  --btn-hover: #7b7ede;
+  --btn-add-color: #fff;
+  --bg-modal: #fff;
+
+  --logo-icon-wrapper: #ecedfd;
+  --logo-icon: #5255bc;
+  --logo-title: #fff;
 }

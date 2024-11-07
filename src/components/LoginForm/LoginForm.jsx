@@ -1,5 +1,5 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import css from './LoginForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from '../../redux/auth/operations.js';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 import Loader from '../Loader/Loader.jsx';
+import { toast, Toaster } from 'react-hot-toast';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -34,20 +35,19 @@ const LoginForm = () => {
   };
   const dispatch = useDispatch();
 
-  // const navigate = useNavigate();
-
   const handleSubmit = async (values, actions) => {
-    try {
-      setIsLoading(true);
-      await dispatch(loginThunk(values));
+    setIsLoading(true);
+
+    const result = await dispatch(loginThunk(values));
+
+    if (loginThunk.fulfilled.match(result)) {
       actions.resetForm();
-    } catch (error) {
-      console.error('Error during login:', error);
-    } finally {
+      toast.success('Login successful! Welcome back!');
+      setTimeout(() => setIsLoading(false), 1500);
+    } else if (loginThunk.rejected.match(result)) {
+      toast.error('Login failed. Please check your email and password.');
       setIsLoading(false);
     }
-
-    // navigate('/home');
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -56,12 +56,13 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
-  if (isLoggedIn) {
+  if (isLoggedIn && !isLoading) {
     return <Navigate to="/home" />;
   }
 
   return (
     <div className={css.pageContainer}>
+      <Toaster position="top-center" reverseOrder={false} />
       {isLoading && <Loader width="100" height="100" />}
       <Formik
         initialValues={initialValues}

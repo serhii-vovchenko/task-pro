@@ -1,16 +1,20 @@
 import s from './ThemeSwitcher.module.css';
-
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeTheme } from '../../../redux/actions/themeActions'; 
 import sprite from '../../../img/icons.svg';
- 
 
 const ThemeSwitcher = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [currentTheme, setCurrentTheme] = useState(
+    localStorage.getItem('theme') || 'light'
+  );
   const dropdownRef = useRef(null);
+
+  const changeTheme = theme => ({
+    type: 'CHANGE_THEME',
+    payload: theme,
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', currentTheme);
@@ -18,13 +22,13 @@ const ThemeSwitcher = () => {
     dispatch(changeTheme(currentTheme));
   }, [currentTheme, dispatch]);
 
-  const handleThemeChange = (event) => {
+  const handleThemeChange = event => {
     setCurrentTheme(event.target.value);
     setIsOpen(false);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
@@ -44,14 +48,22 @@ const ThemeSwitcher = () => {
       </svg>
       {isOpen && (
         <div ref={dropdownRef} className={s.dropdownMenu}>
-          {['light', 'dark', 'violet'].map((theme) => (
+          {['light', 'dark', 'violet'].map(theme => (
             <button
               key={theme}
               value={theme}
               onClick={handleThemeChange}
-              className={s.themeButton} 
+              className={s.themeButton}
               style={{
-                color: currentTheme === theme ? '#BEDBB0' : '#000' 
+                color:
+                  currentTheme === theme
+                    ? '#BEDBB0'
+                    : currentTheme === 'dark'
+                    ? '#FFF'
+                    : '#000', // Текст зеленый для выбранной темы, белый для темной темы, черный для остальных
+                backgroundColor: 'transparent', // Фон прозрачный
+                border: 'none', // Убираем границу
+                cursor: 'pointer', // Курсор указывает на возможность клика
               }}
             >
               {theme.charAt(0).toUpperCase() + theme.slice(1)}

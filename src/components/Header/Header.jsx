@@ -1,33 +1,29 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
 import s from './Header.module.css';
-import { FaBars } from 'react-icons/fa';
+import sprite from '../../../src/img/icons.svg';
 import ThemeSwitcher from '../Themes/ThemeSwitcher/ThemeSwitcher';
-import PropTypes from 'prop-types';
+import UserInfo from '../UserInfo/UserInfo';
+import { useDispatch } from 'react-redux';
+import { toggleSidebar } from '../../redux/dashboard/modals/slice';
+const Header = () => {
+  const dispatch = useDispatch();
 
-const Header = ({ toggleSidebar }) => {
-  const userName = useSelector((state) => state.user.name) || 'Guest';
-  const userPhoto = useSelector((state) => state.user.photo) || 'path/to/default-avatar.png'; 
+  const handleToggleSidebar = () => {
+    dispatch(toggleSidebar());
+  };
 
   return (
     <header className={s.header}>
-      <div className={s.headerContainer}>
-      <div className={s.menuIcon} onClick={toggleSidebar}>
-          <FaBars />
-        </div>
-        <ThemeSwitcher /> 
-        <div className={s.userInfo}>
-          <span className={s.userName}>{userName}</span>        
-          <img src={userPhoto} alt={userName} className={s.userAvatar} />
-        </div>
+      <div className={s.menuIconBox} onClick={handleToggleSidebar}>
+        <svg className={s.menuIcon} height="32" width="32">
+          <use href={`${sprite}#icon-menu`} />
+        </svg>
+      </div>
+      <div className={s.userBox}>
+        <ThemeSwitcher />
+        <UserInfo />
       </div>
     </header>
   );
 };
 
-Header.propTypes = {
-  toggleSidebar: PropTypes.func.isRequired, 
-};
-
 export default Header;
-

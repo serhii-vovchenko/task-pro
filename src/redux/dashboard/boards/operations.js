@@ -1,31 +1,40 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../../config/api';
 
-export const getBoardThunk = createAsyncThunk('boards', async (_, thunkAPI) => {
+export const getBoardThunk = createAsyncThunk('board', async (_, thunkAPI) => {
   try {
-    // const token = localStorage.getItem('persist:auth');
+    const state = thunkAPI.getState();
+    const accessToken = state.auth.token;
 
-    // if (!token) {
-    //   return thunkAPI.rejectWithValue('Token not found');
-    // }
+    const { data } = await api.get('boards', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
-    // const parsedAuthState = JSON.parse(token);
-    // const parsedToken = JSON.parse(parsedAuthState.token);
-
-    // const headers = {
-    //   // headers: { Authorization: `Bearer ${parsedToken}` },
-    //   Authorization: `Bearer ${parsedToken}`,
-    // };
-
-    // console.log(headers);
-
-    const { data } = await api.get('boards');
-    console.log('data', data);
-
-    return data;
+    return data.data;
   } catch (error) {
     console.log(error);
-
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const getBoardById = createAsyncThunk(
+  '/boards/getById',
+  async (boardId, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const accessToken = state.auth.token;
+
+      const { data } = await api.get(`/boards/${boardId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      return data.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -4,30 +4,22 @@ import Logo from './Logo/Logo';
 import CreateBoard from './CreateBoard/CreateBoard';
 import NeedHelp from './NeedHelp/NeedHelp';
 import Logout from './Logout/Logout';
-import PropTypes from 'prop-types';
-import { useEffect, useRef } from 'react';
+import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleSidebar } from '../../redux/dashboard/modals/slice';
 
+const Sidebar = () => {
+  const isSidebarOpen = useSelector(state => state.modals.isSidebarOpen);
 
- 
+  const dispatch = useDispatch();
 
-  const Sidebar = ({ isOpen, toggleSidebar }) => {
-    const sidebarRef = useRef(null);
+  const closeSidebar = () => {
+    dispatch(toggleSidebar());
+  };
 
-    // useEffect(() => {
-    //   const handleClickOutside = event => {
-    //     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-    //       toggleSidebar();
-    //     }
-    //   };
-  
-    //   document.addEventListener('mousedown', handleClickOutside);
-     
-    // }, [toggleSidebar]);
-    return (
-      <aside
-        ref={sidebarRef}
-        className={`${s.sidebar} ${isOpen ? s.isOpen : ''}`}
-      >
+  return (
+    <>
+      <aside className={clsx(s.sidebar, isSidebarOpen && s.sidebarIsOpen)}>
         <div>
           <Logo />
           <CreateBoard />
@@ -38,12 +30,12 @@ import { useEffect, useRef } from 'react';
           <Logout />
         </div>
       </aside>
-    );
-  };
-  Sidebar.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    toggleSidebar: PropTypes.func.isRequired,
-  };
-
+      <div
+        className={clsx(s.overlay, isSidebarOpen && s.overlayIsVisible)}
+        onClick={closeSidebar}
+      ></div>
+    </>
+  );
+};
 
 export default Sidebar;
