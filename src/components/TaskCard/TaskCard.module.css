@@ -1,0 +1,119 @@
+.cardTask {
+    background-color: var(--background-paper);
+    width: 335px;
+    padding: 14px 14px 14px 24px;
+    border-radius: 4px 8px 8px 4px;
+    height: 154px;
+    position: relative;
+}
+
+.cardTask::before {
+    content: '';
+    width: 4px;
+    height: 154px;
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+.taskTitle {
+    color: var(--text-primary);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    margin-bottom: 8px;
+}
+
+.taskDescription {
+    overflow: hidden;
+    height: 38px;
+    color: var(--text-secondary);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.24px;
+    max-width: 290px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--secondary-main);
+}
+
+.lowerCont {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+}
+
+.lowerCont>div {
+    display: flex;
+    gap: 14px;
+}
+
+.lowerContTitle {
+    color: var(--text-secondary);
+    font-family: Poppins;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.16px;
+}
+
+.lowerContText {
+    color: var(--text-primary);
+    font-family: Poppins;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.2px;
+}
+
+.priorityCircle {
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 12px;
+    display: block;
+}
+
+.icon {
+    fill: transparent;
+    stroke: var(--text-secondary);
+}
+
+.icon:hover {
+    stroke: var(--primary-main);
+}
+
+.contWithMarkings {
+    display: flex;
+    flex-direction: column;
+}
+
+.contWithCircle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.lowerCont>ul {
+    display: flex;
+    align-items: end;
+    gap: 8px;
+}
+
+.lowerCont>ul>li>button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0;
+}
