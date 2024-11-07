@@ -4,10 +4,10 @@ export const api = axios.create({
   baseURL: 'https://task-pro-backend-mcfs.onrender.com/',
 });
 
-export const setAuthHeader = token => {
+export const setToken = token => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-export const clearAuthHeader = () => {
+export const clearToken = () => {
   api.defaults.headers.common.Authorization = '';
 };

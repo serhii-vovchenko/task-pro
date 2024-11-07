@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api, setAuthHeader } from '../../../config/api';
+import { api, setToken, clearToken } from '../../../config/api';
 
 export const getBoards = createAsyncThunk(
   'boards/getBoards',
@@ -12,7 +12,7 @@ export const getBoards = createAsyncThunk(
     }
 
     try {
-      setAuthHeader(token);
+      setToken(token);
       const response = await api.get('/boards');
       return response.data;
     } catch (error) {
@@ -32,7 +32,7 @@ export const addBoard = createAsyncThunk(
     }
 
     try {
-      setAuthHeader(token);
+      setToken(token);
       const response = await api.post('/board', data);
       return response.data;
     } catch (error) {
@@ -52,7 +52,7 @@ export const updateBoard = createAsyncThunk(
     }
 
     try {
-      setAuthHeader(token);
+      setToken(token);
       const response = await api.put(`/board/${boardId}`, data);
       return response.data;
     } catch (error) {
@@ -72,7 +72,7 @@ export const deleteBoard = createAsyncThunk(
     }
 
     try {
-      setAuthHeader(token);
+      setToken(token);
       await api.delete(`/board/${boardId}`);
       return boardId;
     } catch (error) {
