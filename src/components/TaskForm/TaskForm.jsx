@@ -1,12 +1,21 @@
 import { Field, Form, Formik } from "formik";
-import s from "./TaskForm.module.css"
 import DatePickerField from "../DatePickerField/DatePickerField";
+import s from "./TaskForm.module.css"
 
 
 const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
     
     const handleSubmit = (values) => {
-        console.log(values);
+        const formData = {
+            title: values.title,
+            description: values.description,
+            priority: values.priority,
+            deadline: values.deadline.toString()
+        }
+
+
+        console.log(formData);
+        console.log(new Date());
     }
 
     return (
