@@ -1,4 +1,4 @@
-export const selectBoards = state => state.boards.boards;
+export const selectBoards = state => state.boards;
 
 export const selectLoading = state => state.boards.loading;
 
