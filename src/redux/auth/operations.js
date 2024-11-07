@@ -1,13 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { api } from '../../config/api.js';
+import { api, clearToken, setToken } from '../../config/api.js';
 import { resetAuthState } from './slice.js';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
-  async (credentials, thunkAPI) => {
+  async (registerCredentials, thunkAPI) => {
     try {
-      const { data } = await api.post('auth/register', credentials);
+      let { name, ...loginCredentials } = registerCredentials;
+      await api.post('auth/register', registerCredentials);
+      const { data } = await api.post('auth/login', loginCredentials);
+      setToken(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -20,6 +23,7 @@ export const loginThunk = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await api.post('auth/login', credentials);
+      setToken(data.data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -30,6 +34,7 @@ export const loginThunk = createAsyncThunk(
 export const logoutThunk = createAsyncThunk(
   'auth/logout',
   async (accessToken, thunkAPI) => {
+    clearToken();
     try {
       const response = await api.post(
         'auth/logout',
@@ -53,6 +58,7 @@ export const logoutThunk = createAsyncThunk(
     }
   }
 );
+
 export const updateUserProfile = createAsyncThunk(
   'auth/updateUserProfile',
   async (formData, { rejectWithValue }) => {

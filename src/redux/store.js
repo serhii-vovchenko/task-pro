@@ -1,9 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/slice.js';
-import boardReducer from './reducers/boardReducer';
-import themeReducer from './reducers/themeReducer';
-import userReducer from './reducers/userReducer';
 import { needHelpReducer } from './dashboard/need-help-form/slice.js';
+import { modalsReducer } from './dashboard/modals/slice.js';
 import {
   persistStore,
   persistReducer,
@@ -16,6 +14,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { columnsReducer } from './dashboard/columns/slise.js';
+import { boardsReducer } from './dashboard/boards/slice.js';
 
 const persistConfig = {
   key: 'auth',
@@ -32,6 +31,8 @@ export const store = configureStore({
     user: userReducer,
     columns: columnsReducer,
     needHelp: needHelpReducer,
+    boards: boardsReducer,
+    modals: modalsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
