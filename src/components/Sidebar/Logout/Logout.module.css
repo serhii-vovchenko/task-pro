@@ -22,6 +22,10 @@
   &:hover .logoutBtnIcon {
     stroke: var(--fresh-green);
   }
+
+  & span {
+    color: var(--accent-sidebar-color);
+  }
 }
 
 .logoutBtnIcon {
