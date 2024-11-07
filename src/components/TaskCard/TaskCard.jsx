@@ -15,7 +15,6 @@ const TaskCard = ({taskObj}) => {
 
     const handleClose = () => {
         setIsOpen(false)
-        console.log("modal is closed");
     }
 
 
