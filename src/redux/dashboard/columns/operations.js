@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../../../config/api.js';
+import { api, setToken } from '../../../config/api.js';
 
 export const addColumn = createAsyncThunk(
   'columns/create',
   async (body, thunkAPI) => {
     try {
-      const { data } = await api.post('columns', body, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      return data;
+      const state = thunkAPI.getState();
+      const accessToken = state.auth.token;
+      setToken(accessToken);
+      const { data } = await api.post('columns', body);
+
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -19,9 +19,12 @@ export const addColumn = createAsyncThunk(
 
 export const editColumn = createAsyncThunk(
   'columns/edit',
-  async ({ id, body }, thunkAPI) => {
+  async ({columnId, body }, thunkAPI) => {
     try {
-      const { data } = await api.patch(`columns/${id}`, body);
+      const state = thunkAPI.getState();
+      const accessToken = state.auth.token;
+      setToken(accessToken);
+      const { data } = await api.patch(`columns/${columnId}`, body);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

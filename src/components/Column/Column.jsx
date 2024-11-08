@@ -26,16 +26,20 @@ const Column = ({ title, id, onDelete }) => {
         <h2 className={s.title}>{title}</h2>
         <div className={s.icons}>
           <div>
-            <button type="button" onClick={openModal}>
+            <button className={s.buttons} type="button" onClick={openModal}>
               <svg className={s.icon} width="16" height="16">
                 <use href={`${sprite}#icon-pencil`} />
               </svg>
               <ReusableModal isOpen={isModalOpen} onClose={closeModal}>
-                <EditColumn />
+                <EditColumn closeModal={closeModal} />
               </ReusableModal>
             </button>
           </div>
-          <button type="button" onClick={() => onDelete(id)}>
+          <button
+            className={s.buttons}
+            type="button"
+            onClick={() => onDelete(id)}
+          >
             <svg className={s.icon} width="16" height="16">
               <use href={`${sprite}#icon-trash`} />
             </svg>
@@ -45,7 +49,7 @@ const Column = ({ title, id, onDelete }) => {
       {/* <TaskList/> */}
 
       <button type="button" className={s.button}>
-        <svg className={s.plus}>
+        <svg className={s.plus} width="28" height="28">
           <use href={`${sprite}#icon-plus`} />
         </svg>
         <span className={s.text}>Add another card</span>

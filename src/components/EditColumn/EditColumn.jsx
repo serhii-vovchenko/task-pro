@@ -13,8 +13,8 @@ const columnSchema = Yup.object().shape({
     .required('This field is required!'),
 });
 
-const EditColumn = () => {
-  const { id, title } = useSelector(selectColumn);
+const EditColumn = ({ closeModal }) => {
+  const { _id, title } = useSelector(selectColumn);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -23,12 +23,13 @@ const EditColumn = () => {
 
   const handleSubmit = (values, actions) => {
     const newColumn = {
-      id: id,
+      columnId: _id,
       body: { title: values.title },
     };
 
     dispatch(editColumn(newColumn));
     actions.resetForm();
+    closeModal();
   };
 
   return (
