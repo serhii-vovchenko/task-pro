@@ -45,7 +45,7 @@ const Column = ({ title, id, onDelete }) => {
       {/* <TaskList/> */}
 
       <button type="button" className={s.button}>
-        <svg className={s.plus}>
+        <svg className={s.plus} width="28" height="28">
           <use href={`${sprite}#icon-plus`} />
         </svg>
         <span className={s.text}>Add another card</span>

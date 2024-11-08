@@ -6,6 +6,7 @@
   gap: 14px;
   width: 100vw;
   height: 100vh;
+  max-width: 336px;
 }
 
 .wrapper {

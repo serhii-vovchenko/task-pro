@@ -18,11 +18,13 @@ const AddColumn = () => {
   const initialValues = {
     title: '',
     boardId: '672cb51fff390c38170298a7',
+    // boardId,
   };
 
   const handleSubmit = (values, actions) => {
     const newColumn = {
       title: values.title,
+      // boardId,
       boardId: '672cb51fff390c38170298a7',
     };
     dispatch(addColumn(newColumn));

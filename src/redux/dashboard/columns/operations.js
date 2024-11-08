@@ -17,6 +17,22 @@ export const addColumn = createAsyncThunk(
   }
 );
 
+// export const addColumn = createAsyncThunk('columns', async (body, thunkAPI) => {
+//   const state = thunkAPI.getState();
+//   const token = state.auth.token;
+//   if (!token) {
+//     return thunkAPI.rejectWithValue('Token not found');
+//   }
+//   try {
+//     setToken(token);
+//     const { data } = await api.post('columns', body);
+//     console.log(data);
+//     return data;
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
 export const editColumn = createAsyncThunk(
   'columns/edit',
   async ({ id, body }, thunkAPI) => {
