@@ -5,6 +5,7 @@ import { selectBoards } from '../../../redux/dashboard/boards/selectors';
 import { useEffect } from 'react';
 import {
   deleteBoard,
+  getBoardById,
   getBoardThunk,
 } from '../../../redux/dashboard/boards/operations';
 import SvgIcon from '../../SvgIcon/SvgIcon';
