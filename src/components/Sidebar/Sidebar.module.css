@@ -46,7 +46,7 @@
 .createBoard {
   display: flex;
   align-items: center;
-  gap: 77px;
+  gap: 70px;
   padding: 14px 0px;
   border-top: 1px solid rgba(22, 22, 22, 0.1);
   border-bottom: 1px solid rgba(22, 22, 22, 0.1);

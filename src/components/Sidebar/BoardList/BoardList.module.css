@@ -20,11 +20,11 @@
   min-height: 61px;
   cursor: pointer;
   position: relative;
-  background-color: var(--sidebar-light);
+  background-color: var(--background-default);
 }
 
 .activeBoard {
-  background: var(--bg-screen);
+  background: var(--accent-sidebar);
 
   &::after {
     position: absolute;
@@ -73,7 +73,8 @@
 .btnBoxIcon {
   width: 16px;
   height: 16px;
-  fill: var(--sidebar-light);
+  fill: var(--board-icons);
+  stroke: var(--board-icons);
 }
 
 @media (min-width: 768px) {
