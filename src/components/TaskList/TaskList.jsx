@@ -12,21 +12,23 @@ const TaskList = () => {
 
     const dispatch = useDispatch()
     const board = useSelector(currentBoard)
-    dispatch(writeToState(board.columns[0].tasks))
+    
     const tasks = useSelector(selectTasks)
     useEffect(() => {
         dispatch(getCurrentBoard("672cc86792d2fef358dba64c"))
+        dispatch(writeToState(board.columns[0].tasks))
     }, [dispatch])
     
     return (
         <>
-            <ul className={s.taskList}>
+            {tasks && <ul className={s.taskList}>
                 {tasks.map((task) => (
                     <li key={task._id}>
                         <TaskCard taskObj={task} />
                     </li>
                 ))}
-            </ul>
+            </ul>}
+            
         </>
     );
 }
