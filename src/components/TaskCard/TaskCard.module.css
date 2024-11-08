@@ -11,7 +11,7 @@
     content: '';
     width: 4px;
     height: 154px;
-    background-color: red;
+    background-color: var(--custom-colorCard);
     position: absolute;
     top: 0;
     left: 0;
@@ -80,7 +80,7 @@
 .priorityCircle {
     width: 12px;
     height: 12px;
-    background-color: red;
+    background-color: var(--custom-colorCard);
     border-radius: 12px;
     display: block;
 }
@@ -116,4 +116,35 @@
     cursor: pointer;
     background-color: transparent;
     padding: 0;
+}
+
+
+
+.dropdownMenu {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    width: 150px;
+    z-index: 10;
+}
+
+.dropdownMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdownMenu li {
+    padding: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdownMenu li:hover {
+    background-color: #f0f0f0;
 }
