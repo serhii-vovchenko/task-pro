@@ -3,10 +3,13 @@ import { format, isToday } from "date-fns";
 import DatePickerField from "../DatePickerField/DatePickerField";
 import sprite from "../../img/icons.svg"
 import s from "./TaskForm.module.css"
+import { useDispatch } from "react-redux";
+import { updateTask } from "../../redux/dashboard/tasks/operations";
 
 
 const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
-    
+    const dispatch = useDispatch()
+    const taskId = initialTaskValue._id
     const handleSubmit = (values) => {
         const formData = {
             title: values.title,
@@ -14,7 +17,7 @@ const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
             priority: values.priority,
             deadline: format(values.deadline, "yyyy-MM-dd")
         }
-        console.log(formData);
+        dispatch(updateTask({taskId: taskId, data: formData}))
     }
 
     const formatDeadline = (date) => {
