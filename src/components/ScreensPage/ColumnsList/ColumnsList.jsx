@@ -7,10 +7,13 @@ import ReusableModal from '../../ReusableModal/ReusableModal';
 import sprite from '../../../../src/img/icons.svg';
 import { deleteColumn } from '../../../redux/dashboard/columns/operations.js';
 import s from './ColumnsList.module.css';
+import { currentBoard } from '../../../redux/dashboard/currentBoard/selectors.js';
 
 const ColumnList = () => {
   const dispatch = useDispatch();
-  const columns = useSelector(selectColumns);
+  // const columns = useSelector(selectColumns);
+  const { columns = [] } = useSelector(currentBoard);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -25,7 +28,7 @@ const ColumnList = () => {
     <div className={s.wrapper}>
       <ul className={s.list}>
         {columns.map(item => (
-          <li key={item.id}>
+          <li key={item._id}>
             <Column
               title={item.title}
               id={item.id}
