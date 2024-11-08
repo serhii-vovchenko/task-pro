@@ -1,6 +1,6 @@
 .screenPage {
-  width: calc(100vw - 260px);
-  overflow-x: scroll;
+  /* width: calc(100vw - 260px); */
+  /* overflow-x: scroll; */
   height: 100vh;
   background-color: var(--bg-screen);
   height: calc(100vh - 60px);
