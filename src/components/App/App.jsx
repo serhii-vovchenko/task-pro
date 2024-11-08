@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { PrivateRoute } from '../../routes/PrivateRoute';
 import Loader from '../Loader/Loader';
+import { PublicRoute } from '../../routes/PublicRoutes';
 
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage'));
@@ -16,10 +17,23 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Navigate to="/welcome" replace />} />
           <Route path="/welcome" element={<WelcomePage />} />
-          <Route path="/auth/:id" element={<AuthPage />} />
+          {/* <Route path="/auth/:id" element={<AuthPage />} /> */}
+
+          <Route
+            path="/auth/:id"
+            element={
+              <PublicRoute>
+                <AuthPage />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/home"
-            element={<PrivateRoute>{<HomePage />} </PrivateRoute>}
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
           />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
