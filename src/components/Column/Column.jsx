@@ -1,10 +1,10 @@
 // import TaskLIst from ""
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import ReusableModal from '../../ReusableModal/ReusableModal';
-import sprite from '../../../../src/img/icons.svg';
+import ReusableModal from '../ReusableModal/ReusableModal';
+import sprite from '../../img/icons.svg';
 import EditColumn from '../EditColumn/EditColumn';
-import { setSelectedColumnId } from '../../../redux/dashboard/columns/slice';
+import { setSelectedColumnId } from '../../redux/dashboard/columns/slice';
 import s from './Column.module.css';
 
 const Column = ({ title, id, onDelete }) => {
