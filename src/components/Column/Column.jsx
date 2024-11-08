@@ -1,20 +1,16 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import ReusableModal from '../ReusableModal/ReusableModal';
 import sprite from '../../img/icons.svg';
 import EditColumn from '../EditColumn/EditColumn';
-import { setSelectedColumnId } from '../../redux/dashboard/columns/slice';
-import TaskList from '../TaskList/TaskList';
+// import TaskList from '../TaskList/TaskList';
 import AddCard from '../AddCard/AddCard';
 import s from './Column.module.css';
 
 const Column = ({ title, id, onDelete }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
 
   const openModal = () => {
     setIsModalOpen(true);
-    dispatch(setSelectedColumnId(id));
   };
 
   const closeModal = () => {
@@ -32,7 +28,7 @@ const Column = ({ title, id, onDelete }) => {
                 <use href={`${sprite}#icon-pencil`} />
               </svg>
               <ReusableModal isOpen={isModalOpen} onClose={closeModal}>
-                <EditColumn closeModal={closeModal} />
+                <EditColumn columnId={id} closeModal={closeModal} />
               </ReusableModal>
             </button>
           </div>
@@ -47,9 +43,9 @@ const Column = ({ title, id, onDelete }) => {
           </button>
         </div>
       </div>
-      <TaskList />
+      {/* <TaskList /> */}
 
-      <AddCard />
+      <AddCard columnId={id} />
     </div>
   );
 };

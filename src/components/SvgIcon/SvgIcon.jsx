@@ -12,7 +12,6 @@ const SvgIcon = ({ url, active, width = 18, height = 18 }) => {
   if (!url) {
     return null; // Or a placeholder/fallback icon
   }
-  console.log(currentTheme);
 
   return (
     <div
