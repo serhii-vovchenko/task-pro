@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReusableModal from '../ReusableModal/ReusableModal';
 import sprite from '../../img/icons.svg';
 import EditColumn from '../EditColumn/EditColumn';
-// import TaskList from '../TaskList/TaskList';
+import TaskList from '../TaskList/TaskList';
 import AddCard from '../AddCard/AddCard';
 import s from './Column.module.css';
 
@@ -43,7 +43,7 @@ const Column = ({ title, id, onDelete }) => {
           </button>
         </div>
       </div>
-      {/* <TaskList /> */}
+      <TaskList columnId={id} />
 
       <AddCard columnId={id} />
     </div>
