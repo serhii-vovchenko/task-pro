@@ -42,7 +42,7 @@ const boardsSlice = createSlice({
 
         state.boards = state.boards.map(board =>
           board._id === updatedBoard._id
-            ? { ...updatedBoard, isActive: true }
+            ? { ...board, ...updatedBoard, isActive: true } // Keep existing data
             : { ...board, isActive: false }
         );
       })

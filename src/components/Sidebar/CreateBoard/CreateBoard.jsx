@@ -15,8 +15,12 @@ import { backgrounds } from '../../../../public/db/backgrounds.js';
 import SvgIcon from '../../SvgIcon/SvgIcon';
 
 export const NewBoard = ({ closeModal }) => {
-  const [iconsSelected, setIconsSelected] = useState('1_icon-project');
-  const [backgroundSelected, setBackgroundSelected] = useState('no-background');
+  const [iconsSelected, setIconsSelected] = useState(
+    icons[0]?.name || '1_icon-project'
+  );
+  const [backgroundSelected, setBackgroundSelected] = useState(
+    backgrounds[0]?.name || 'bg-2'
+  );
   const [title, setTitle] = useState('');
   const modalRef = useRef(null);
 
@@ -81,29 +85,24 @@ export const NewBoard = ({ closeModal }) => {
 
           <h3 className={s.textIcons}>Icons</h3>
           <ul className={s.listDarkIcons}>
-            {icons.map(
-              (
-                icon,
-                index
-              ) => (
-                <li key={index}>
-                  {' '}
-                  <input
-                    type="radio"
-                    value={icon.name}
-                    name="icons"
-                    className={s.inputRad}
-                    data-source={icon.name}
-                    checked={iconsSelected === icon.name}
-                    onChange={handleIconChange}
-                  />
-                  <SvgIcon
-                    url={icon.iconUrl}
-                    active={iconsSelected === icon.name}
-                  />
-                </li>
-              )
-            )}
+            {icons.map((icon, index) => (
+              <li key={index}>
+                {' '}
+                <input
+                  type="radio"
+                  value={icon.name}
+                  name="icons"
+                  className={s.inputRad}
+                  data-source={icon.name}
+                  checked={iconsSelected === icon.name}
+                  onChange={handleIconChange}
+                />
+                <SvgIcon
+                  url={icon.iconUrl}
+                  active={iconsSelected === icon.name}
+                />
+              </li>
+            ))}
           </ul>
           <h3 className={s.textBackground}>Background</h3>
           <ul className={s.listColorIcons}>
