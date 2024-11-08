@@ -1,4 +1,4 @@
-import ColumnList from './ColumnsList/ColumnsList';
+import ColumnList from '../ColumnsList/ColumnsList';
 import s from './ScreensPage.module.css';
 
 const ScreensPage = () => {
