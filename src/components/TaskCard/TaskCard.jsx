@@ -11,7 +11,7 @@ const TaskCard = ({taskObj}) => {
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const handleClick = () => {
+    const handleEdit = () => {
         setIsOpen(true)
     }
 
@@ -61,7 +61,7 @@ const TaskCard = ({taskObj}) => {
                             )}
                         </li>
                         <li>
-                            <button onClick={()=> handleClick()}>
+                            <button onClick={()=> handleEdit()}>
                                 <svg className={s.icon} width="16px" height="16px">
                                     <use href={`${sprite}#icon-pencil`}/>
                                 </svg>
