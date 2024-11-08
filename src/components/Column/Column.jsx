@@ -1,10 +1,11 @@
-// import TaskLIst from ""
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ReusableModal from '../ReusableModal/ReusableModal';
 import sprite from '../../img/icons.svg';
 import EditColumn from '../EditColumn/EditColumn';
 import { setSelectedColumnId } from '../../redux/dashboard/columns/slice';
+import TaskList from '../TaskList/TaskList';
+import AddCard from '../AddCard/AddCard';
 import s from './Column.module.css';
 
 const Column = ({ title, id, onDelete }) => {
@@ -46,14 +47,9 @@ const Column = ({ title, id, onDelete }) => {
           </button>
         </div>
       </div>
-      {/* <TaskList/> */}
+      <TaskList />
 
-      <button type="button" className={s.button}>
-        <svg className={s.plus} width="28" height="28">
-          <use href={`${sprite}#icon-plus`} />
-        </svg>
-        <span className={s.text}>Add another card</span>
-      </button>
+      <AddCard />
     </div>
   );
 };
