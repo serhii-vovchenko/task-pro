@@ -34,33 +34,13 @@ export const getBoardById = createAsyncThunk(
       if (error.response && error.response.status === 404) {
         console.log('Board not found');
         thunkAPI.dispatch(clearCurrentBoard());
-        return {};
+        return {}; // Return an empty object or null
       }
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-// export const getBoards = createAsyncThunk(
-//   'boards/getBoards',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const token = state.auth.token;
-
-//     if (!token) {
-//       return thunkAPI.rejectWithValue('Token not found');
-//     }
-
-//     try {
-//       setToken(token);
-//       const response = await api.get('/boards');
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const addBoard = createAsyncThunk(
   'boards/addBoard',
@@ -94,7 +74,9 @@ export const updateBoard = createAsyncThunk(
     }
 
     try {
-      const response = await api.put(`/boards/${boardId}`, data);
+      const response = await api.put(`/boards/${boardId}`, data, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -116,9 +98,8 @@ export const deleteBoard = createAsyncThunk(
 
       console.log('API response:', response);
 
-      return response.data && response.data.data
-        ? response.data.data._id
-        : null;
+      // Ensure you are returning the correct data (e.g., boardId)
+      return boardId;
     } catch (error) {
       console.error('Error deleting board:', error);
       return thunkAPI.rejectWithValue(error.message);

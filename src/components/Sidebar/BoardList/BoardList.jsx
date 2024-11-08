@@ -5,20 +5,20 @@ import { selectBoards } from '../../../redux/dashboard/boards/selectors';
 import { useEffect } from 'react';
 import {
   deleteBoard,
-  getBoardById,
   getBoardThunk,
 } from '../../../redux/dashboard/boards/operations';
 import SvgIcon from '../../SvgIcon/SvgIcon';
 import clsx from 'clsx';
 import { getCurrentBoard } from '../../../redux/dashboard/currentBoard/operations';
+import { selectCurrentBoard } from '../../../redux/dashboard/currentBoard/selectors';
 import { clearCurrentBoard } from '../../../redux/dashboard/currentBoard/slice';
 
 const BoardList = () => {
   const { boards, selectLoading } = useSelector(selectBoards);
-
+  const { currentBoard } = useSelector(selectCurrentBoard);
   const dispatch = useDispatch();
   const getBoardInfo = id => {
-    dispatch(getBoardById(id));
+    dispatch(getCurrentBoard(id)); // Dispatch getCurrentBoard instead of getBoardById
   };
 
   useEffect(() => {
@@ -55,7 +55,10 @@ const BoardList = () => {
       {boards.map((board, index) => (
         <li
           key={board._id || index}
-          className={clsx(s.boardItem, board.isActive && s.activeBoard)}
+          className={clsx(
+            s.boardItem,
+            board._id === currentBoard?._id && s.activeBoard
+          )}
           onClick={() => getBoardInfo(board._id)}
         >
           <div className={s.titleBox}>
@@ -67,14 +70,13 @@ const BoardList = () => {
             <p
               className={clsx(
                 s.titleBoxTitle,
-                board.isActive && s.titleBoxTitleActive
+                board._id === currentBoard?._id && s.titleBoxTitleActive // Apply active class based on currentBoard
               )}
             >
               {board.title}
             </p>
           </div>
-
-          {board.isActive && (
+          {board._id === currentBoard?._id && ( // Use currentBoard to check for active board
             <div className={s.btnBox}>
               <button className={s.btnBoxButton}>
                 <svg className={s.btnBoxIcon} height="16" width="16">
