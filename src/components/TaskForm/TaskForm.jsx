@@ -5,7 +5,7 @@ import DatePickerField from "../DatePickerField/DatePickerField";
 import sprite from "../../img/icons.svg"
 import s from "./TaskForm.module.css"
 import { useDispatch } from "react-redux";
-import { updateTask } from "../../redux/dashboard/tasks/operations";
+import { createTask, updateTask } from "../../redux/dashboard/tasks/operations";
 
 
 const validationSchema = Yup.object({
@@ -28,7 +28,8 @@ const TaskForm = ({ initialTaskValue, typeOfPopUp }) => {
         if (typeOfPopUp === "Edit") {
             dispatch(updateTask({taskId: taskId, values: formData}))
         } else {
-            console.log("add card");
+            formData.columnId = "672cff0bc7ee4fb5346b7276"
+            dispatch(createTask(formData))
         }
         
     }
