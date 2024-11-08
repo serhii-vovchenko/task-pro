@@ -1,9 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { addColumn } from '../../../redux/dashboard/columns/operations.js';
-import sprite from '../../../../src/img/icons.svg';
-import s from './AddColumn.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { editColumn } from '../../redux/dashboard/columns/operations';
+import sprite from '../../img/icons.svg';
+import { selectColumn } from '../../redux/dashboard/columns/selectors';
+import s from './EditColumn.module.css';
 
 const columnSchema = Yup.object().shape({
   title: Yup.string()
@@ -12,20 +13,21 @@ const columnSchema = Yup.object().shape({
     .required('This field is required!'),
 });
 
-const AddColumn = () => {
+const EditColumn = () => {
+  const { id, title } = useSelector(selectColumn);
   const dispatch = useDispatch();
 
   const initialValues = {
-    title: '',
-    boardId: '672cb51fff390c38170298a7',
+    title: title || '',
   };
 
   const handleSubmit = (values, actions) => {
     const newColumn = {
-      title: values.title,
-      boardId: '672cb51fff390c38170298a7',
+      id: id,
+      body: { title: values.title },
     };
-    dispatch(addColumn(newColumn));
+
+    dispatch(editColumn(newColumn));
     actions.resetForm();
   };
 
@@ -37,13 +39,8 @@ const AddColumn = () => {
     >
       <Form className={s.form}>
         <label className={s.label}>
-          <p className={s.title}>Add Column</p>
-          <Field
-            className={s.input}
-            type="text"
-            name="title"
-            placeholder="Title"
-          ></Field>
+          <p className={s.title}>Edit Column</p>
+          <Field className={s.input} type="text" name="title"></Field>
           <ErrorMessage name="title" component="p" className={s.error} />
         </label>
 
@@ -51,11 +48,11 @@ const AddColumn = () => {
           <svg className={s.icon} height="28" width="28">
             <use href={`${sprite}#icon-plus`} />
           </svg>
-          <span className={s.text}>Add</span>
+          <span className={s.text}>Edit</span>
         </button>
       </Form>
     </Formik>
   );
 };
 
-export default AddColumn;
+export default EditColumn;
