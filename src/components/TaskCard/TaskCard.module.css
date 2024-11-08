@@ -11,7 +11,7 @@
     content: '';
     width: 4px;
     height: 154px;
-    background-color: red;
+    background-color: var(--custom-colorCard);
     position: absolute;
     top: 0;
     left: 0;
@@ -80,7 +80,7 @@
 .priorityCircle {
     width: 12px;
     height: 12px;
-    background-color: red;
+    background-color: var(--custom-colorCard);
     border-radius: 12px;
     display: block;
 }
