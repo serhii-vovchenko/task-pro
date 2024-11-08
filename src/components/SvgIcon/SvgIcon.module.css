@@ -1,20 +1,11 @@
 .icon {
-  color: var(--half-white);
+  color: var(--board-icons);
   transition: color 0.3s ease;
 }
 
 .icon :hover,
 .icon.active {
-  color: var(--white);
-}
-
-.icon.light {
-  color: var(--charcoal-haze);
-}
-
-.icon.light:hover,
-.icon.light.active {
-  color: var(--almost-black);
+  color: var(--text-primary);
 }
 
 .icon svg {
