@@ -1,9 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addColumn } from '../../redux/dashboard/columns/operations';
 import sprite from '../../img/icons.svg';
 import s from './AddColumn.module.css';
+import { selectorBoardId } from '../../redux/dashboard/currentBoard/selectors';
 
 const columnSchema = Yup.object().shape({
   title: Yup.string()
@@ -12,23 +13,24 @@ const columnSchema = Yup.object().shape({
     .required('This field is required!'),
 });
 
-const AddColumn = () => {
+const AddColumn = ({ closeModal }) => {
   const dispatch = useDispatch();
+  const boardId = useSelector(selectorBoardId);
 
   const initialValues = {
     title: '',
-    boardId: '672cb51fff390c38170298a7',
-    // boardId,
+    boardId,
   };
 
   const handleSubmit = (values, actions) => {
     const newColumn = {
       title: values.title,
-      // boardId,
-      boardId: '672cb51fff390c38170298a7',
+      boardId,
+      // boardId: '672cb51fff390c38170298a7',
     };
     dispatch(addColumn(newColumn));
     actions.resetForm();
+    closeModal();
   };
 
   return (

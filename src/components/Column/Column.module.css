@@ -2,11 +2,12 @@
   padding: 20px 20px 24px 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: var(--background-paper);
   gap: 14px;
-  width: 100vw;
-  height: 100vh;
   max-width: 336px;
+  width: 100vw;
+  height: calc(100vh - 160px);
 }
 
 .wrapper {
@@ -14,6 +15,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--background-default);
 }
 
@@ -23,6 +25,10 @@
   font-weight: 500;
   letter-spacing: -0.02em;
 }
+.buttons {
+  background-color: var(--modal-bg);
+  padding: 0;
+}
 
 .icons {
   display: flex;
@@ -31,9 +37,9 @@
 }
 
 .icon {
-  background-color: transparent;
   stroke: var(--text-primary);
   opacity: 0.5;
+  padding: 0;
 }
 
 .button {

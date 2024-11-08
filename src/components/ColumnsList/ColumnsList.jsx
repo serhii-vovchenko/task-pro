@@ -43,7 +43,7 @@ const ColumnList = () => {
         <span className={s.text}>Add another column</span>
       </button>
       <ReusableModal isOpen={isModalOpen} onClose={closeModal}>
-        <AddColumn />
+        <AddColumn closeModal={closeModal} />
       </ReusableModal>
     </div>
   );

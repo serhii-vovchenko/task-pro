@@ -1,22 +1,25 @@
 .wrapper {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  gap: 18px;
   padding: 20px;
 }
 
 .list {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   flex-wrap: nowrap;
   gap: 14px;
 }
 
 .button {
+  /* min-width: 287px; */
   max-width: 336px;
+  width: 100%;
+  height: 56px;
+  /* height: 100px; */
+  flex-shrink: 0;
   padding: 14px;
+  border-radius: 8px;
   display: flex;
   flex-direction: row;
   justify-content: center;
