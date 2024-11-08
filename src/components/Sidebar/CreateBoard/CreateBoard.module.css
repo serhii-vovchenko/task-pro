@@ -2,25 +2,26 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: var(--modal-overlay);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1001;
 }
 .divCard {
   position: absolute;
-  top: 20vh;
-  left: 40vh;
-  width: 335px;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 335px;
+  min-width: 300px;
   border-radius: 8px;
   padding: 24px;
   background: var(--modal-bg);
   color: var(--text-primary);
   font-family: 'Poppins', sans-serif;
+  transform: translate(-50%, -50%);
 }
+
 .iconClose {
   width: 18px;
   height: 18px;
@@ -37,7 +38,9 @@
   margin-bottom: 24px;
 }
 .titleInput {
-  width: 287px;
+  width: 90%;
+  min-width: 256px;
+  max-width: 287px;
   height: 49px;
   padding: 18px;
   font-size: 14px;
@@ -127,7 +130,9 @@
 }
 .mainButton {
   display: flex;
-  width: 287px;
+  width: 90%;
+  min-width: 256px;
+  max-width: 287px;
   padding: 10px 0px 11px 0px;
   justify-content: center;
   align-items: center;
