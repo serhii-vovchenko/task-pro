@@ -114,7 +114,7 @@ export const deleteBoard = createAsyncThunk(
         headers: { Authorization: `Bearer ${accessToken}` },
       });
 
-      console.log('API response:', response);
+      // console.log('API response:', response);
 
       return response.data && response.data.data
         ? response.data.data._id

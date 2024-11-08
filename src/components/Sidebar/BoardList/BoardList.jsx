@@ -29,21 +29,20 @@ const BoardList = () => {
   useEffect(() => {
     if (!selectLoading) {
       if (boards.length > 0) {
-        const firstBoardId = boards[0]?._id;
+        const activeBoard = boards.find(board => board.isActive);
+        const boardToDispatch = activeBoard || boards[0];
 
-        if (firstBoardId) {
-          dispatch(getCurrentBoard(firstBoardId));
-        }
-      } else {
-        dispatch(clearCurrentBoard());
+        dispatch(getCurrentBoard(boardToDispatch._id));
       }
+    } else {
+      dispatch(clearCurrentBoard());
     }
   }, [dispatch, boards, selectLoading]);
 
   const handleDelete = boardId => {
     dispatch(deleteBoard(boardId))
       .then(() => {
-        dispatch(getBoardThunk());
+        dispatch(getBoardById(boards[0]._id));
       })
       .catch(error => {
         console.error('Error during board delete:', error);
@@ -58,7 +57,10 @@ const BoardList = () => {
           className={clsx(s.boardItem, board.isActive && s.activeBoard)}
           onClick={() => getBoardInfo(board._id)}
         >
-          <div className={s.titleBox}>
+          <div
+            className={s.titleBox}
+            onClick={() => dispatch(getBoardById(board._id))}
+          >
             {board.isActive ? (
               <SvgIcon url={board.icon?.iconUrl} active />
             ) : (
