@@ -78,7 +78,6 @@
 .addBtnIcon {
   width: 20px;
   height: 20px;
-  fill: none;
   stroke: var(--plus-sidebar-icon);
 }
 
@@ -101,4 +100,8 @@
   .overlay {
     display: none;
   }
+}
+
+.logoIcon {
+  stroke: var(--plus-sidebar-icon);
 }

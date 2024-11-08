@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../../config/api';
+import { clearCurrentBoard } from '../currentBoard/slice';
 
 export const getBoardThunk = createAsyncThunk('boards', async (_, thunkAPI) => {
   try {
@@ -30,6 +31,11 @@ export const getBoardById = createAsyncThunk(
       });
       return data.data;
     } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.log('Board not found');
+        thunkAPI.dispatch(clearCurrentBoard());
+        return {};
+      }
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -99,17 +105,22 @@ export const updateBoard = createAsyncThunk(
 export const deleteBoard = createAsyncThunk(
   'boards/deleteBoard',
   async (boardId, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const accessToken = state.auth.token;
-
-    if (!accessToken) {
-      return thunkAPI.rejectWithValue('Token not found');
-    }
-
     try {
-      await api.delete(`/boards/${boardId}`);
-      return boardId;
+      const state = thunkAPI.getState();
+      const accessToken = state.auth.token;
+
+      console.log('Deleting board with ID:', boardId);
+      const response = await api.delete(`/boards/${boardId}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      console.log('API response:', response);
+
+      return response.data && response.data.data
+        ? response.data.data._id
+        : null;
     } catch (error) {
+      console.error('Error deleting board:', error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

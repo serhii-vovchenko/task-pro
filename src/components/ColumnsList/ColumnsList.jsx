@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectColumns } from '../../../redux/dashboard/columns/selectors.js';
 import Column from '../Column/Column';
 import AddColumn from '../AddColumn/AddColumn';
-import ReusableModal from '../../ReusableModal/ReusableModal';
-import sprite from '../../../../src/img/icons.svg';
-import { deleteColumn } from '../../../redux/dashboard/columns/operations.js';
+import ReusableModal from '../../components/ReusableModal/ReusableModal.jsx';
+import sprite from '../../img/icons.svg';
+import { deleteColumn } from '../../redux/dashboard/columns/operations.js';
 import s from './ColumnsList.module.css';
-import { currentBoard } from '../../../redux/dashboard/currentBoard/selectors.js';
+import { currentBoard } from '../../redux/dashboard/currentBoard/selectors.js';
 
 const ColumnList = () => {
   const dispatch = useDispatch();
-  // const columns = useSelector(selectColumns);
-  const { columns = [] } = useSelector(currentBoard);
+  const currentBoardData = useSelector(currentBoard);
+  const columns = currentBoardData ? currentBoardData.columns : [];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

@@ -1,13 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../../config/api';
+import { clearCurrentBoard } from './slice';
 
 export const getCurrentBoard = createAsyncThunk(
   '/currentBoards',
   async (boardId, thunkAPI) => {
-    try {
-      const state = thunkAPI.getState();
-      const accessToken = state.auth.token;
+    const state = thunkAPI.getState();
+    const boards = state.boards.boards;
 
+    if (!boardId) {
+      console.log('Board ID is undefined');
+      thunkAPI.dispatch(clearCurrentBoard());
+      return;
+    }
+
+    const boardExists = boards.some(board => board._id === boardId);
+    if (!boardExists) {
+      console.log('Board not found');
+      thunkAPI.dispatch(clearCurrentBoard());
+      return;
+    }
+
+    try {
+      const accessToken = state.auth.token;
       const { data } = await api.get(`/boards/${boardId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,

@@ -1,10 +1,7 @@
 import s from './BoardList.module.css';
 import sprite from '../../../../src/img/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectBoards,
-  selectLoading,
-} from '../../../redux/dashboard/boards/selectors';
+import { selectBoards } from '../../../redux/dashboard/boards/selectors';
 import { useEffect } from 'react';
 import {
   deleteBoard,
@@ -14,10 +11,15 @@ import {
 import SvgIcon from '../../SvgIcon/SvgIcon';
 import clsx from 'clsx';
 import { getCurrentBoard } from '../../../redux/dashboard/currentBoard/operations';
+import { clearCurrentBoard } from '../../../redux/dashboard/currentBoard/slice';
 
 const BoardList = () => {
   const { boards, selectLoading } = useSelector(selectBoards);
+
   const dispatch = useDispatch();
+  const getBoardInfo = id => {
+    dispatch(getBoardById(id));
+  };
 
   useEffect(() => {
     dispatch(getBoardThunk());
@@ -25,19 +27,28 @@ const BoardList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!selectLoading && boards.length > 0) {
-      const activeBoard = boards.find(board => board.isActive)?._id || null;
-      console.log('activeBoard');
+    if (!selectLoading) {
+      if (boards.length > 0) {
+        const firstBoardId = boards[0]?._id;
 
-      if (activeBoard) {
-        dispatch(getCurrentBoard(activeBoard));
+        if (firstBoardId) {
+          dispatch(getCurrentBoard(firstBoardId));
+        }
+      } else {
+        dispatch(clearCurrentBoard());
       }
     }
   }, [dispatch, boards, selectLoading]);
 
-  // const handleDeleteBoard = id => {
-  //   dispatch(deleteBoard(id));
-  // };
+  const handleDelete = boardId => {
+    dispatch(deleteBoard(boardId))
+      .then(() => {
+        dispatch(getBoardThunk());
+      })
+      .catch(error => {
+        console.error('Error during board delete:', error);
+      });
+  };
 
   return (
     <ul className={s.boardList}>
@@ -45,7 +56,7 @@ const BoardList = () => {
         <li
           key={board._id || index}
           className={clsx(s.boardItem, board.isActive && s.activeBoard)}
-          onClick={() => dispatch(getBoardById(board._id))}
+          onClick={() => getBoardInfo(board._id)}
         >
           <div className={s.titleBox}>
             {board.isActive ? (
@@ -73,7 +84,7 @@ const BoardList = () => {
               <button
                 type="button"
                 className={s.btnBoxButton}
-                // onClick={handleDeleteBoard(board._id)}
+                onClick={() => handleDelete(board._id || index)}
               >
                 <svg className={s.btnBoxIcon} height="16" width="16">
                   <use href={`${sprite}#icon-trash`} />
