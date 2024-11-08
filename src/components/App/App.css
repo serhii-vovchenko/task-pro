@@ -51,6 +51,8 @@
   --logo-icon-wrapper: #1f1f1f;
   --logo-icon: #fff;
   --logo-title: #161616;
+
+  --board-icons: rgba(22, 22, 22, 0.5);
 }
 
 [data-theme='dark'] {
@@ -98,6 +100,8 @@
   --logo-icon-wrapper: #1f1f1f;
   --logo-icon: #fff;
   --logo-title: #fff;
+
+  --board-icons: rgba(255, 255, 255, 0.5);
 }
 
 [data-theme='violet'] {
@@ -145,4 +149,6 @@
   --logo-icon-wrapper: #ecedfd;
   --logo-icon: #5255bc;
   --logo-title: #fff;
+
+  --board-icons: rgba(22, 22, 22, 0.5);
 }

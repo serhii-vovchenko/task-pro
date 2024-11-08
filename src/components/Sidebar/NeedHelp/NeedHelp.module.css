@@ -49,6 +49,10 @@
   &:hover .helpBtnIcon {
     stroke: var(--fresh-green);
   }
+
+  & span {
+    color: var(--accent-sidebar-color);
+  }
 }
 
 .helpBtnIcon {
