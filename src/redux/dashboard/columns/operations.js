@@ -5,7 +5,11 @@ export const addColumn = createAsyncThunk(
   'columns/create',
   async (body, thunkAPI) => {
     try {
-      const { data } = await api.post('columns', body);
+      const { data } = await api.post('columns', body, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

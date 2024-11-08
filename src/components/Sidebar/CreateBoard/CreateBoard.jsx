@@ -5,7 +5,10 @@ import { useNavigate } from 'react-router';
 
 import sprite from '../../../img/icons.svg';
 import noBack from '../../../img/bg/bg-10-desk.jpg';
-import { addBoard } from '../../../redux/dashboard/boards/operations.js';
+import {
+  addBoard,
+  getBoardThunk,
+} from '../../../redux/dashboard/boards/operations.js';
 import { icons } from '../../../../public/db/icons.js';
 import { backgrounds } from '../../../../public/db/backgrounds.js';
 
@@ -47,10 +50,10 @@ export const NewBoard = ({ closeModal }) => {
     backgroundName: backgroundSelected,
   };
 
-  const createNewBoard = () => {
-    dispatch(addBoard(newBoardObject));
+  const createNewBoard = async () => {
+    await dispatch(addBoard(newBoardObject));
     closeModal();
-    // navigate(`boards/${title._id}`);
+    dispatch(getBoardThunk());
   };
 
   return (
@@ -81,11 +84,10 @@ export const NewBoard = ({ closeModal }) => {
             {icons.map(
               (
                 icon,
-                index // Add index here
+                index
               ) => (
                 <li key={index}>
                   {' '}
-                  {/* Use index as key */}
                   <input
                     type="radio"
                     value={icon.name}

@@ -20,6 +20,7 @@
   min-height: 61px;
   cursor: pointer;
   position: relative;
+  background-color: var(--sidebar-light);
 }
 
 .activeBoard {
@@ -72,7 +73,7 @@
 .btnBoxIcon {
   width: 16px;
   height: 16px;
-  stroke: rgba(255, 255, 255, 0.5); /* додати колір в змінні */
+  fill: var(--sidebar-light);
 }
 
 @media (min-width: 768px) {
