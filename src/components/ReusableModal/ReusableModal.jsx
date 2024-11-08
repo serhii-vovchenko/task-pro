@@ -13,7 +13,7 @@ const customStyles = {
         overflow: 'auto',
         borderRadius: '8px',
         borderColor: 'transparent',
-        backgroundColor: 'var(--off-white)'
+        backgroundColor: 'var(--modal-bg)'
     },
   overlay: {
     backgroundColor: 'var(--backdrop)'

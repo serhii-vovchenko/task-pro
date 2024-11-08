@@ -12,13 +12,13 @@ const validationSchema = Yup.object({
     .email('Invalid email format')
     .matches(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      'Email should contain only one "@" and at least one "." in the domain part'
-    )
+      'Invalid email format')
     .required('Email is required'),
   comment: Yup.string()
     .trim()
     .required('Comment is required')
-    .min(6, 'Comment must be at least 6 characters'),
+    .min(6, 'Comment must be at least 2 characters')
+    .max(300, 'Comment cannot exceed 300 characters'),
 });
 
 const NeedHelpForm = () => {

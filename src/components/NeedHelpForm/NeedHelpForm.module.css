@@ -1,7 +1,7 @@
 .title {
   font-size: 18px;
   font-weight: 500;
-  color: var(--white);
+  color: var(--text-primary);
   margin-bottom: 24px;
 }
 
@@ -26,28 +26,30 @@
 
 .input {
   font-size: 14px;
-  border: 1px solid rgb(190, 219, 176, 0.4);
+  color:  var(--text-primary);
+  border: 1px solid var(--primary-main-transparent);
   border-radius: 8px;
   padding: 14px 18px;
-  transition: border 250ms ease-in-out;
+  background-color: transparent;
+  transition: border var(--transition-time) var(--transition-func);
 }
 
 .input::placeholder {
   font-size: 14px;
-  color: rgb(22, 22, 22, 0.4);
-  transition: color 250ms ease-in-out;
+  color: var(--text-secondary);
+  transition: color var(--transition-time) var(--transition-func);
 }
 
 .input:hover,
 .input:focus,
 .input:active {
-  border-color: var(--pale-green);
+  border-color: var(--primary-main);
 }
 
 .input:hover::placeholder,
 .input:focus::placeholder,
 .input:active::placeholder {
-  color: var(--almost-black);
+  color: var(--text-primary);
 }
 
 .comment {
@@ -55,35 +57,20 @@
   height: 120px;
 }
 
-.comment::-webkit-scrollbar-track {
-  background-color: var(--almost-grey);
-}
-
-.comment::-webkit-scrollbar {
-border-top-right-radius: 8px;
-border-bottom-right-radius: 8px;
-
-  width: 9px;
-  background-color: #f5f5f5;
-}
-
-.comment::-webkit-scrollbar-thumb {
-  background: var(--pale-green);
-  border-radius: 8px;
-}
-
 .error {
   font-size: 14px;
-  color: #ff0000;
+  color: #FF4D4F;
 }
 
 .form-button {
   font-size: 14px;
   font-weight: 500;
+  color: var(--modal-btn-text);
+  background-color: var(--btn);
 }
 
 .form-button:hover,
 .form-button:focus,
 .form-button:active{
-  background-color: var(--fresh-green);
+  background-color: var(--btn-hover);
 }

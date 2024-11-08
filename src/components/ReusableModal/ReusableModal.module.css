@@ -14,7 +14,7 @@ background-color: transparent;
 .icon {
     width: 18px;
     height: 18px;
-    stroke: var(--almost-black);
+    stroke: var(--modal-plus-icon);
     transition: stroke var(--transition-time) var(--transition-func)
   }
   
