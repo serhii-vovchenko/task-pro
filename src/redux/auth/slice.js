@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, logoutThunk, registerThunk } from './operations.js';
+import {
+  loginThunk,
+  logoutThunk,
+  registerThunk,
+  updateThemeInDatabase,
+} from './operations.js';
 
 const initialState = {
   user: {
@@ -22,6 +27,9 @@ const slice = createSlice({
       };
       state.token = '';
       state.isLoggedIn = false;
+    },
+    changeTheme: (state, action) => {
+      state.user.theme = action.payload;
     },
   },
   extraReducers: builder => {
@@ -47,9 +55,12 @@ const slice = createSlice({
         state.isLoggedIn = null;
         state.token = null;
         state.isLoading = false;
+      })
+      .addCase(updateThemeInDatabase.fulfilled, (state, action) => {
+        state.user = action.payload.user;
       });
   },
 });
 
-export const { resetAuthState } = slice.actions;
+export const { resetAuthState, changeTheme } = slice.actions;
 export const authReducer = slice.reducer;
