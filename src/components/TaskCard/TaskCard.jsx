@@ -6,11 +6,31 @@ import s from "./TaskCard.module.css"
 import { useDispatch } from "react-redux"
 import { deleteTask } from "../../redux/dashboard/tasks/operations"
 
+const colorPriority = [
+    {
+        priority: "none",
+        color: 'rgba(255, 255, 255, 0.3)'
+    },
+    {
+        priority: "low",
+        color: 'rgba(143, 161, 208, 1)'
+    },{
+        priority: "medium",
+        color: 'rgba(224, 156, 181, 1)'
+    },{
+        priority: "high",
+        color: 'rgba(190, 219, 176, 1)'
+    },
+]
+
 
 const TaskCard = ({taskObj}) => {
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const color = colorPriority.find(priority => priority.priority === taskObj?.priority)
+
     const handleEdit = () => {
         setIsOpen(true)
     }
@@ -20,14 +40,14 @@ const TaskCard = ({taskObj}) => {
     }
 
     const handleDelete = () => {
-        dispatch(deleteTask(taskObj.id))
+        dispatch(deleteTask(taskObj._id))
     }
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev);
     };
     return (
         <>
-            <div className={s.cardTask}>
+            <div className={s.cardTask} style={{"--custom-colorCard": `${color.color}`}}>
                 <h4 className={s.taskTitle}>{taskObj.title}</h4>
                 <p className={s.taskDescription}>{taskObj.description}</p>
                 <div className={s.lowerCont}>
