@@ -3,12 +3,14 @@ import ReusableModal from "../ReusableModal/ReusableModal"
 import TaskForm from "../TaskForm/TaskForm"
 import sprite from "../../img/icons.svg"
 import s from "./TaskCard.module.css"
+import { useDispatch } from "react-redux"
+import { deleteTask } from "../../redux/dashboard/tasks/operations"
 
 
 const TaskCard = ({taskObj}) => {
-
+    const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
-
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const handleClick = () => {
         setIsOpen(true)
     }
@@ -17,8 +19,12 @@ const TaskCard = ({taskObj}) => {
         setIsOpen(false)
     }
 
-
-
+    const handleDelete = () => {
+        dispatch(deleteTask(taskObj.id))
+    }
+    const toggleDropdown = () => {
+        setIsDropdownOpen((prev) => !prev);
+    };
     return (
         <>
             <div className={s.cardTask}>
@@ -39,11 +45,20 @@ const TaskCard = ({taskObj}) => {
                     </div>
                     <ul>
                         <li>
-                            <button>
+                            <button onClick={()=> toggleDropdown()}>
                                 <svg className={s.icon} width="16px" height="16px">
                                     <use href={`${sprite}#icon-arrow-circle-broken-right`} />
                                 </svg>
                             </button>
+                            {isDropdownOpen && (
+                                <div className={s.dropdownMenu}>
+                                    <ul>
+                                        <li onClick={() => console.log("Move to Column 1")}>Move to Column 1</li>
+                                        <li onClick={() => console.log("Move to Column 2")}>Move to Column 2</li>
+                                        <li onClick={() => console.log("Move to Column 3")}>Move to Column 3</li>
+                                    </ul>
+                                </div>
+                            )}
                         </li>
                         <li>
                             <button onClick={()=> handleClick()}>
@@ -53,7 +68,7 @@ const TaskCard = ({taskObj}) => {
                             </button>
                         </li>
                         <li>
-                            <button>
+                            <button onClick={()=> handleDelete()}>
                                 <svg className={s.icon} width="16px" height="16px">
                                     <use href={`${sprite}#icon-trash`} />
                                 </svg>
