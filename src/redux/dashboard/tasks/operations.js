@@ -8,7 +8,7 @@ export const deleteTask = createAsyncThunk('task/delete',
         const accessToken = state.auth.token
         try {
             setToken(accessToken)
-            const {response} = await api.delete(`/tasks/${taskId}`, taskId)
+            const response = await api.delete(`/tasks/${taskId}`, taskId)
             return response.data
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -17,15 +17,14 @@ export const deleteTask = createAsyncThunk('task/delete',
 )
 
 export const updateTask = createAsyncThunk('task/update',
-    async ({taskId, data}, thunkAPI) => {
+    async ({taskId, values}, thunkAPI) => {
         const state = thunkAPI.getState()
         const accessToken = state.auth.token
         
         try {
             setToken(accessToken)
-            const { response } = await api.patch(`/tasks/${taskId}`, data)
-            console.log(response);
-            return response
+            const response = await api.patch(`/tasks/${taskId}`, values)
+            return response.data
         } catch (error) {
             console.log(error);
             return thunkAPI.rejectWithValue(error.message);
