@@ -15,7 +15,7 @@ const TaskList = ({ columnId }) => {
       {tasks && (
         <ul className={s.taskList}>
           {tasks.map(task => (
-            <li key={task.id}>
+            <li key={task._id}>
               <TaskCard taskObj={task} />
             </li>
           ))}

@@ -3,13 +3,13 @@ import { api, setToken } from '../../../config/api';
 
 export const deleteTask = createAsyncThunk(
   'task/delete',
-  async (taskId, thunkAPI) => {
+  async ({ taskId, columnId }, thunkAPI) => {
     const state = thunkAPI.getState();
     const accessToken = state.auth.token;
     try {
       setToken(accessToken);
       await api.delete(`/tasks/${taskId}`);
-      return taskId;
+      return { taskId, columnId };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -24,8 +24,8 @@ export const updateTask = createAsyncThunk(
 
     try {
       setToken(accessToken);
-      const response = await api.patch(`/tasks/${taskId}`, values);
-      return response.data;
+      const { data } = await api.patch(`/tasks/${taskId}`, values);
+      return data.data;
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);
@@ -41,8 +41,8 @@ export const createTask = createAsyncThunk(
 
     try {
       setToken(accessToken);
-      const response = await api.post('/tasks', values);
-      return response.data.data.task;
+      const { data } = await api.post('/tasks', values);
+      return data.data;
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);

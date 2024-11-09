@@ -31,8 +31,12 @@ const currentBoardSlice = createSlice({
         }
       })
       .addCase(editColumn.fulfilled, (state, action) => {
-        state.currentBoard.columns = state.currentBoard.columns.map(item =>
-          item._id === action.payload._id ? action.payload : item
+        state.currentBoard.columns = state.currentBoard.columns.map(
+          item =>
+            (item =
+              item._id === action.payload._id
+                ? { ...item, title: action.payload.title }
+                : item)
         );
       })
       .addCase(deleteColumn.fulfilled, (state, action) => {
@@ -41,34 +45,51 @@ const currentBoardSlice = createSlice({
         );
       })
       .addCase(createTask.fulfilled, (state, action) => {
-        // const { columnId } = action.payload;
-        // const targetColumn = state.currentBoard.columns.find(
-        //   column => column._id === columnId
-        // );
-
-        // if (targetColumn) {
-        //   targetColumn.tasks.push(action.payload);
-        // }
         const { columnId, ...newTask } = action.payload;
-        console.log(columnId);
-        state.currentBoard.columns = state.currentBoard.columns.map(column =>
-          column._id === columnId
-            ? { ...column, tasks: [...column.tasks, newTask] }
-            : column
-        );
+
+        state.currentBoard.columns = state.currentBoard.columns.map(column => {
+          if (column._id === columnId) {
+            const updatedTasks = Array.isArray(column.tasks)
+              ? [...column.tasks, newTask]
+              : [newTask];
+            return { ...column, tasks: updatedTasks };
+          }
+          return column;
+        });
       })
       .addCase(updateTask.fulfilled, (state, action) => {
         const updatedTask = action.payload;
-        const index = state.tasks.findIndex(
-          task => task._id === updatedTask._id
+        const { columnId, _id: taskId } = updatedTask;
+
+        const targetColumn = state.currentBoard.columns.find(
+          column => column._id === columnId
         );
-        state.tasks[index] = updatedTask;
+
+        if (targetColumn) {
+          const taskIndex = targetColumn.tasks.findIndex(
+            task => task._id === taskId
+          );
+
+          if (taskIndex !== -1) {
+            targetColumn.tasks[taskIndex] = updatedTask;
+          }
+        }
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
-        const index = state.tasks.findIndex(
-          task => task._id === action.payload
+        const { columnId, taskId } = action.payload;
+        const targetColumn = state.currentBoard.columns.find(
+          column => column._id === columnId
         );
-        state.tasks.splice(index, 1);
+
+        if (targetColumn) {
+          const taskIndex = targetColumn.tasks.findIndex(
+            task => task._id === taskId
+          );
+
+          if (taskIndex !== -1) {
+            targetColumn.tasks.splice(taskIndex, 1);
+          }
+        }
       })
       .addMatcher(
         isAnyOf(
