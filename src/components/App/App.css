@@ -58,6 +58,7 @@
   --add-column-icon: #161616;
   --add-column-plus: #ffffff;
   --add-column-text: #161616;
+  --dropdown-menu-bg: #fcfcfc;
 }
 
 [data-theme='dark'] {
@@ -112,6 +113,7 @@
   --add-column-icon: #ffffff;
   --add-column-plus: #121212;
   --add-column-text: #ffffff;
+  --dropdown-menu-bg: #1f1f1f;
 }
 
 [data-theme='violet'] {
@@ -166,4 +168,5 @@
   --add-column-icon: #5255bc;
   --add-column-plus: #ffffff;
   --add-column-text: #161616;
+  --dropdown-menu-bg: #fcfcfc;
 }
