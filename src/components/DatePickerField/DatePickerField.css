@@ -1,0 +1,108 @@
+.calendarWrapper .iconCalendar {
+    position: static;
+    fill: var(--modal-btn);
+    cursor: pointer;
+}
+
+.calendarWrapper>div {
+    display: flex;
+    gap: 8px;
+    position: static;
+}
+
+.calendarWrapper+div>.popperCalendar {
+    transform: translate(18px, 51.5px);
+}
+
+.customCal {
+    background-color: var(--calendar-bg);
+    border-radius: 12px;
+    border: 1px solid var(--modal-btn);
+    color: var(--text-primary);
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    padding: 18px;
+}
+
+.customCal>button {
+    top: 24px;
+
+    &:hover {
+        stroke: var(--modal-btn);
+    }
+}
+
+.customCal>div>div {
+    background-color: var(--calendar-bg);
+    border: none;
+    padding-bottom: 0;
+}
+
+.customCal>div>div>h2 {
+    color: var(--text-primary);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(22, 22, 22, 0.2);
+}
+
+.customCal>div>div>h2+div {
+    padding-top: 14px;
+}
+
+.customCal .dayCalendar {
+    text-align: center;
+    margin: 0;
+    margin-top: 11px;
+    padding: 5px;
+    color: var(--text-primary);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.28px;
+    border-radius: 26px;
+    transition: all 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.customCal .dayCalendar:not([aria-disabled=true]):hover {
+    background-color: var(--modal-btn);
+    color: var(--selected-day-calendar-text-color);
+    border-radius: 26px;
+}
+
+.customCal>div>div>div {
+    display: flex;
+    justify-content: center;
+    gap: 11px;
+}
+
+.customCal .react-datepicker__day--disabled {
+    cursor: default;
+    color: var(--disabled-day-calendar);
+}
+
+.customCal .react-datepicker__day--selected {
+    background-color: var(--modal-btn);
+    color: var(--selected-day-calendar-text-color);
+}
+
+.customCal .weekCalendar {
+    color: var(--board-icons);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.28px;
+    margin: 0;
+}
