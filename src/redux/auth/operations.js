@@ -31,6 +31,29 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
+export const currentUserThunk = createAsyncThunk(
+  'users/current',
+  async (_, thunkAPI) => {
+    try {
+      const accessToken = thunkAPI.getState().auth.token;
+      if (!accessToken) {
+        return thunkAPI.rejectWithValue('Access token is missing');
+      }
+
+      const { data } = await api.get('users/current', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      setToken(data.data.accessToken);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const logoutThunk = createAsyncThunk(
   'auth/logout',
   async (accessToken, thunkAPI) => {
@@ -63,7 +86,6 @@ export const updateUserProfile = createAsyncThunk(
   'auth/updateEdit',
   async (formData, { rejectWithValue, getState }) => {
     try {
-      
       const response = await api.patch('users/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

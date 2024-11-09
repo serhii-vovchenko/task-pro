@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
+  currentUserThunk,
   loginThunk,
   logoutThunk,
   registerThunk,
@@ -49,8 +50,8 @@ const slice = createSlice({
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })
-      .addCase(logoutThunk.pending, state => {
-        state.isLoading = true;
+      .addCase(currentUserThunk.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
       })
       .addCase(logoutThunk.fulfilled, state => {
         state.user = {
@@ -64,7 +65,33 @@ const slice = createSlice({
       })
       .addCase(updateThemeInDatabase.fulfilled, (state, action) => {
         state.user = action.payload.user;
-      });
+      })
+
+      .addMatcher(
+        isAnyOf(
+          registerThunk.pending,
+          loginThunk.pending,
+          currentUserThunk.pending,
+          logoutThunk.pending
+        ),
+        state => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          registerThunk.rejected,
+          loginThunk.rejected,
+          currentUserThunk.rejected,
+          logoutThunk.rejected
+        ),
+        (state, action) => {
+          state.isLoading = false;
+          state.isLoggedIn = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
 
