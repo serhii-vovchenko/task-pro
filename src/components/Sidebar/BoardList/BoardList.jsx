@@ -26,7 +26,6 @@ const BoardList = () => {
 
   useEffect(() => {
     dispatch(getBoardThunk());
-    console.log('getBoardThunk');
   }, [dispatch]);
 
   useEffect(() => {
