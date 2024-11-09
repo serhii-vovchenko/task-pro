@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Column from '../Column/Column';
-import AddColumn from '../AddColumn/AddColumn';
-import ReusableModal from '../../components/ReusableModal/ReusableModal.jsx';
+import Column from '../Column/Column.jsx';
+import AddColumn from '../AddColumn/AddColumn.jsx';
+import ReusableModal from '../ReusableModal/ReusableModal.jsx';
 import sprite from '../../img/icons.svg';
 import { deleteColumn } from '../../redux/dashboard/columns/operations.js';
 import { selectBoardColumns } from '../../redux/dashboard/currentBoard/selectors.js';
-import s from './ColumnsList.module.css';
+import s from './MainDashboard.module.css';
 
 const ColumnList = () => {
   const dispatch = useDispatch();
