@@ -1,6 +1,6 @@
 .cardTask {
     background-color: var(--bottom-scroll);
-    width: 335px;
+    max-width: 335px;
     padding: 14px 14px 14px 24px;
     border-radius: 4px 8px 8px 4px;
     height: 154px;
