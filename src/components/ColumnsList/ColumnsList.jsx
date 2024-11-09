@@ -5,13 +5,12 @@ import AddColumn from '../AddColumn/AddColumn';
 import ReusableModal from '../../components/ReusableModal/ReusableModal.jsx';
 import sprite from '../../img/icons.svg';
 import { deleteColumn } from '../../redux/dashboard/columns/operations.js';
+import { selectBoardColumns } from '../../redux/dashboard/currentBoard/selectors.js';
 import s from './ColumnsList.module.css';
-import { currentBoard } from '../../redux/dashboard/currentBoard/selectors.js';
 
 const ColumnList = () => {
   const dispatch = useDispatch();
-  const currentBoardData = useSelector(currentBoard);
-  const columns = currentBoardData ? currentBoardData.columns : [];
+  const columns = useSelector(selectBoardColumns);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,8 +29,8 @@ const ColumnList = () => {
           <li key={item._id}>
             <Column
               title={item.title}
-              id={item.id}
-              onDelete={() => dispatch(deleteColumn(item.id))}
+              id={item._id}
+              onDelete={() => dispatch(deleteColumn(item._id))}
             />
           </li>
         ))}
