@@ -42,6 +42,14 @@ const App = () => {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/home/:boardId"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
