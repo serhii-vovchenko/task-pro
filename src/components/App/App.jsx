@@ -16,7 +16,14 @@ const App = () => {
       <Suspense fallback={<Loader width="100" height="100" />}>
         <Routes>
           <Route path="/" element={<Navigate to="/welcome" replace />} />
-          <Route path="/welcome" element={<WelcomePage />} />
+          <Route
+            path="/welcome"
+            element={
+              <PublicRoute>
+                <WelcomePage />
+              </PublicRoute>
+            }
+          />
           {/* <Route path="/auth/:id" element={<AuthPage />} /> */}
 
           <Route

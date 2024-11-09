@@ -17,6 +17,7 @@ const validationSchema = Yup.object({
 const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
   const dispatch = useDispatch();
   const taskId = initialTaskValue?._id;
+
   const handleSubmit = values => {
     const formData = {
       title: values.title,

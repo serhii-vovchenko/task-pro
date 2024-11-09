@@ -21,7 +21,7 @@ const persistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['token', 'user', 'isLoggedIn'],
+  whitelist: ['token', 'user', 'isLoggedIn', 'showLoginDelay'],
 };
 
 export const store = configureStore({

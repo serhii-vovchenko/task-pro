@@ -1,5 +1,5 @@
 // src/components/WelcomePage/welcomePageView.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import s from './WelcomePageView.module.css';
 import { Link } from 'react-router-dom';
 import welcomeImage from '../../img/welcomePageImg.png';
