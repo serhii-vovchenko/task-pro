@@ -61,13 +61,13 @@ export const logoutThunk = createAsyncThunk(
 
 export const updateUserProfile = createAsyncThunk(
   'auth/updateEdit',
-  async (formData, { rejectWithValue }) => {
+  async (formData, { rejectWithValue, getState }) => {
     try {
       
       const response = await api.patch('users/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${getState().auth.token}`,
         },
       });
       return response.data;

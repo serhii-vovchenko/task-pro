@@ -18,6 +18,7 @@
   padding: 24px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   position: relative;
+  border: 1px solid var(--primary-main);
 }
 
 .closeButton {
@@ -46,12 +47,6 @@
   align-items: center;
   margin-bottom: 20px;
 }
-.userAvatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  object-fit: cover;
-}
 
 .imageUpload img {
   width: 68px;
@@ -60,6 +55,7 @@
   object-fit: cover;
   margin-bottom: 10px;
   position: relative;
+  
 }
 
 .avatarImage {
@@ -74,14 +70,15 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #fff;
+  border: 2px solid var(--primary-light);
 }
 
 .avatarIcon {
   width: 68px;
   height: 68px;
   fill: var(--text-primary);
-  
+  border: 1px solid var(--primary-main);
+  border-radius: 8px;
 }
 .uploadButton {
   position: absolute;
@@ -171,3 +168,14 @@
   .modalButton:focus{
     background-color: var(--fresh-green);
   }
+
+  @media (min-width: 768px) {
+    .modal {       
+      width: 400px;          
+    }
+  }
+  
+  @media (min-width: 1440px) {
+    
+  }
+  

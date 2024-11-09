@@ -16,10 +16,14 @@
 }
 
 .arrowIcon {
-  width: 16px;
-  height: 16px;
-  fill: var(--text-primary);
+  width: 20px;
+  height: 20px; 
   stroke: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  
+
 }
 
 .dropdownMenu {
