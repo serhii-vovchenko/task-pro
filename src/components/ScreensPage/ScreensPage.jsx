@@ -1,8 +1,8 @@
-import ColumnList from '../ColumnsList/ColumnsList';
-import s from './ScreensPage.module.css';
 import { useSelector } from 'react-redux';
 import { selectCurrentBoard } from '../../../src/redux/dashboard/currentBoard/selectors';
 import { useEffect } from 'react';
+import s from './ScreensPage.module.css';
+import MainDashboard from '../MainDashboard/MainDashboard';
 
 const ScreensPage = () => {
   const { currentBoard } = useSelector(selectCurrentBoard);
@@ -20,7 +20,7 @@ const ScreensPage = () => {
       }}
     >
       <h1>Screens Page</h1>
-      <ColumnList />
+      <MainDashboard />
     </div>
   );
 };

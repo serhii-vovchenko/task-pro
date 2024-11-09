@@ -1,9 +1,6 @@
 .wrapper {
   display: flex;
-  gap: 34px;
-  padding: 20px;
-  padding-bottom: 30px;
-  padding-top: 20px;
+  gap: 14px;
   overflow-x: auto;
 }
 
