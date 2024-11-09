@@ -9,16 +9,24 @@ const UserInfo = () => {
   const user = useSelector(selectUser);
 
   const [updateUserModal, setUpdateUserModal] = useState(true);
-  // console.log(user.theme);
 
   const clickOnUpdate = () => {
     setUpdateUserModal(true);
   };
 
+  const userIcon =
+    user.theme === 'light'
+      ? 'icon-user-light'
+      : user.theme === 'violet'
+      ? 'icon-user-violet'
+      : user.theme === 'dark'
+      ? 'icon-user-dark'
+      : null;
+
   const userAvatar =
     user.photoUrl === null ? (
       <svg className={s.avatarIcon} height="32" width="32">
-        <use href={`${sprite}#icon-user`} />
+        <use href={`${sprite}#${userIcon}`} />
       </svg>
     ) : (
       <img className={s.userAvatar} src={user.photoUrl} />

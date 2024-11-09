@@ -74,3 +74,29 @@ export const updateUserProfile = createAsyncThunk(
     }
   }
 );
+
+export const updateThemeInDatabase = createAsyncThunk(
+  'auth/updateTheme',
+  async (newTheme, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await api.patch(
+        `/users/theme`,
+        { theme: newTheme },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      thunkAPI.dispatch(changeTheme(response.data.data.theme));
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
