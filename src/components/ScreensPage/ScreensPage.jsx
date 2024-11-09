@@ -3,10 +3,11 @@ import { selectCurrentBoard } from '../../../src/redux/dashboard/currentBoard/se
 import { useEffect } from 'react';
 import s from './ScreensPage.module.css';
 import MainDashboard from '../MainDashboard/MainDashboard';
+import HeaderDashboard from '../HeaderDashboard/HeaderDashboard.jsx'; 
 
 const ScreensPage = () => {
   const { currentBoard } = useSelector(selectCurrentBoard);
-
+  const headBoard = "Project Office";
   useEffect(() => {
     console.log('Current Board Updated:', currentBoard);
   }, [currentBoard]);
@@ -19,7 +20,9 @@ const ScreensPage = () => {
         backgroundSize: 'cover',
       }}
     >
-      <h1>Screens Page</h1>
+      <div className={s.headBoard}>
+        <HeaderDashboard title={headBoard} />
+      </div>
       <MainDashboard />
     </div>
   );

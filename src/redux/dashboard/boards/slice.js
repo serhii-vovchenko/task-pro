@@ -11,12 +11,16 @@ const initialState = {
   boards: [],
   loading: false,
   error: null,
+  selectsPriority: 'show all',
 };
 
 const boardsSlice = createSlice({
   name: 'boards',
   initialState,
-  reducers: {},
+  reducers: {selectPriority: (state, action) => {
+    state.selectsPriority = action.payload;
+  },
+},
   extraReducers: builder => {
     builder
       .addCase(addBoard.fulfilled, (state, action) => {
@@ -45,6 +49,7 @@ const boardsSlice = createSlice({
             ? { ...board, ...updatedBoard, isActive: true } // Keep existing data
             : { ...board, isActive: false }
         );
+        state.selectsPriority = 'show all';
       })
       .addMatcher(
         isAnyOf(
@@ -76,3 +81,4 @@ const boardsSlice = createSlice({
 });
 
 export const boardsReducer = boardsSlice.reducer;
+export const { selectPriority } = boardsSlice.actions;
