@@ -1,12 +1,11 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import css from './LoginForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginThunk } from '../../redux/auth/operations.js';
-import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 import Loader from '../Loader/Loader.jsx';
 import { toast, Toaster } from 'react-hot-toast';
 
@@ -26,7 +25,6 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
@@ -43,7 +41,15 @@ const LoginForm = () => {
     if (loginThunk.fulfilled.match(result)) {
       actions.resetForm();
       toast.success('Login successful! Welcome back!');
-      setTimeout(() => setIsLoading(false), 1500);
+      setTimeout(
+        () =>
+          dispatch({
+            type: 'auth/changeLoginDelayState',
+            payload: false,
+          }),
+        1500
+      );
+      setIsLoading(false);
     } else if (loginThunk.rejected.match(result)) {
       toast.error('Login failed. Please check your email and password.');
       setIsLoading(false);
@@ -55,10 +61,6 @@ const LoginForm = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
-  if (isLoggedIn && !isLoading) {
-    return <Navigate to="/home" />;
-  }
 
   return (
     <div className={css.pageContainer}>

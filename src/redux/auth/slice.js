@@ -14,6 +14,7 @@ const initialState = {
   token: '',
   isLoggedIn: false,
   isLoading: true,
+  showLoginDelay: true,
 };
 
 const slice = createSlice({
@@ -27,9 +28,13 @@ const slice = createSlice({
       };
       state.token = '';
       state.isLoggedIn = false;
+      state.showLoginDelay = true;
     },
     changeTheme: (state, action) => {
       state.user.theme = action.payload;
+    },
+    changeLoginDelayState: (state, action) => {
+      state.showLoginDelay = action.payload;
     },
   },
   extraReducers: builder => {
@@ -55,6 +60,7 @@ const slice = createSlice({
         state.isLoggedIn = null;
         state.token = null;
         state.isLoading = false;
+        state.showLoginDelay = true;
       })
       .addCase(updateThemeInDatabase.fulfilled, (state, action) => {
         state.user = action.payload.user;
