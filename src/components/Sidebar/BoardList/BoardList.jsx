@@ -78,11 +78,10 @@ const BoardList = () => {
             }}
           >
             <div className={s.titleBox}>
-              {board.isActive ? (
-                <SvgIcon url={board.icon?.iconUrl} active />
-              ) : (
-                <SvgIcon url={board.icon?.iconUrl} />
-              )}
+              <SvgIcon
+                url={board.icon?.iconUrl}
+                active={board._id === currentBoard?._id}
+              />
               <p
                 className={clsx(
                   s.titleBoxTitle,
