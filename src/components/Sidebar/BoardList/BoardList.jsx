@@ -18,7 +18,9 @@ const BoardList = () => {
   const { boards, selectLoading } = useSelector(selectBoards);
   const { currentBoard } = useSelector(selectCurrentBoard);
   const dispatch = useDispatch();
+
   const getBoardInfo = id => {
+    console.log('hello');
     dispatch(getCurrentBoard(id)); // Dispatch getCurrentBoard instead of getBoardById
   };
 
@@ -32,8 +34,7 @@ const BoardList = () => {
       if (boards.length > 0) {
         const activeBoard = boards.find(board => board.isActive);
         const boardToDispatch = activeBoard || boards[0];
-
-        dispatch(getCurrentBoard(boardToDispatch._id));
+        getBoardInfo(boardToDispatch._id);
       }
     } else {
       dispatch(clearCurrentBoard());
@@ -42,8 +43,10 @@ const BoardList = () => {
 
   const handleDelete = boardId => {
     dispatch(deleteBoard(boardId))
-      .then(() => {
-        dispatch(getBoardById(boards[0]._id));
+      .then(res => {
+        if (res.type.includes('fulfilled') && boards.length > 0) {
+          getBoardInfo(boards[0]._id);
+        }
       })
       .catch(error => {
         console.error('Error during board delete:', error);
@@ -59,12 +62,13 @@ const BoardList = () => {
             s.boardItem,
             board._id === currentBoard?._id && s.activeBoard
           )}
-          onClick={() => getBoardInfo(board._id)}
+          onClick={event => {
+            if (!event.target.closest(`.${s.btnBoxButton}`)) {
+              getBoardInfo(board._id);
+            }
+          }}
         >
-          <div
-            className={s.titleBox}
-            onClick={() => dispatch(getBoardById(board._id))}
-          >
+          <div className={s.titleBox}>
             {board.isActive ? (
               <SvgIcon url={board.icon?.iconUrl} active />
             ) : (
