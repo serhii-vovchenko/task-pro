@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { updateUserProfile } from '../../redux/auth/operations';
 import s from './EditProfileModal.module.css';
-import sprite from '../../../src/img/icons.svg';
+import sprite from '../../../src/img/icons.svg'; 
 import { selectUser } from '../../redux/auth/selectors';
 
 const EditProfileModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUser); 
   const [selectedFile, setSelectedFile] = useState(null);
 
   const validationSchema = Yup.object({
@@ -20,52 +20,64 @@ const EditProfileModal = ({ isOpen, onClose }) => {
       .required('Name is required'),
     email: Yup.string()
       .email('Invalid email format')
-      .matches(
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        'Email should contain only one "@" and at least one "." in the domain part'
-      )
       .required('Email is required'),
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
-      .max(64, 'Password must be at most 64 characters')
-      .matches(/^[^\s]*$/, 'Password should not contain spaces')
       .required('Password is required'),
   });
-  const handleSubmit = values => {
+
+
+  const handleSubmit = (values) => {
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('email', values.email);
     formData.append('password', values.password);
     if (selectedFile) {
-      formData.append('photo', selectedFile);
+      formData.append('photo', selectedFile); 
     }
-    dispatch(updateUserProfile(formData)).then(response => {
+    console.log(formData);
+    dispatch(updateUserProfile(formData))
+    .then((response) => {
       if (response.payload) {
+        
         dispatch({ type: 'UPDATE_USER_PROFILE', payload: response.payload });
       }
+    })
+    .catch((error) => {
+      console.error("Error in updating profile:", error);
     });
 
     onClose();
   };
-  if (!isOpen) return null;
 
-  const handleFileChange = event => {
-    setSelectedFile(event.currentTarget.files[0]);
+  if (!isOpen || !user) return null;
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.currentTarget.files[0]); 
   };
 
   const handlePlusClick = () => {
-    document.getElementById('file-input').click();
+    document.getElementById('file-input').click(); 
   };
 
-  const userAvatar =
-    user.photoUrl === null ? (
+  const userIcon =
+  user.theme === 'light'
+    ? 'icon-user-light'
+    : user.theme === 'violet'
+    ? 'icon-user-violet'
+    : user.theme === 'dark'
+    ? 'icon-user-dark'
+    : null;
+
+    const userAvatar =
+    user.photoUrl ? (
       <svg className={s.avatarIcon} height="32" width="32">
-        <use href={`${sprite}#icon-user`} />
+       <use href={`${sprite}#${userIcon}`} />
       </svg>
     ) : (
-      <img className={s.userAvatar} src={userAvatar} />
+      <img className={s.userAvatar} src={user.photoUrl} alt="User Avatar" />
     );
-
+  
   return (
     <div className={s.modalOverlay}>
       <div className={s.modal}>
@@ -76,7 +88,15 @@ const EditProfileModal = ({ isOpen, onClose }) => {
         </div>
         <h2 className={s.modalTitle}>Edit Profile</h2>
         <div className={s.imageUpload}>
-          <div className={s.imgBox}>{userAvatar}</div>
+          <div className={s.imgBox}>
+          {selectedFile || user.photoUrl ? (
+        <img src={selectedFile ? URL.createObjectURL(selectedFile) : user.photoUrl} alt="User Avatar" className={s.avatarImage} />
+      ) : (
+        <svg className={s.avatarIcon} height="32" width="32">
+          <use href={`${sprite}#${userIcon}`} />
+        </svg>
+      )}
+          </div>
           <label className={s.uploadButton} onClick={handlePlusClick}>
             <svg className={s.plusIcon}>
               <use href={`${sprite}#icon-plus`} />
@@ -87,9 +107,10 @@ const EditProfileModal = ({ isOpen, onClose }) => {
             id="file-input"
             accept="image/*"
             onChange={handleFileChange}
-            style={{ display: 'none' }}
+            style={{ display: 'none' }} 
           />
         </div>
+     
         <Formik
           initialValues={{
             name: user.name || '',
@@ -101,40 +122,36 @@ const EditProfileModal = ({ isOpen, onClose }) => {
         >
           {({ isSubmitting }) => (
             <Form className={s.form}>
-              <Field
-                type="text"
-                name="name"
-                className={s.inputField}
-                placeholder="Enter your name"
+              <Field 
+                type="text" 
+                name="name" 
+                className={s.inputField} 
+                placeholder="Enter your name" 
               />
               <ErrorMessage name="name" component="div" className={s.error} />
 
-              <Field
-                type="email"
-                name="email"
-                className={s.inputField}
-                placeholder="Enter your email"
+              <Field 
+                type="email" 
+                name="email" 
+                className={s.inputField} 
+                placeholder="Enter your email" 
               />
               <ErrorMessage name="email" component="div" className={s.error} />
 
-              <Field
-                type="password"
-                name="password"
-                className={s.inputField}
-                placeholder="Create a password"
+              <Field 
+                type="password" 
+                name="password" 
+                className={s.inputField} 
+                placeholder="Create a password" 
               />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className={s.error}
-              />
+              <ErrorMessage name="password" component="div" className={s.error} />
 
               <button
                 className={s.modalButton}
                 type="submit"
                 disabled={isSubmitting}
               >
-                Send
+                Save
               </button>
             </Form>
           )}

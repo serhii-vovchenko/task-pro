@@ -8,7 +8,7 @@ import EditProfileModal from '../EditProfileModal/EditProfileModal';
 const UserInfo = () => {
   const user = useSelector(selectUser);
 
-  const [updateUserModal, setUpdateUserModal] = useState(true);
+  const [updateUserModal, setUpdateUserModal] = useState(false);
 
   const clickOnUpdate = () => {
     setUpdateUserModal(true);
@@ -29,7 +29,7 @@ const UserInfo = () => {
         <use href={`${sprite}#${userIcon}`} />
       </svg>
     ) : (
-      <img className={s.userAvatar} src={user.photoUrl} />
+      <img className={s.userAvatar} src={user.photoUrl} alt="User Avatar" />
     );
 
   return (
@@ -38,7 +38,7 @@ const UserInfo = () => {
         <p className={s.userName}>{user.name}</p>
         <div className={s.imgBox}>{userAvatar}</div>
       </div>
-      {updateUserModal && <EditProfileModal />}
+      {updateUserModal && <EditProfileModal isOpen={updateUserModal} onClose={() => setUpdateUserModal(false)}  />}
     </>
   );
 };
