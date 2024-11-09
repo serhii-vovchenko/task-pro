@@ -88,6 +88,12 @@ const TaskCard = ({ taskObj }) => {
             </div>
           </div>
           <ul>
+            { format(new Date(), "dd/MM/yyyy") === format(taskObj.deadline, 'dd/MM/yyyy') &&
+              <li>
+              <svg className={s.iconBell} width="16px" height="16px">
+                <use href={`${sprite}#icon-bell`} />
+              </svg>
+            </li>}
             <li>
               <button onClick={() => toggleDropdown()} >
                 <svg className={s.icon} width="16px" height="16px">

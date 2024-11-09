@@ -90,6 +90,11 @@
     stroke: var(--text-secondary);
 }
 
+.iconBell {
+    fill: transparent;
+    stroke: var(--modal-btn);
+}
+
 .icon:hover {
     stroke: var(--primary-main);
 }
