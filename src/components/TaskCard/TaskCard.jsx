@@ -113,7 +113,13 @@ const TaskCard = ({ taskObj }) => {
       <ReusableModal
         isOpen={isOpen}
         onClose={() => handleClose()}
-        children={<TaskForm initialTaskValue={taskObj} typeOfPopUp={'Edit'} />}
+        children={
+          <TaskForm
+            initialTaskValue={taskObj}
+            handleClose={handleClose}
+            typeOfPopUp={'Edit'}
+          />
+        }
       />
     </>
   );

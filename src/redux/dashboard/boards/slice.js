@@ -1,4 +1,4 @@
-import { createSlice, isAction, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   getBoardById,
   addBoard,
