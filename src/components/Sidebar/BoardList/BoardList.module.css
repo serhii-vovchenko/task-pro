@@ -31,7 +31,7 @@
     content: '';
     width: 4px;
     height: 61px;
-    background-color: var(--label-green);
+    background-color: var(--hover-sidebar-element);
     border-radius: 4px 0 0 4px;
     right: 0;
   }
