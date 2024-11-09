@@ -1,26 +1,26 @@
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { FaChevronDown } from "react-icons/fa6";
-import s from "./DatePickerField.module.css"
+import "./DatePickerField.css"
 const DatePickerField = ({field, form, ...props}) => {
     return (
         <DatePicker
             {...field}
             {...props}
             selected={field.value}
-            selectedClassName={s.selectedDate}
+            selectedClassName={"selectedDate"}
             onChange={(val) => form.setFieldValue(field.name, val)}
             showIcon
             toggleCalendarOnIconClick
-            icon={<FaChevronDown className={s.iconCalendar} />}
-            calendarClassName={s.customCal}
-            dayClassName={date => s.dayCalendar}
-            weekDayClassName={date => s.weekCalendar}
-            weekClassName={date => s.week}
+            icon={<FaChevronDown className="iconCalendar" />}
+            calendarClassName={"customCal"}
+            dayClassName={date => "dayCalendar"}
+            weekDayClassName={date => "weekCalendar"}
+            weekClassName={date => "week"}
             shouldCloseOnSelect={false}
             disabledKeyboardNavigation
-            wrapperClassName={s.calendarWrapper}
-            popperClassName={s.popperCalendar}
+            wrapperClassName={"calendarWrapper"}
+            popperClassName={"popperCalendar"}
             showPopperArrow={false}
         />
     );
