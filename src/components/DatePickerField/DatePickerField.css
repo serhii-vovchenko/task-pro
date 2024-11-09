@@ -2,6 +2,10 @@
     position: static;
     fill: var(--modal-btn);
     cursor: pointer;
+
+    &:hover {
+        fill: var(--hover-modal-btn);
+    }
 }
 
 .calendarWrapper>div {
