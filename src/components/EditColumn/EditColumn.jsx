@@ -17,7 +17,7 @@ const EditColumn = ({ columnId, closeModal }) => {
   const dispatch = useDispatch();
   const columns = useSelector(selectBoardColumns);
   const column = columns.filter(({ _id }) => columnId === _id);
-  if (column?.lenght === 0) {
+  if (column?.length === 0) {
     return null;
   }
   const { title } = column[0];

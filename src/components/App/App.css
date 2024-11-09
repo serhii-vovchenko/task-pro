@@ -53,6 +53,11 @@
   --logo-title: #161616;
 
   --board-icons: rgba(22, 22, 22, 0.5);
+
+  --add-column-bg: #fff;
+  --add-column-icon: #161616;
+  --add-column-plus: #ffffff;
+  --add-column-text: #161616;
 }
 
 [data-theme='dark'] {
@@ -102,6 +107,11 @@
   --logo-title: #fff;
 
   --board-icons: rgba(255, 255, 255, 0.5);
+
+  --add-column-bg: #121212;
+  --add-column-icon: #ffffff;
+  --add-column-plus: #121212;
+  --add-column-text: #ffffff;
 }
 
 [data-theme='violet'] {
@@ -151,4 +161,9 @@
   --logo-title: #fff;
 
   --board-icons: rgba(22, 22, 22, 0.5);
+
+  --add-column-bg: #fff;
+  --add-column-icon: #5255bc;
+  --add-column-plus: #ffffff;
+  --add-column-text: #161616;
 }

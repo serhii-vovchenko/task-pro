@@ -1,9 +1,9 @@
 .column {
-  padding: 20px 20px 24px 20px;
+  padding: 0 20px 24px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--background-paper);
+  background-color: transparent;
   gap: 14px;
   max-width: 336px;
   width: 100vw;
@@ -16,7 +16,9 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--background-default);
+  background-color: var(--add-column-bg);
+  border-radius: 8px;
+  height: 56px;
 }
 
 .title {
@@ -26,7 +28,10 @@
   letter-spacing: -0.02em;
 }
 .buttons {
-  background-color: var(--modal-bg);
+  /* background-color: var(--modal-bg); */
+  background-color: transparent;
+  border: transparent;
+  outline: transparent;
   padding: 0;
 }
 
@@ -38,6 +43,7 @@
 
 .icon {
   stroke: var(--text-primary);
+  fill: transparent;
   opacity: 0.5;
   padding: 0;
 }
