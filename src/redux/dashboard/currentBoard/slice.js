@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { getCurrentBoard } from './operations';
 import { addColumn, deleteColumn, editColumn } from '../columns/operations';
-import { createTask, deleteTask, updateTask } from '../tasks/operations';
+import { createTask, deleteTask, moveTask, updateTask } from '../tasks/operations';
 
 const initialState = {
   currentBoard: null,
@@ -91,12 +91,32 @@ const currentBoardSlice = createSlice({
           }
         }
       })
+      .addCase(moveTask.fulfilled, (state, action) => {
+        const { taskId, newColumnId, ...movedTask} = action.payload
+        const oldColumn = state.currentBoard.columns.find(column => column.tasks.find(task => task._id === taskId))
+
+        if (oldColumn) {
+          const taskIndex = oldColumn.tasks.findIndex(task => task._id === taskId)
+
+          oldColumn.tasks.splice(taskIndex, 1)
+
+          const newColumn = state.currentBoard.columns.find(column => column._id === newColumnId)
+
+          if (newColumn) {
+            newColumn.tasks = Array.isArray(newColumn.tasks) ? [...newColumn.tasks, movedTask] : [movedTask];
+          }
+        }
+      })
       .addMatcher(
         isAnyOf(
           getCurrentBoard.pending,
           addColumn.pending,
           deleteColumn.pending,
-          editColumn.pending
+          editColumn.pending,
+          createTask.pending,
+          updateTask.pending,
+          deleteTask.pending,
+          moveTask.pending
         ),
         state => {
           state.loading = true;
@@ -108,7 +128,11 @@ const currentBoardSlice = createSlice({
           getCurrentBoard.rejected,
           addColumn.rejected,
           deleteColumn.rejected,
-          editColumn.rejected
+          editColumn.rejected,
+          createTask.rejected,
+          updateTask.rejected,
+          deleteTask.rejected,
+          moveTask.rejected
         ),
         (state, action) => {
           state.loading = false;
