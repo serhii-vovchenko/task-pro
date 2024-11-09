@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {format} from "date-fns"
 import ReusableModal from '../ReusableModal/ReusableModal';
 import TaskForm from '../TaskForm/TaskForm';
 import sprite from '../../img/icons.svg';
@@ -67,7 +68,7 @@ const TaskCard = ({ taskObj }) => {
             </div>
             <div className={s.contWithMarkings}>
               <p className={s.lowerContTitle}>Deadline</p>
-              <p className={s.lowerContText}>{taskObj.deadline}</p>
+              <p className={s.lowerContText}>{format(taskObj.deadline, 'dd/MM/yyyy')}</p>
             </div>
           </div>
           <ul>
