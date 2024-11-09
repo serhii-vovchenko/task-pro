@@ -2,7 +2,26 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 350px;
+    max-width: 350px;
     height: 478px;
     overflow-y: scroll;
+    padding-right: 4px;
+}
+
+.taskList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.taskList::-webkit-scrollbar-thumb {
+    width: 8px;
+    max-height: 142px;
+    background-color: var(--bg-scroll);
+    border-radius: 12px;
+}
+
+.taskList::-webkit-scrollbar-track {
+    width: 8px;
+    max-height: 478px;
+    background-color: var(--bg-scroll-track);
+    border-radius: 12px;
 }
