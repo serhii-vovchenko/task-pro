@@ -4,8 +4,9 @@ import ReusableModal from '../ReusableModal/ReusableModal';
 import TaskForm from '../TaskForm/TaskForm';
 import sprite from '../../img/icons.svg';
 import s from './TaskCard.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteTask } from '../../redux/dashboard/tasks/operations';
+import { selectUserTheme } from '../../redux/auth/selectors';
 
 const colorPriority = [
   {
@@ -27,6 +28,30 @@ const colorPriority = [
 ];
 
 const TaskCard = ({ taskObj }) => {
+
+  const theme = useSelector(selectUserTheme)
+
+  const colorPriority = [
+  {
+    priority: 'none',
+    color: theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(22, 22, 22, 0.3)',
+  },
+  {
+    priority: 'low',
+    color: 'rgba(143, 161, 208, 1)',
+  },
+  {
+    priority: 'medium',
+    color: 'rgba(224, 156, 181, 1)',
+  },
+  {
+    priority: 'high',
+    color: 'rgba(190, 219, 176, 1)',
+  },
+];
+
+
+
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -47,8 +72,12 @@ const TaskCard = ({ taskObj }) => {
     dispatch(deleteTask({ taskId: taskObj._id, columnId: taskObj.columnId }));
   };
   const toggleDropdown = () => {
-    setIsDropdownOpen(prev => !prev);
+    setIsDropdownOpen(true);
   };
+
+  const blurDropDown = () => {
+    setIsDropdownOpen(false)
+  }
   return (
     <>
       <div
@@ -63,7 +92,7 @@ const TaskCard = ({ taskObj }) => {
               <p className={s.lowerContTitle}>Priority</p>
               <div className={s.contWithCircle}>
                 <span className={s.priorityCircle}></span>
-                <span className={s.lowerContText}>{taskObj.priority}</span>
+                <span className={s.lowerContText}>{taskObj.priority === "none" ? 'Without' : taskObj.priority}</span>
               </div>
             </div>
             <div className={s.contWithMarkings}>
@@ -73,7 +102,7 @@ const TaskCard = ({ taskObj }) => {
           </div>
           <ul>
             <li>
-              <button onClick={() => toggleDropdown()}>
+              <button onClick={() => toggleDropdown()} onBlur={()=> blurDropDown()}>
                 <svg className={s.icon} width="16px" height="16px">
                   <use href={`${sprite}#icon-arrow-circle-broken-right`} />
                 </svg>
