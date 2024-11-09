@@ -51,7 +51,7 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
         {({ values, setFieldValue }) => (
           <Form>
             <div className={s.fieldCont}>
-              <Field className={s.fieldTitle} type="text" name="title" />
+              <Field className={s.fieldTitle} type="text" name="title" placeholder="Title"/>
               {typeOfPopUp === 'Add' && (
                 <ErrorMessage
                   name="title"
@@ -66,6 +66,7 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
                 type="text"
                 as="textarea"
                 name="description"
+                placeholder="Description"
               />
             </div>
             <div className={s.priorityCont}>
