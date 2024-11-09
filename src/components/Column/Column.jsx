@@ -27,10 +27,10 @@ const Column = ({ title, id, onDelete }) => {
               <svg className={s.icon} width="16" height="16">
                 <use href={`${sprite}#icon-pencil`} />
               </svg>
-              <ReusableModal isOpen={isModalOpen} onClose={closeModal}>
-                <EditColumn columnId={id} closeModal={closeModal} />
-              </ReusableModal>
             </button>
+            <ReusableModal isOpen={isModalOpen} onClose={closeModal}>
+              <EditColumn columnId={id} closeModal={closeModal} />
+            </ReusableModal>
           </div>
           <button
             className={s.buttons}
