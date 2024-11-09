@@ -19,13 +19,13 @@ export const addColumn = createAsyncThunk(
 
 export const editColumn = createAsyncThunk(
   'columns/edit',
-  async ({columnId, body }, thunkAPI) => {
+  async ({ columnId, body }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const accessToken = state.auth.token;
       setToken(accessToken);
       const { data } = await api.patch(`columns/${columnId}`, body);
-      return data;
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
