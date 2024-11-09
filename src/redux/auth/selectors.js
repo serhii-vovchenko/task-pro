@@ -3,5 +3,6 @@ export const selectUser = state => state.auth.user;
 export const selectToken = state => state.auth.token;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectLoading = state => state.auth.isLoading;
+export const selectShowLoginDelay = state => state.auth.showLoginDelay;
 export const selectError = state => state.auth.isError;
 export const selectUserTheme = state => state.auth.user?.theme ?? 'dark';

@@ -1,13 +1,12 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import css from './RegisterForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registerThunk } from '../../redux/auth/operations.js';
 import Loader from '../Loader/Loader.jsx';
-import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 import { toast, Toaster } from 'react-hot-toast';
 
 const validationSchema = Yup.object({
@@ -31,9 +30,8 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isLoading, setIsLoading] = useState(false);
-  const [redirect, setRedirect] = useState(false);
+
   const dispatch = useDispatch();
   const initialValues = {
     name: '',
@@ -43,12 +41,21 @@ const RegisterForm = () => {
 
   const handleSubmit = async (values, actions) => {
     setIsLoading(true);
+
     const result = await dispatch(registerThunk(values));
 
     if (registerThunk.fulfilled.match(result)) {
       actions.resetForm();
       toast.success('Registration successful! Welcome aboard!');
-      setTimeout(() => setIsLoading(false), 1500);
+      setTimeout(
+        () =>
+          dispatch({
+            type: 'auth/changeLoginDelayState',
+            payload: false,
+          }),
+        1500
+      );
+      setIsLoading(false);
     } else if (registerThunk.rejected.match(result)) {
       toast.error(
         'Registration failed. Please check your details and try again.'
@@ -62,10 +69,6 @@ const RegisterForm = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
-  if (isLoggedIn && !isLoading) {
-    return <Navigate to="/home" />;
-  }
 
   return (
     <div className={css.pageContainer}>
