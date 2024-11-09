@@ -4,7 +4,8 @@
     gap: 8px;
     max-width: 350px;
     height: 478px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    flex-grow: 0;
     padding-right: 4px;
 }
 

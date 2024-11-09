@@ -9,8 +9,8 @@ import { createTask, updateTask } from '../../redux/dashboard/tasks/operations';
 
 const validationSchema = Yup.object({
   title: Yup.string().required('Title is required'),
-  description: Yup.string().required('Description is required'),
-  priority: Yup.string().required('Priority is required'),
+  description: Yup.string(),
+  priority: Yup.string().default('none'),
   deadline: Yup.date().nullable().required('Deadline is required'),
 });
 
@@ -51,7 +51,7 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
         {({ values, setFieldValue }) => (
           <Form>
             <div className={s.fieldCont}>
-              <Field className={s.fieldTitle} type="text" name="title" />
+              <Field className={s.fieldTitle} type="text" name="title" placeholder="Title"/>
               {typeOfPopUp === 'Add' && (
                 <ErrorMessage
                   name="title"
@@ -66,14 +66,8 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
                 type="text"
                 as="textarea"
                 name="description"
+                placeholder="Description"
               />
-              {typeOfPopUp === 'Add' && (
-                <ErrorMessage
-                  name="description"
-                  component="span"
-                  className={s.errorMsg}
-                />
-              )}
             </div>
             <div className={s.priorityCont}>
               <label className={s.labelTitle}>Label color</label>
@@ -111,13 +105,6 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
                   ></label>
                 </li>
               </ul>
-              {typeOfPopUp === 'Add' && (
-                <ErrorMessage
-                  name="priority"
-                  component="span"
-                  className={s.errorMsg}
-                />
-              )}
             </div>
             <div className={s.dateCont}>
               <label className={s.labelTitle} htmlFor="">

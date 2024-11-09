@@ -35,6 +35,19 @@
     padding: 14px 18px;
     width: 100%;
     margin-bottom: 4px;
+    transition: all 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    outline: transparent;
+    opacity: 0.4;
+
+    &:hover {
+        border-color: var(--hover-modal-btn);
+        opacity: 1;
+    }
+
+    &:focus {
+        border-color: var(--hover-modal-btn);
+        opacity: 1;
+    }
 }
 
 .fieldDesc {
@@ -54,6 +67,19 @@
     letter-spacing: -0.28px;
     margin-bottom: 4px;
     resize: none;
+    transition: all 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    outline: transparent;
+    opacity: 0.4;
+
+    &:hover {
+        border-color: var(--hover-modal-btn);
+        opacity: 1;
+    }
+
+    &:focus {
+        border-color: var(--hover-modal-btn);
+        opacity: 1;
+    }
 }
 
 .labelTitle {
@@ -145,6 +171,10 @@ input[name="deadline"] {
     align-items: center;
     justify-content: center;
     gap: 8px;
+
+    &:hover {
+        background-color: var(--hover-modal-btn);
+    }
 }
 
 .btnSubmit>span {

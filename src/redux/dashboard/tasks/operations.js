@@ -56,8 +56,8 @@ export const moveTask = createAsyncThunk('task/move',
     const accessToken = state.auth.token
     try {
       setToken(accessToken)
-      const response = await api.patch(`/tasks/${taskId}/move`, newColumnId)
-      return response.data
+      const {data} = await api.patch(`/tasks/${taskId}/move`, {newColumnId})
+      return data.data
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error.message)
