@@ -60,12 +60,14 @@ export const logoutThunk = createAsyncThunk(
 );
 
 export const updateUserProfile = createAsyncThunk(
-  'auth/updateUserProfile',
+  'auth/updateEdit',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await axios.patch('/api/user/profile', formData, {
+      
+      const response = await api.patch('users/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`,
         },
       });
       return response.data;
