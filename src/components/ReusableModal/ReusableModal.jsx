@@ -11,6 +11,7 @@ const customStyles = {
         padding: '24px',
         transform: 'translate(-50%, -50%)',
         overflow: 'auto',
+        borderRadius: '8px',
         borderColor: 'var(--modal-border)',
         borderWidth: '1px',
         backgroundColor: 'var(--modal-bg)'
