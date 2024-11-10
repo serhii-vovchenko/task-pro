@@ -59,7 +59,7 @@ const TaskCard = ({ taskObj }) => {
   };
 
   const handleBlur = (event) => {
-    if (!dropdownRef.current.contains(event.relatedTarget)) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.relatedTarget)) {
       setIsDropdownOpen(false)
     }
   }
