@@ -20,49 +20,50 @@ const App = () => {
     dispatch(currentUserThunk());
   }, []);
 
-  return (
-    <div>
-      <Suspense fallback={<Loader width="100" height="100" />}>
-        <Routes>
-          <Route path="/" element={<Navigate to="/welcome" replace />} />
-          <Route
-            path="/welcome"
-            element={
-              <PublicRoute>
-                <WelcomePage />
-              </PublicRoute>
-            }
-          />
+  return (<> <div>
+    <Suspense fallback={<Loader width="100" height="100" />}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/welcome" replace />} />
+        <Route
+          path="/welcome"
+          element={
+            <PublicRoute>
+              <WelcomePage />
+            </PublicRoute>
+          }
+        />
 
-          <Route
-            path="/auth/:id"
-            element={
-              <PublicRoute>
-                <AuthPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/home"
-            element={
-              <PrivateRoute>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/home/:boardId"
-            element={
-              <PrivateRoute>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
-      <Toaster position="top-center" reverseOrder={false} />
-    </div>
+        <Route
+          path="/auth/:id"
+          element={
+            <PublicRoute>
+              <AuthPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/home/:boardId"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/*" element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
+  </div>
+    <Toaster position="top-center" reverseOrder={false} />
+  </>
+
   );
 };
 
