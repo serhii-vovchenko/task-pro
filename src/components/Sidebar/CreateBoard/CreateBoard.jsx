@@ -1,7 +1,6 @@
 import s from './CreateBoard.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
 
 import sprite from '../../../img/icons.svg';
 import noBack from '../../../img/bg/bg-10-desk.jpg';
@@ -24,7 +23,6 @@ export const NewBoard = ({ closeModal }) => {
   const [title, setTitle] = useState('');
   const modalRef = useRef(null);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleTitleChange = event => setTitle(event.target.value);

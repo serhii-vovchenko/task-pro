@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
-import { currentBoard } from '../../redux/dashboard/currentBoard/selectors';
+import { selectCurrentBoard } from '../../redux/dashboard/currentBoard/selectors';
 import MainDashboard from '../MainDashboard/MainDashboard';
 import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
 import DefaultTextHome from '../DefaultTextHome/DefaultTextHome';
 import s from './ScreensPage.module.css';
 
 const ScreensPage = () => {
-  const activeBoard = useSelector(currentBoard);
+  const { currentBoard } = useSelector(selectCurrentBoard);
 
-  return activeBoard ? (
+  return currentBoard ? (
     <div
       className={s.screenPage}
       style={{

@@ -1,4 +1,4 @@
-import s from './EditBoard.module.css'; // Create EditBoard.module.css for styling
+import s from './EditBoard.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -59,12 +59,11 @@ export const EditBoard = ({ closeModal }) => {
 
   const updateExistingBoard = async () => {
     try {
-      await dispatch(updateBoard(updatedBoardObject)); // Pass the entire object
+      await dispatch(updateBoard(updatedBoardObject));
       closeModal();
       dispatch(getBoardThunk());
     } catch (error) {
       console.error('Error updating board:', error);
-      // Handle the error, maybe display an error message to the user
     }
   };
 
