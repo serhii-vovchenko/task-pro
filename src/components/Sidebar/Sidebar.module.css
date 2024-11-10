@@ -50,13 +50,8 @@
   padding: 14px 0px;
   border-top: 1px solid rgba(22, 22, 22, 0.1);
   border-bottom: 1px solid rgba(22, 22, 22, 0.1);
-  margin-bottom: 40px;
 }
-@media screen and (min-width: 1440px) {
-  .createBoard {
-    gap: 96px;
-  }
-}
+
 .createBoardTitle {
   color: var(--accent-sidebar-color);
   font-weight: 500;
@@ -80,6 +75,32 @@
   height: 20px;
   fill: transparent;
   stroke: var(--plus-sidebar-icon);
+}
+
+.titleInput {
+  width: 90%;
+  min-width: 256px;
+  max-width: 287px;
+  height: 49px;
+  padding: 18px;
+  font-size: 14px;
+
+  background-color: rgb(246, 246, 247);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  opacity: 0.4;
+  transition: border var(--primary-transition);
+}
+
+.textBackground {
+  color: var(--text-primary-color);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  margin-bottom: 14px;
 }
 
 @media (min-width: 768px) {
