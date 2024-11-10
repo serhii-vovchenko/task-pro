@@ -33,13 +33,13 @@ const NeedHelp = () => {
         </svg>
         <span>Need help?</span>
       </button>
-
-      <ReusableModal
+      {isModalOpen && <ReusableModal
         isOpen={isModalOpen}
         onClose={closeModal}
       >
         <NeedHelpForm onClose={closeModal} />
-      </ReusableModal>
+      </ReusableModal>}
+
     </div>
   );
 };

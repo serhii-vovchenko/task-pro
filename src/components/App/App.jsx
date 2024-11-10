@@ -6,6 +6,7 @@ import Loader from '../Loader/Loader';
 import { PublicRoute } from '../../routes/PublicRoutes';
 import { useDispatch } from 'react-redux';
 import { currentUserThunk } from '../../redux/auth/operations';
+import { Toaster } from 'react-hot-toast';
 
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage'));
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
