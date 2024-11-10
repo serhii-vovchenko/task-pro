@@ -1,41 +1,4 @@
 .notFoundContainer {
-<<<<<<< Updated upstream
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(
-    180deg,
-    var(--white) 25%,
-    var(--pale-green) 92.19%
-  );
-  background-size: cover;
-}
-
-.notFoundMessage {
-  text-align: center;
-  color: #161616;
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-.redirectButton {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  color: #fff;
-  background-color: #161616;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.redirectButton:hover {
-  background-color: #bedbb0;
-}
-=======
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -245,7 +208,7 @@ a.moreLink {
 }
 
 .moreLink:hover {
-    background-color: #04b301;
+    background-color: #050505;
     -webkit-animation: shadow-drop-2-tb 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: shadow-drop-2-tb 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     -webkit-animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
@@ -363,4 +326,3 @@ a.moreLink {
         box-shadow: 0 -12px 20px -12px rgba(0, 0, 0, 0.35), 0 12px 20px -12px rgba(0, 0, 0, 0.35);
     }
 }
->>>>>>> Stashed changes
