@@ -92,7 +92,7 @@ const currentBoardSlice = createSlice({
         }
       })
       .addCase(moveTask.fulfilled, (state, action) => {
-        const { taskId, newColumnId, ...movedTask} = action.payload
+        const { _id: taskId, columnId: newColumnId} = action.payload
         const oldColumn = state.currentBoard.columns.find(column => column.tasks.find(task => task._id === taskId))
 
         if (oldColumn) {
@@ -103,7 +103,7 @@ const currentBoardSlice = createSlice({
           const newColumn = state.currentBoard.columns.find(column => column._id === newColumnId)
 
           if (newColumn) {
-            newColumn.tasks = Array.isArray(newColumn.tasks) ? [...newColumn.tasks, movedTask] : [movedTask];
+            newColumn.tasks = Array.isArray(newColumn.tasks) ? [...newColumn.tasks, action.payload] : [action.payload];
           }
         }
       })

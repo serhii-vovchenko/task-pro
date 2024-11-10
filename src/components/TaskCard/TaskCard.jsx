@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {format} from "date-fns"
 import ReusableModal from '../ReusableModal/ReusableModal';
@@ -35,6 +35,7 @@ const TaskCard = ({ taskObj }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null)
   const columns = useSelector(selectBoardColumns)
   const color = colorPriority.find(
     priority => priority.priority === taskObj?.priority
@@ -57,6 +58,12 @@ const TaskCard = ({ taskObj }) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleBlur = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.relatedTarget)) {
+      setIsDropdownOpen(false)
+    }
+  }
+
   const handleMove = (idColumn) => {
     dispatch(moveTask({ taskId: taskObj._id, newColumnId: idColumn }))
     setIsDropdownOpen(false)
@@ -75,7 +82,7 @@ const TaskCard = ({ taskObj }) => {
               <p className={s.lowerContTitle}>Priority</p>
               <div className={s.contWithCircle}>
                 <span className={s.priorityCircle}></span>
-                <span className={s.lowerContText}>{taskObj.priority === "none" ? 'Without' : taskObj.priority}</span>
+                <span className={s.lowerContText}>{taskObj.priority === "none" ? 'Without' : taskObj.priority.charAt(0).toUpperCase() + taskObj.priority.slice(1)}</span>
               </div>
             </div>
             <div className={s.contWithMarkings}>
@@ -91,13 +98,13 @@ const TaskCard = ({ taskObj }) => {
               </svg>
             </li>}
             <li>
-              <button onClick={() => toggleDropdown()} >
+              <button onClick={toggleDropdown}  onBlur={handleBlur}>
                 <svg className={s.icon} width="16px" height="16px">
                   <use href={`${sprite}#icon-arrow-circle-broken-right`} />
                 </svg>
               </button>
               {isDropdownOpen && (
-                <div className={s.dropdownMenu}>
+                <div className={s.dropdownMenu} tabIndex="-1" ref={dropdownRef}>
                   <ul> 
                     {columnsList.map((column) => (
                       <li key={column._id} >
