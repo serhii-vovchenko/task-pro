@@ -54,12 +54,8 @@ const TaskCard = ({ taskObj }) => {
     dispatch(deleteTask({ taskId: taskObj._id, columnId: taskObj.columnId }));
   };
   const toggleDropdown = () => {
-    setIsDropdownOpen(true);
+    setIsDropdownOpen(!isDropdownOpen);
   };
-
-  const blurDropDown = () => {
-    setIsDropdownOpen(false)
-  }
 
   const handleMove = (idColumn) => {
     dispatch(moveTask({ taskId: taskObj._id, newColumnId: idColumn }))
@@ -111,7 +107,7 @@ const TaskCard = ({ taskObj }) => {
                             </span>
                             <span>
                               <svg className={s.icon} width="16px" height="16px">
-                              <use href={`${sprite}#icon-arrow-circle-broken-right`} />
+                                <use href={`${sprite}#icon-arrow-circle-broken-right`} />
                               </svg>
                             </span>
                         </button>

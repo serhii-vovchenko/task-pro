@@ -126,14 +126,13 @@
 
 .dropdownMenu {
     position: absolute;
-    top: 30px;
-    left: 0;
+    top: 3px;
+    right: 80px;
     background-color: var(--dropdown-menu-bg);
-    border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.10);
     padding: 18px;
-    width: 135px;
+    width: 155px;
 }
 
 .dropdownMenu button {
@@ -144,10 +143,18 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    color: var(--text-primary);
+}
+
+.dropdownMenu button:hover>.dropdownColumnTitle {
+    color: var(--modal-btn);
+}
+
+.dropdownMenu button:hover .icon {
+    stroke: var(--modal-btn);
 }
 
 .dropdownColumnTitle {
-    width: 75px;
     height: 21px;
     overflow: hidden;
     text-overflow: ellipsis;
