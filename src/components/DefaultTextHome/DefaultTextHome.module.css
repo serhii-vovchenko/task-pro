@@ -1,0 +1,40 @@
+.wrapper {
+  width: 100%;
+  height: сalc(100% -60px);
+  background-color: var(--bg-empty-board);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  color: var(--text-primary);
+  opacity: 0.5;
+  max-width: 335px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+}
+
+.span {
+  color: var(--accent-empty-board);
+}
+
+@media (min-width: 768px) {
+  .text {
+    max-width: 486px;
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .wrapper {
+    height: calc(100% - 68px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrapper {
+    width: calc(100%-260px);
+  }
+}
