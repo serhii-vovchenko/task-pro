@@ -3,7 +3,8 @@ import * as Yup from 'yup';
 import css from './NeedHelpForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { submitNeedHelpThunk } from '../../redux/dashboard/need-help-form/operations';
-import { selectNeedHelpError, selectNeedHelpSuccess, selectNeedHelpLoading } from '../../redux/dashboard/need-help-form/selectors';
+import { selectNeedHelpLoading } from '../../redux/dashboard/need-help-form/selectors';
+import { toast } from 'react-hot-toast';
 import Loader from '../Loader/Loader.jsx';
 
 
@@ -21,19 +22,17 @@ const validationSchema = Yup.object({
     .max(300, 'Comment cannot exceed 300 characters'),
 });
 
-const NeedHelpForm = ({onClose}) => {
+const NeedHelpForm = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectNeedHelpLoading);
-  const error = useSelector(selectNeedHelpError);
-  const success = useSelector(selectNeedHelpSuccess);
 
   const initialValues = {
     email: '',
     comment: '',
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     try {
       const { comment, ...restValues } = values;
       const modifiedValues = {
@@ -41,15 +40,15 @@ const NeedHelpForm = ({onClose}) => {
         userMessage: values.comment,
       };
 
-      dispatch(submitNeedHelpThunk(modifiedValues));
+      await dispatch(submitNeedHelpThunk(modifiedValues));
 
       actions.resetForm();
+      toast.success('Form submitted successfully!');
       onClose();
     } catch (error) {
-      console.error('Error during form submission:', error);
+      toast.error('Something went wrong. Please try again.');
     }
   };
-
 
   return (<> {isLoading && <Loader width="100" height="100" />}
     <div className={css['form-container']}>
