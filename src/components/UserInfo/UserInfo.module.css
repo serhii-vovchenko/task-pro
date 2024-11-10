@@ -10,9 +10,17 @@
 
 .imgBox {
   overflow: hidden;
+  display: flex;
+  border: 1px solid var(--primary-main);
+  border-radius: 8px;
 }
 
 .avatarIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  
 }
 
 .userAvatar {

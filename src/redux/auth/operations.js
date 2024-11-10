@@ -31,6 +31,29 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
+export const currentUserThunk = createAsyncThunk(
+  'users/current',
+  async (_, thunkAPI) => {
+    try {
+      const accessToken = thunkAPI.getState().auth.token;
+      if (!accessToken) {
+        return thunkAPI.rejectWithValue('Access token is missing');
+      }
+
+      const { data } = await api.get('users/current', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      setToken(data.data.accessToken);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const logoutThunk = createAsyncThunk(
   'auth/logout',
   async (accessToken, thunkAPI) => {
@@ -60,17 +83,44 @@ export const logoutThunk = createAsyncThunk(
 );
 
 export const updateUserProfile = createAsyncThunk(
-  'auth/updateUserProfile',
-  async (formData, { rejectWithValue }) => {
+  'auth/updateEdit',
+  async (formData, { rejectWithValue, getState }) => {
     try {
-      const response = await axios.patch('/api/user/profile', formData, {
+      const response = await api.patch('users/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${getState().auth.token}`,
         },
       });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateThemeInDatabase = createAsyncThunk(
+  'auth/updateTheme',
+  async (newTheme, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await api.patch(
+        `/users/theme`,
+        { theme: newTheme },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      thunkAPI.dispatch(changeTheme(response.data.data.theme));
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

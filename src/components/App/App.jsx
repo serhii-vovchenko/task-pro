@@ -1,9 +1,11 @@
 import './App.css';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { PrivateRoute } from '../../routes/PrivateRoute';
 import Loader from '../Loader/Loader';
 import { PublicRoute } from '../../routes/PublicRoutes';
+import { useDispatch } from 'react-redux';
+import { currentUserThunk } from '../../redux/auth/operations';
 
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage'));
@@ -11,13 +13,25 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFound/NotFoundPage'));
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(currentUserThunk());
+  }, []);
+
   return (
     <div>
       <Suspense fallback={<Loader width="100" height="100" />}>
         <Routes>
           <Route path="/" element={<Navigate to="/welcome" replace />} />
-          <Route path="/welcome" element={<WelcomePage />} />
-          {/* <Route path="/auth/:id" element={<AuthPage />} /> */}
+          <Route
+            path="/welcome"
+            element={
+              <PublicRoute>
+                <WelcomePage />
+              </PublicRoute>
+            }
+          />
 
           <Route
             path="/auth/:id"
@@ -29,6 +43,14 @@ const App = () => {
           />
           <Route
             path="/home"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/home/:boardId"
             element={
               <PrivateRoute>
                 <HomePage />

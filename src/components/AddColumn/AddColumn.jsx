@@ -26,8 +26,8 @@ const AddColumn = ({ closeModal }) => {
     const newColumn = {
       title: values.title,
       boardId,
-      // boardId: '672cb51fff390c38170298a7',
     };
+
     dispatch(addColumn(newColumn));
     actions.resetForm();
     closeModal();

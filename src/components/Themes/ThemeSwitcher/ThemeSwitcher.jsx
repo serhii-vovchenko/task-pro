@@ -2,6 +2,8 @@ import s from './ThemeSwitcher.module.css';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import sprite from '../../../img/icons.svg';
+import { updateThemeInDatabase } from '../../../redux/auth/operations';
+import { changeTheme } from '../../../redux/auth/slice';
 
 const ThemeSwitcher = () => {
   const dispatch = useDispatch();
@@ -22,9 +24,12 @@ const ThemeSwitcher = () => {
     dispatch(changeTheme(currentTheme));
   }, [currentTheme, dispatch]);
 
-  const handleThemeChange = event => {
-    setCurrentTheme(event.target.value);
+  const handleThemeChange = async event => {
+    const newTheme = event.target.value;
+    setCurrentTheme(newTheme);
     setIsOpen(false);
+    await dispatch(updateThemeInDatabase(newTheme));
+    dispatch(changeTheme(newTheme));
   };
 
   useEffect(() => {

@@ -3,8 +3,8 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { editColumn } from '../../redux/dashboard/columns/operations';
 import sprite from '../../img/icons.svg';
-import { selectColumn } from '../../redux/dashboard/columns/selectors';
 import s from './EditColumn.module.css';
+import { selectBoardColumns } from '../../redux/dashboard/currentBoard/selectors';
 
 const columnSchema = Yup.object().shape({
   title: Yup.string()
@@ -13,17 +13,21 @@ const columnSchema = Yup.object().shape({
     .required('This field is required!'),
 });
 
-const EditColumn = ({ closeModal }) => {
-  const { _id, title } = useSelector(selectColumn);
+const EditColumn = ({ columnId, closeModal }) => {
   const dispatch = useDispatch();
-
+  const columns = useSelector(selectBoardColumns);
+  const column = columns.filter(({ _id }) => columnId === _id);
+  if (column?.length === 0) {
+    return null;
+  }
+  const { title } = column[0];
   const initialValues = {
     title: title || '',
   };
 
   const handleSubmit = (values, actions) => {
     const newColumn = {
-      columnId: _id,
+      columnId,
       body: { title: values.title },
     };
 

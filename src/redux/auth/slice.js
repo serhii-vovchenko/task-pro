@@ -1,5 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, logoutThunk, registerThunk } from './operations.js';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  currentUserThunk,
+  loginThunk,
+  logoutThunk,
+  registerThunk,
+  updateThemeInDatabase,
+} from './operations.js';
 
 const initialState = {
   user: {
@@ -9,6 +15,7 @@ const initialState = {
   token: '',
   isLoggedIn: false,
   isLoading: true,
+  showLoginDelay: true,
 };
 
 const slice = createSlice({
@@ -22,6 +29,13 @@ const slice = createSlice({
       };
       state.token = '';
       state.isLoggedIn = false;
+      state.showLoginDelay = true;
+    },
+    changeTheme: (state, action) => {
+      state.user.theme = action.payload;
+    },
+    changeLoginDelayState: (state, action) => {
+      state.showLoginDelay = action.payload;
     },
   },
   extraReducers: builder => {
@@ -36,8 +50,8 @@ const slice = createSlice({
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })
-      .addCase(logoutThunk.pending, state => {
-        state.isLoading = true;
+      .addCase(currentUserThunk.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
       })
       .addCase(logoutThunk.fulfilled, state => {
         state.user = {
@@ -47,9 +61,39 @@ const slice = createSlice({
         state.isLoggedIn = null;
         state.token = null;
         state.isLoading = false;
-      });
+        state.showLoginDelay = true;
+      })
+      .addCase(updateThemeInDatabase.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+      })
+
+      .addMatcher(
+        isAnyOf(
+          registerThunk.pending,
+          loginThunk.pending,
+          currentUserThunk.pending,
+          logoutThunk.pending
+        ),
+        state => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          registerThunk.rejected,
+          loginThunk.rejected,
+          currentUserThunk.rejected,
+          logoutThunk.rejected
+        ),
+        (state, action) => {
+          state.isLoading = false;
+          state.isLoggedIn = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
 
-export const { resetAuthState } = slice.actions;
+export const { resetAuthState, changeTheme } = slice.actions;
 export const authReducer = slice.reducer;

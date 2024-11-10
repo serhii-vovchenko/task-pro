@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
-  gap: 18px;
-  padding: 20px;
+  gap: 14px;
+  overflow-x: auto;
 }
 
 .list {
@@ -11,12 +11,23 @@
   gap: 14px;
 }
 
+.wrapper::-webkit-scrollbar {
+  height: 12px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+  background-color: var(--bottom-scroll);
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--bg-scroll-thumb);
+  border-radius: 12px;
+}
+
 .button {
-  /* min-width: 287px; */
   max-width: 336px;
   width: 100%;
   height: 56px;
-  /* height: 100px; */
   flex-shrink: 0;
   padding: 14px;
   border-radius: 8px;
@@ -25,18 +36,18 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background-color: var(--background-default);
+  background-color: var(--add-column-bg);
 }
 
 .icon {
   padding: 7px;
-  background-color: var(--text-primary);
+  background-color: var(--add-column-icon);
   border-radius: 6px;
-  stroke: var(--background-default);
+  stroke: var(--add-column-plus);
 }
 
 .text {
-  color: var(--text-primary);
+  color: var(--add-column-text);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;

@@ -65,7 +65,7 @@ export const addBoard = createAsyncThunk(
 
 export const updateBoard = createAsyncThunk(
   'boards/updateBoard',
-  async ({ boardId, data }, thunkAPI) => {
+  async (updatedBoardObject, thunkAPI) => {
     const state = thunkAPI.getState();
     const accessToken = state.auth.token;
 
@@ -74,7 +74,9 @@ export const updateBoard = createAsyncThunk(
     }
 
     try {
-      const response = await api.put(`/boards/${boardId}`, data, {
+      const { _id, ...data } = updatedBoardObject;
+
+      const response = await api.patch(`/boards/${_id}`, data, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       return response.data;

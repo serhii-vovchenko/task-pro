@@ -60,13 +60,13 @@
 
 .icon {
   padding: 7px;
-  background-color: var(--text-primary);
+  background-color: var(--modal-icon-wrap);
   border-radius: 6px;
-  stroke: var(--background-default);
+  stroke: var(--modal-plus-icon);
 }
 
 .text {
-  color: var(--text-primary);
+  color: var(--modal-btn-text);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;

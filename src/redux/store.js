@@ -14,26 +14,24 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { boardsReducer } from './dashboard/boards/slice.js';
-import { columnsReducer } from './dashboard/columns/slice.js';
 import { getCurrentBoardReducer } from './dashboard/currentBoard/slice.js';
-import { tasksReducer } from './dashboard/tasks/slice.js';
+// import { tasksReducer } from './dashboard/tasks/slice.js';
 
 const persistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['token', 'user', 'isLoggedIn'],
+  whitelist: ['token', 'user', 'isLoggedIn', 'showLoginDelay'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    columns: columnsReducer,
     needHelp: needHelpReducer,
     boards: boardsReducer,
     modals: modalsReducer,
     currentBoard: getCurrentBoardReducer,
-    tasks: tasksReducer
+    // tasks: tasksReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
