@@ -21,16 +21,15 @@ const UserInfo = () => {
       ? 'icon-user-violet'
       : user.theme === 'dark'
       ? 'icon-user-dark'
-      : null;
+      : 'icon-user';
 
-  const userAvatar =
-    user.photoUrl === null ? (
-      <svg className={s.avatarIcon} height="32" width="32">
-        <use href={`${sprite}#${userIcon}`} />
-      </svg>
-    ) : (
-      <img className={s.userAvatar} src={user.photoUrl} alt="User Avatar" />
-    );
+  const userAvatar = user.photoUrl ? (
+    <img className={s.userAvatar} src={user.photoUrl} alt="User Avatar" />
+  ) : (
+    <svg className={s.avatarIcon} height="32" width="32">
+      <use href={`${sprite}#${userIcon}`} />
+    </svg>
+  );
 
   return (
     <>
@@ -38,7 +37,12 @@ const UserInfo = () => {
         <p className={s.userName}>{user.name}</p>
         <div className={s.imgBox}>{userAvatar}</div>
       </div>
-      {updateUserModal && <EditProfileModal isOpen={updateUserModal} onClose={() => setUpdateUserModal(false)}  />}
+      {updateUserModal && (
+        <EditProfileModal
+          isOpen={updateUserModal}
+          onClose={() => setUpdateUserModal(false)}
+        />
+      )}
     </>
   );
 };

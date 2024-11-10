@@ -4,11 +4,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--modal-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 .modal {
@@ -16,7 +16,7 @@
   border-radius: 8px;
   width: 335px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px var(--modal-overlay);
   position: relative;
   border: 1px solid var(--primary-main);
 }
@@ -55,7 +55,7 @@
   object-fit: cover;
   margin-bottom: 10px;
   position: relative;
-  
+  cursor: pointer;
 }
 
 .avatarImage {
@@ -63,6 +63,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .userAvatar {
@@ -71,6 +72,7 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--primary-light);
+  cursor: pointer;
 }
 
 .avatarIcon {
@@ -79,6 +81,7 @@
   fill: var(--text-primary);
   border: 1px solid var(--primary-main);
   border-radius: 8px;
+  cursor: pointer;
 }
 .uploadButton {
   position: absolute;
@@ -94,6 +97,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: opacity 0.3s ease, border 0.3s ease;
 }
 
 .plusIcon {
@@ -102,21 +106,22 @@
   stroke: var(--text-primary);
 }
 .plusIcon:hover,
-.plusIcon:focus{
-    stroke: var(--text-primary);
+.plusIcon:focus {
+  stroke: var(--text-primary);
+  background-color: var(--btn-hover);
 }
 .form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .inputField {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputField {
   display: inline-flex;
   padding: 14px 18px;
   align-items: center;
   border-radius: 8px;
   border: 1px solid var(--primary-main);
-  opacity: .4;
+  opacity: 0.4;
   background: var(--background-paper);
   box-shadow: 0 4px 16px 0 var(--charcoal-shadow);
   width: 100%;
@@ -124,58 +129,55 @@
   color: var(--text-primary);
   font-size: 14px;
   font-weight: 400;
-  letter-spacing: -.02em;
+  letter-spacing: -0.02em;
   outline: none;
-  transition: opacity .3s ease,border .3s ease;
+  transition: opacity 0.3s ease, border 0.3s ease;
 }
 .inputField:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px var(--charcoal) inset;
-    box-shadow: 0 0 0 30px var(--charcoal) inset;
-    -webkit-text-fill-color: var(--white);
-    caret-color: var(--white);
-    transition: background-color 5000s ease-in-out 0s;
-  }
-  .form .inputField:focus,
+  -webkit-box-shadow: 0 0 0 30px var(--charcoal) inset;
+  box-shadow: 0 0 0 30px var(--charcoal) inset;
+  -webkit-text-fill-color: var(--white);
+  caret-color: var(--white);
+  transition: background-color 5000s ease-in-out 0s;
+}
+.form .inputField:focus,
 .form .inputField:hover,
 .form .inputField:active {
   opacity: 1;
- 
 }
- 
-  .error {
-    color: var(--label-pink);
-    font-size: 12px;
-    margin-bottom: 10px;
-    transform: translateY(-50%);
-    z-index: 100;
-  }
-  
-  .modalButton {
-    border-radius: 8px;
-    background: var(--primary-main);
-    padding: 14px;
-    color: var(--text-primary);
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.28px;
-    transition: opacity 0.3s ease, border 0.3s ease;
-    width: 100%;
-  }
 
-  .modalButton:hover,
-  .modalButton:focus{
-    background-color: var(--fresh-green);
-  }
+.error {
+  color: var(--label-pink);
+  font-size: 12px;
+  margin-bottom: 10px;
+  transform: translateY(-50%);
+  z-index: 100;
+}
 
-  @media (min-width: 768px) {
-    .modal {       
-      width: 400px;          
-    }
+.modalButton {
+  border-radius: 8px;
+  background: var(--modal-btn);
+  padding: 14px;
+  color: var(--modal-btn-text);
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  transition: opacity 0.3s ease, border 0.3s ease;
+  width: 100%;
+}
+
+.modalButton:hover,
+.modalButton:focus {
+  background-color: var(--btn-hover);
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 400px;
   }
-  
-  @media (min-width: 1440px) {
-    
-  }
-  
+}
+
+@media (min-width: 1440px) {
+}

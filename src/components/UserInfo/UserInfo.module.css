@@ -6,13 +6,14 @@
 
 .userName {
   color: var(--text-primary);
+  cursor: pointer;
 }
 
 .imgBox {
   overflow: hidden;
   display: flex;
-  border: 1px solid var(--primary-main);
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .avatarIcon {
