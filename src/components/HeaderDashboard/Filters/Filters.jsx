@@ -1,33 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import sprite from '../../../img/icons.svg';
 import s from './Filters.module.css';
 import { Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSelectedPriority } from '../../../redux/dashboard/currentBoard/selectors';
+import { setSelectedPriority } from '../../../redux/dashboard/currentBoard/slice';
 
 const Filters = ({ handleClose }) => {
   const [modalClass, setModalClass] = useState('');
-  const [selectedLabel, setSelectedLabel] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState('option1');
-  const handleChange = event => {
-    setSelectedFilter(event.target.value);
-  };
+  const dispatch = useDispatch();
+  const selectedPriority = useSelector(selectSelectedPriority);
 
   const initialValues = {
-    label: selectedLabel,
+    label: selectedPriority,
   };
 
   const priorityOptions = ['without', 'low', 'medium', 'high'];
-  const handleLabelSelection = label => {
-    setSelectedLabel(label);
-  };
-  // useEffect(() => {
-  //   if (name === 'Filters') {
-  //     setModalClass(s.filter);
-  //   } else {
-  //     setModalClass('');
-  //   }
-  // }, [name]);
 
-  if (!open) return null;
+  const handleLabelSelection = label => {
+    dispatch(setSelectedPriority(label));
+  };
+
+  if (!handleClose) return null;
 
   return (
     <div className={s.modalWindow} onMouseDown={handleClose}>
@@ -46,7 +40,7 @@ const Filters = ({ handleClose }) => {
                 <h3 className={s.formTitle}>Label color</h3>
                 <p
                   className={s.showAllLabel}
-                  // onClick={() => dispatch(selectPriority('show all'))}
+                  onClick={() => handleLabelSelection('without')}
                 >
                   Show all
                 </p>
@@ -55,20 +49,17 @@ const Filters = ({ handleClose }) => {
                     <div
                       className={s.wrapper}
                       key={idx}
-                      onClick={() => {
-                        // handleLabelSelection(priority);
-                        // dispatch(selectPriority(priority));
-                      }}
+                      onClick={() => handleLabelSelection(priority)}
                     >
                       <label
                         className={`${s.label} ${
-                          selectedLabel === priority ? 'active' : ''
+                          selectedPriority === priority ? 'active' : ''
                         }`}
                         value={priority}
                       >
                         <div
                           className={`${s.labelItem} ${
-                            selectedLabel === priority ? 'active' : ''
+                            selectedPriority === priority ? 'active' : ''
                           } ${
                             priority === 'without'
                               ? s.priorityWithout
@@ -85,12 +76,14 @@ const Filters = ({ handleClose }) => {
                           className={s.defaultRadioBtn}
                           value={priority}
                           name="label"
+                          checked={selectedPriority === priority}
+                          onChange={() => handleLabelSelection(priority)}
                         />
                       </label>
 
                       <p
                         className={`${s.labelText} ${
-                          selectedLabel === priority ? 'active' : ''
+                          selectedPriority === priority ? 'active' : ''
                         }`}
                       >
                         {priority === 'without'
