@@ -3,12 +3,13 @@ import { selectCurrentBoard } from '../../../src/redux/dashboard/currentBoard/se
 import { useEffect } from 'react';
 import s from './ScreensPage.module.css';
 import MainDashboard from '../MainDashboard/MainDashboard';
+import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
 
 const ScreensPage = () => {
   const { currentBoard } = useSelector(selectCurrentBoard);
 
   useEffect(() => {
-    console.log('Current Board Updated:', currentBoard);
+    // console.log('Current Board Updated:', currentBoard);
   }, [currentBoard]);
 
   return (
@@ -19,7 +20,7 @@ const ScreensPage = () => {
         backgroundSize: 'cover',
       }}
     >
-      <h1>Screens Page</h1>
+      <HeaderDashboard />
       <MainDashboard />
     </div>
   );
