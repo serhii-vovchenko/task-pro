@@ -92,6 +92,8 @@ export const updateUserProfile = createAsyncThunk(
           Authorization: `Bearer ${getState().auth.token}`,
         },
       });
+      console.log('response', response);
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
