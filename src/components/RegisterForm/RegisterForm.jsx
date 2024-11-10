@@ -47,15 +47,13 @@ const RegisterForm = () => {
     if (registerThunk.fulfilled.match(result)) {
       actions.resetForm();
       toast.success('Registration successful! Welcome aboard!');
-      setTimeout(
-        () =>
-          dispatch({
-            type: 'auth/changeLoginDelayState',
-            payload: false,
-          }),
-        1500
-      );
-      setIsLoading(false);
+      setTimeout(() => {
+        dispatch({
+          type: 'auth/changeLoginDelayState',
+          payload: false,
+        });
+        setIsLoading(false);
+      }, 1500);
     } else if (registerThunk.rejected.match(result)) {
       toast.error(
         'Registration failed. Please check your details and try again.'
@@ -139,7 +137,7 @@ const RegisterForm = () => {
             />
           </div>
 
-          <button type="submit" className={css.formBottom}>
+          <button type="submit" className={css.formBottom} disabled={isLoading}>
             Register Now
           </button>
         </Form>

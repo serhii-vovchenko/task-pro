@@ -41,15 +41,13 @@ const LoginForm = () => {
     if (loginThunk.fulfilled.match(result)) {
       actions.resetForm();
       toast.success('Login successful! Welcome back!');
-      setTimeout(
-        () =>
-          dispatch({
-            type: 'auth/changeLoginDelayState',
-            payload: false,
-          }),
-        1500
-      );
-      setIsLoading(false);
+      setTimeout(() => {
+        dispatch({
+          type: 'auth/changeLoginDelayState',
+          payload: false,
+        });
+        setIsLoading(false);
+      }, 1500);
     } else if (loginThunk.rejected.match(result)) {
       toast.error('Login failed. Please check your email and password.');
       setIsLoading(false);
@@ -121,7 +119,7 @@ const LoginForm = () => {
             />
           </div>
 
-          <button type="submit" className={css.formBottom}>
+          <button type="submit" className={css.formBottom} disabled={isLoading}>
             Log In Now
           </button>
         </Form>
