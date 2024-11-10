@@ -15,7 +15,7 @@ const Filters = ({ handleClose }) => {
     label: selectedPriority,
   };
 
-  const priorityOptions = ['without', 'low', 'medium', 'high'];
+  const priorityOptions = ['none', 'low', 'medium', 'high'];
 
   const handleLabelSelection = label => {
     dispatch(setSelectedPriority(label));
@@ -40,7 +40,7 @@ const Filters = ({ handleClose }) => {
                 <h3 className={s.formTitle}>Label color</h3>
                 <p
                   className={s.showAllLabel}
-                  onClick={() => handleLabelSelection('without')}
+                  onClick={() => handleLabelSelection('all')}
                 >
                   Show all
                 </p>
@@ -61,7 +61,7 @@ const Filters = ({ handleClose }) => {
                           className={`${s.labelItem} ${
                             selectedPriority === priority ? 'active' : ''
                           } ${
-                            priority === 'without'
+                            priority === 'none'
                               ? s.priorityWithout
                               : priority === 'low'
                               ? s.priorityLow
@@ -86,10 +86,8 @@ const Filters = ({ handleClose }) => {
                           selectedPriority === priority ? 'active' : ''
                         }`}
                       >
-                        {priority === 'without'
-                          ? `${
-                              priority[0].toUpperCase() + priority.slice(1)
-                            } priority`
+                        {priority === 'none'
+                          ? `Without priority`
                           : priority[0].toUpperCase() + priority.slice(1)}
                       </p>
                     </div>

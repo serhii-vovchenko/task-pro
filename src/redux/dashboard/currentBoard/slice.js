@@ -12,7 +12,7 @@ const initialState = {
   currentBoard: null,
   loading: false,
   error: null,
-  selectedPriority: 'without',
+  selectedPriority: 'all',
 };
 
 const currentBoardSlice = createSlice({
