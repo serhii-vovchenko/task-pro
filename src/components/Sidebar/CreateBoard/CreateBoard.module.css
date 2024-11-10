@@ -20,6 +20,7 @@
   color: var(--text-primary);
   font-family: 'Poppins', sans-serif;
   transform: translate(-50%, -50%);
+  z-index: 999;
 }
 
 .iconClose {
@@ -36,20 +37,6 @@
   text-align: left;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
-}
-.titleInput {
-  width: 90%;
-  min-width: 256px;
-  max-width: 287px;
-  height: 49px;
-  padding: 18px;
-  font-size: 14px;
-
-  background-color: rgb(246, 246, 247);
-  border-radius: 8px;
-  margin-bottom: 24px;
-  opacity: 0.4;
-  transition: border var(--primary-transition);
 }
 
 .titleInput:hover {

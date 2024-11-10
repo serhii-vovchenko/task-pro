@@ -4,8 +4,23 @@ export const currentBoard = state => state.currentBoard.currentBoard;
 
 export const selectCurrentBoard = state => state.currentBoard;
 
-export const selectBoardColumns = createSelector([currentBoard], currentBoard =>
-  currentBoard ? currentBoard.columns : []
+export const selectSelectedPriority = state =>
+  state.currentBoard.selectedPriority;
+
+export const selectBoardColumns = createSelector(
+  [currentBoard, selectSelectedPriority],
+  (currentBoard, selectedPriority) => {
+    if (!currentBoard) return [];
+
+    return currentBoard.columns.map(column => {
+      const filteredTasks =
+        column.tasks?.filter(task => {
+          if (selectedPriority === 'without') return true;
+          return task.priority === selectedPriority;
+        }) || [];
+      return { ...column, tasks: filteredTasks };
+    });
+  }
 );
 
 export const selectorBoardId = state => state.currentBoard.currentBoard._id;

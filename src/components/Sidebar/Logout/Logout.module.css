@@ -8,28 +8,17 @@
   outline: transparent;
   padding: 0 0 0 10px;
   margin-top: 24px;
-  color: #fff;
+  color: var(--logout-text);
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-
-  &:hover {
-    color: var(--fresh-green);
-  }
-
-  &:hover .logoutBtnIcon {
-    stroke: var(--fresh-green);
-  }
-
-  & span {
-    color: var(--accent-sidebar-color);
-  }
 }
 
 .logoutBtnIcon {
-  stroke: var(--pale-green);
+  fill: transparent;
+  stroke: var(--logout-icon);
   width: 32px;
   height: 32px;
   transition: all 0.3s ease;

@@ -12,7 +12,7 @@
 }
 
 .title {
-  color: var(--text-primary);
+  color: var(--board-list-text-active);
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;

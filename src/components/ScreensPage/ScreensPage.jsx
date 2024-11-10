@@ -1,17 +1,14 @@
 import { useSelector } from 'react-redux';
-import { selectCurrentBoard } from '../../../src/redux/dashboard/currentBoard/selectors';
-import { useEffect } from 'react';
-import s from './ScreensPage.module.css';
+import { selectCurrentBoard } from '../../redux/dashboard/currentBoard/selectors';
 import MainDashboard from '../MainDashboard/MainDashboard';
+import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
+import DefaultTextHome from '../DefaultTextHome/DefaultTextHome';
+import s from './ScreensPage.module.css';
 
 const ScreensPage = () => {
   const { currentBoard } = useSelector(selectCurrentBoard);
 
-  useEffect(() => {
-    console.log('Current Board Updated:', currentBoard);
-  }, [currentBoard]);
-
-  return (
+  return currentBoard ? (
     <div
       className={s.screenPage}
       style={{
@@ -19,9 +16,11 @@ const ScreensPage = () => {
         backgroundSize: 'cover',
       }}
     >
-      <h1>Screens Page</h1>
+      <HeaderDashboard />
       <MainDashboard />
     </div>
+  ) : (
+    <DefaultTextHome />
   );
 };
 

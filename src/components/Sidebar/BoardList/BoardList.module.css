@@ -6,6 +6,7 @@
   margin-right: -14px;
   overflow-x: hidden;
   overflow-y: auto;
+  height: calc(100vh - 600px);
   flex-grow: 1;
 }
 
@@ -50,11 +51,11 @@
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
-  color: var(--drop-down-text);
+  color: var(--board-list-text);
 }
 
 .titleBoxTitleActive {
-  color: var(--text-primary);
+  color: var(--board-list-text-active);
 }
 
 .btnBox {
@@ -73,8 +74,8 @@
 .btnBoxIcon {
   width: 16px;
   height: 16px;
-  fill: var(--board-icons);
-  stroke: var(--board-icons);
+  fill: transparent;
+  stroke: var(--board-list-text);
 }
 
 @media (min-width: 768px) {

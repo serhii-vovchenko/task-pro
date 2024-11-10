@@ -12,7 +12,7 @@
 }
 
 .helpBoxText {
-  color: var(--text-primary);
+  color: var(--help-text);
   font-family: Poppins;
   font-size: 12px;
   font-style: normal;
@@ -21,7 +21,7 @@
   letter-spacing: -0.24px;
 
   & span {
-    color: var(--primary-main);
+    color: var(--help-text-span);
   }
 }
 
@@ -42,18 +42,14 @@
   padding: 0;
   margin-top: 18px;
 
-
   & span {
     color: var(--accent-sidebar-color);
     transition: color var(--transition-time) var(--transition-time);
-
   }
 
   &:hover span {
     color: var(--help-hover);
   }
-
-
 }
 
 .helpBtnIcon {
@@ -83,7 +79,8 @@
   }
 }
 
-@media (min-width: 1440px) {}
+@media (min-width: 1440px) {
+}
 
 .needHelp {
   color: var(--accent-sidebar-color);
