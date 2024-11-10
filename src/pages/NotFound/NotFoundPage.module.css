@@ -24,7 +24,7 @@
     display: inline-block;
     line-height: 0.7;
     position: relative;
-    color: #FFB485;
+    color: darkgray;
 }
 
 .errorContainer>span {
@@ -35,12 +35,12 @@
 }
 
 .errorContainer>span:nth-of-type(1) {
-    color: #D1F2A5;
+    color: darkgray;
     animation: colorDancing 4s infinite;
 }
 
 .errorContainer>span:nth-of-type(3) {
-    color: #F56991;
+    color: darkgray;
     animation: colorDancing2 4s infinite;
 }
 
@@ -60,10 +60,10 @@
     width: inherit;
     height: inherit;
     border-radius: 999px;
-    box-shadow: inset 30px 0 0 rgba(209, 242, 165, 0.4),
+    box-shadow: inset 30px 0 0 rgba(0, 0, 0, 0.4),
         inset 0 30px 0 rgba(239, 250, 180, 0.4),
-        inset -30px 0 0 rgba(255, 196, 140, 0.4),
-        inset 0 -30px 0 rgba(245, 105, 145, 0.4);
+        inset -30px 0 0 rgba(97, 49, 3, 0.4),
+        inset 0 -30px 0 rgba(164, 162, 162, 0.4);
     animation: shadowsDancing 4s infinite;
 }
 
@@ -101,82 +101,82 @@
 
 @keyframes shadowsDancing {
     0% {
-        box-shadow: inset 30px 0 0 rgba(209, 242, 165, 0.4),
-            inset 0 30px 0 rgba(239, 250, 180, 0.4),
-            inset -30px 0 0 rgba(255, 196, 140, 0.4),
-            inset 0 -30px 0 rgba(245, 105, 145, 0.4);
+        box-shadow: inset 30px 0 0 rgba(150, 150, 150, 0.4),
+            inset 0 30px 0 rgba(100, 100, 100, 0.4),
+            inset -30px 0 0 rgba(50, 50, 50, 0.4),
+            inset 0 -30px 0 rgba(0, 0, 0, 0.4);
     }
 
     25% {
-        box-shadow: inset 30px 0 0 rgba(245, 105, 145, 0.4),
-            inset 0 30px 0 rgba(209, 242, 165, 0.4),
-            inset -30px 0 0 rgba(239, 250, 180, 0.4),
-            inset 0 -30px 0 rgba(255, 196, 140, 0.4);
+        box-shadow: inset 30px 0 0 rgba(0, 0, 0, 0.4),
+            inset 0 30px 0 rgba(150, 150, 150, 0.4),
+            inset -30px 0 0 rgba(100, 100, 100, 0.4),
+            inset 0 -30px 0 rgba(50, 50, 50, 0.4);
     }
 
     50% {
-        box-shadow: inset 30px 0 0 rgba(255, 196, 140, 0.4),
-            inset 0 30px 0 rgba(245, 105, 145, 0.4),
-            inset -30px 0 0 rgba(209, 242, 165, 0.4),
-            inset 0 -30px 0 rgba(239, 250, 180, 0.4);
+        box-shadow: inset 30px 0 0 rgba(50, 50, 50, 0.4),
+            inset 0 30px 0 rgba(0, 0, 0, 0.4),
+            inset -30px 0 0 rgba(150, 150, 150, 0.4),
+            inset 0 -30px 0 rgba(100, 100, 100, 0.4);
     }
 
     75% {
-        box-shadow: inset 30px 0 0 rgba(239, 250, 180, 0.4),
-            inset 0 30px 0 rgba(255, 196, 140, 0.4),
-            inset -30px 0 0 rgba(245, 105, 145, 0.4),
-            inset 0 -30px 0 rgba(209, 242, 165, 0.4);
+        box-shadow: inset 30px 0 0 rgba(100, 100, 100, 0.4),
+            inset 0 30px 0 rgba(50, 50, 50, 0.4),
+            inset -30px 0 0 rgba(0, 0, 0, 0.4),
+            inset 0 -30px 0 rgba(150, 150, 150, 0.4);
     }
 
     100% {
-        box-shadow: inset 30px 0 0 rgba(209, 242, 165, 0.4),
-            inset 0 30px 0 rgba(239, 250, 180, 0.4),
-            inset -30px 0 0 rgba(255, 196, 140, 0.4),
-            inset 0 -30px 0 rgba(245, 105, 145, 0.4);
+        box-shadow: inset 30px 0 0 rgba(150, 150, 150, 0.4),
+            inset 0 30px 0 rgba(100, 100, 100, 0.4),
+            inset -30px 0 0 rgba(50, 50, 50, 0.4),
+            inset 0 -30px 0 rgba(0, 0, 0, 0.4);
     }
 }
 
 @keyframes colorDancing {
     0% {
-        color: #D1F2A5;
+        color: #6b6b6b;
     }
 
     25% {
-        color: #F56991;
+        color: #000000;
     }
 
     50% {
-        color: #FFC48C;
+        color: #2a2a2a;
     }
 
     75% {
-        color: #EFFAB4;
+        color: #8e8e8e;
     }
 
     100% {
-        color: #D1F2A5;
+        color: #6b6b6b;
     }
 }
 
 @keyframes colorDancing2 {
     0% {
-        color: #FFC48C;
+        color: #2a2a2a;
     }
 
     25% {
-        color: #EFFAB4;
+        color: #8e8e8e;
     }
 
     50% {
-        color: #D1F2A5;
+        color: #6b6b6b;
     }
 
     75% {
-        color: #F56991;
+        color: #000000;
     }
 
     100% {
-        color: #FFC48C;
+        color: #2a2a2a;
     }
 }
 
@@ -194,10 +194,10 @@
 a.moreLink {
     text-transform: uppercase;
     font-size: 13px;
-    background-color: #90bc6a;
+    background-color: #000000;
     padding: 10px 15px;
     border-radius: 8px;
-    color: #000000;
+    color: #ffffff;
     display: inline-block;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -208,7 +208,7 @@ a.moreLink {
 }
 
 .moreLink:hover {
-    background-color: #050505;
+    background-color: darkgray;
     -webkit-animation: shadow-drop-2-tb 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: shadow-drop-2-tb 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     -webkit-animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
