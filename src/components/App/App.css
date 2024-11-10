@@ -70,6 +70,9 @@
 
   --bg-empty-board: #f6f6f7;
   --accent-empty-board: #bedbb0;
+
+  --board-list-text: rgba(22, 22, 22, 0.5);
+  --board-list-text-active: #161616;
 }
 
 [data-theme='dark'] {
@@ -136,6 +139,9 @@
 
   --bg-empty-board: #1f1f1f;
   --accent-empty-board: #bedbb0;
+
+  --board-list-text: rgba(255, 255, 255, 0.5);
+  --board-list-text-active: #ffffff;
 }
 
 [data-theme='violet'] {
@@ -148,6 +154,7 @@
   --background-default: #5255bc;
   --background-paper: #fff;
   --text-primary: #161616;
+
   --text-secondary: rgba(22, 22, 22, 0.8);
   --accent-sidebar: rgba(236, 237, 253, 0.4);
   --plus-sidebar-icon: #fff;
@@ -202,4 +209,7 @@
 
   --bg-empty-board: #ecedfd;
   --accent-empty-board: #5255bc;
+
+  --board-list-text: rgba(255, 255, 255, 0.5);
+  --board-list-text-active: #ffffff;
 }
