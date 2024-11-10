@@ -9,6 +9,7 @@
   --background-paper: #fcfcfc;
   --text-primary: #161616;
   --text-secondary: rgba(22, 22, 22, 0.8);
+  --placeholder: rgb(22, 22, 22, 0.4);
 
   --bg-scroll-track: #e8e8e8;
 
@@ -19,6 +20,7 @@
   --plus-sidebar-icon: #121212;
   --hover-sidebar-btn: #9dc888;
   --hover-sidebar-element: #bedbb0;
+  --help-hover: #9dc888;
   --bg-scroll: #e8e8e8;
 
   --bg-screen: #f6f6f7;
@@ -39,6 +41,9 @@
   --modal-btn: #bedbb0;
   --hover-modal-btn: #9dc888;
   --modal-btn-text: #161616;
+  --modal-cross-icon: #161616;
+  --modal-cross-icon-hover: rgb(22, 22, 22, 0.5);
+  --modal-border: transparent;
   --modal-plus-icon: #fff;
   --modal-icon-wrap: #161616;
 
@@ -75,6 +80,7 @@
   --background-paper: #161616;
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.8);
+  --placeholder: rgb(255, 255, 255, 0.4);
   --accent-sidebar: #1f1f1f;
   --plus-sidebar-icon: #121212;
   --accent-sidebar-color: #fff;
@@ -82,6 +88,7 @@
   --hover-sidebar-btn: #9dc888;
   --sidebar-light: rgba(255, 255, 255, 0.5);
   --hover-sidebar-element: #bedbb0;
+  --help-hover: #9dc888;
   --bg-screen: #1f1f1f;
 
   --button-text: #161616;
@@ -97,6 +104,9 @@
   --modal-btn: #bedbb0;
   --hover-modal-btn: #9dc888;
   --modal-btn-text: #161616;
+  --modal-cross-icon: #ffffff;
+  --modal-cross-icon-hover: rgb(255, 255, 255, 0.5);
+  --modal-border: rgba(190, 219, 176, 0.4);
   --modal-plus-icon: #fff;
   --modal-icon-wrap: #161616;
 
@@ -140,7 +150,9 @@
   --hover-sidebar-btn: #979cea;
   --sidebar-light: rgba(255, 255, 255, 0.5);
   --hover-sidebar-element: #fff;
+  --help-hover: #5255bc;
   --bg-screen: #ecedfd;
+  --placeholder: rgb(22, 22, 22, 0.4);
 
   --button-text: #fff;
   --bg-scroll: #b8bcfd;
@@ -155,6 +167,9 @@
   --modal-btn: #5255bc;
   --hover-modal-btn: #7b7ede;
   --modal-btn-text: #fff;
+  --modal-cross-icon: #161616;
+  --modal-cross-icon-hover: rgb(22, 22, 22, 0.5);
+  --modal-border: transparent;
   --modal-plus-icon: #161616;
   --modal-icon-wrap: #fff;
 

@@ -42,24 +42,29 @@
   padding: 0;
   margin-top: 18px;
 
-  &:hover {
-    color: var(--fresh-green);
-  }
-
-  &:hover .helpBtnIcon {
-    stroke: var(--fresh-green);
-  }
 
   & span {
     color: var(--accent-sidebar-color);
+    transition: color var(--transition-time) var(--transition-time);
+
   }
+
+  &:hover span {
+    color: var(--help-hover);
+  }
+
+
 }
 
 .helpBtnIcon {
   width: 20px;
   height: 20px;
-  stroke: var(--white);
-  transition: all 0.3s ease;
+  stroke: var(--accent-sidebar-color);
+  transition: stroke var(--transition-time) var(--transition-time);
+}
+
+.helpButton:hover .helpBtnIcon {
+  stroke: var(--help-hover);
 }
 
 @media (min-width: 768px) {
@@ -78,8 +83,7 @@
   }
 }
 
-@media (min-width: 1440px) {
-}
+@media (min-width: 1440px) {}
 
 .needHelp {
   color: var(--accent-sidebar-color);
