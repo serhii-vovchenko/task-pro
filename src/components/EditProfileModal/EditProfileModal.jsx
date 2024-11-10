@@ -22,8 +22,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
       .email('Invalid email format')
       .required('Email is required'),
     password: Yup.string()
-      .min(8, 'Password must be at least 8 characters')
-      .required('Password is required'),
+      
   });
 
 
@@ -33,7 +32,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
     formData.append('email', values.email);
     formData.append('password', values.password);
     if (selectedFile) {
-      formData.append('photo', selectedFile); 
+      formData.append('photoUrl', selectedFile); 
     }
     console.log(formData);
     dispatch(updateUserProfile(formData))
@@ -67,15 +66,15 @@ const EditProfileModal = ({ isOpen, onClose }) => {
     ? 'icon-user-violet'
     : user.theme === 'dark'
     ? 'icon-user-dark'
-    : null;
+    : 'icon-user';
 
     const userAvatar =
     user.photoUrl ? (
-      <svg className={s.avatarIcon} height="32" width="32">
-       <use href={`${sprite}#${userIcon}`} />
-      </svg>
-    ) : (
       <img className={s.userAvatar} src={user.photoUrl} alt="User Avatar" />
+    ) : (
+      <svg className={s.avatarIcon} height="32" width="32">
+        <use href={`${sprite}#${userIcon}`} />
+      </svg>
     );
   
   return (
