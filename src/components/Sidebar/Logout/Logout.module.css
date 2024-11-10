@@ -29,6 +29,7 @@
 }
 
 .logoutBtnIcon {
+  fill: transparent;
   stroke: var(--pale-green);
   width: 32px;
   height: 32px;
