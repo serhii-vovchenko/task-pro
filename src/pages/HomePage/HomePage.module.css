@@ -9,9 +9,3 @@
   flex-direction: column;
   overflow: hidden;
 }
-
-/* @media screen and (min-width: 1440px) {
-  .wrapper {
-    width: calc(100% - 260px);
-  }
-} */

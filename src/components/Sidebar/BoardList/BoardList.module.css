@@ -73,7 +73,7 @@
 .btnBoxIcon {
   width: 16px;
   height: 16px;
-  fill: var(--board-icons);
+  fill: transparent;
   stroke: var(--board-icons);
 }
 
