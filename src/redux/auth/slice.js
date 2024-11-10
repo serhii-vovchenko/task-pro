@@ -5,6 +5,7 @@ import {
   logoutThunk,
   registerThunk,
   updateThemeInDatabase,
+  updateUserProfile,
 } from './operations.js';
 
 const initialState = {
@@ -65,6 +66,10 @@ const slice = createSlice({
       })
       .addCase(updateThemeInDatabase.fulfilled, (state, action) => {
         state.user = action.payload.user;
+      })
+
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.user.photoUrl = action.payload.data.user.photoUrl;
       })
 
       .addMatcher(
