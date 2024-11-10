@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import s from './WelcomePageView.module.css';
 import { Link } from 'react-router-dom';
-import welcomeImage from '../../img/welcomePageImg.png';
+import welcomeImage from '../../img/user_2x.png';
 import sprite from '../../../src/img/icons.svg';
 
 const WelcomePageView = () => {
