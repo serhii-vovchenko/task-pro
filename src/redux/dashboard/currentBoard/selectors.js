@@ -13,10 +13,11 @@ export const selectBoardColumns = createSelector(
     if (!currentBoard) return [];
 
     return currentBoard.columns.map(column => {
-      const filteredTasks = column.tasks.filter(task => {
-        if (selectedPriority === 'without') return true;
-        return task.priority === selectedPriority;
-      });
+      const filteredTasks =
+        column.tasks?.filter(task => {
+          if (selectedPriority === 'without') return true;
+          return task.priority === selectedPriority;
+        }) || [];
       return { ...column, tasks: filteredTasks };
     });
   }
