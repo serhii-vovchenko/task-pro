@@ -6,6 +6,7 @@
   margin-right: -14px;
   overflow-x: hidden;
   overflow-y: auto;
+  height: calc(100vh - 600px);
   flex-grow: 1;
 }
 

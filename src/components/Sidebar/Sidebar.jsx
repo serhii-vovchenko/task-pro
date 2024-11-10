@@ -26,16 +26,18 @@ const Sidebar = () => {
     <>
       <aside className={clsx(s.sidebar, isSidebarOpen && s.sidebarIsOpen)}>
         <div>
-          <Logo />
-        </div>
-        <h2 className={s.sidebarTitle}>My boards</h2>
-        <div className={s.createBoard}>
-          <p className={s.createBoardTitle}>Create a new board</p>
-          <button type="submit" className={s.addBtn} onClick={openAddBoard}>
-            <svg className={s.logoIcon} height="32" width="32">
-              <use href={`${sprite}#icon-plus`} />
-            </svg>
-          </button>
+          <div>
+            <Logo />
+          </div>
+          <h2 className={s.sidebarTitle}>My boards</h2>
+          <div className={s.createBoard}>
+            <p className={s.createBoardTitle}>Create a new board</p>
+            <button type="submit" className={s.addBtn} onClick={openAddBoard}>
+              <svg className={s.logoIcon} height="32" width="32">
+                <use href={`${sprite}#icon-plus`} />
+              </svg>
+            </button>
+          </div>
         </div>
         <BoardList />
         <div>
