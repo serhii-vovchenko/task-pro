@@ -73,6 +73,12 @@
 
   --board-list-text: rgba(22, 22, 22, 0.5);
   --board-list-text-active: #161616;
+
+  --help-text: #161616;
+  --help-text-span: #bedbb0;
+
+  --logout-icon: #bedbb0;
+  --logout-text: #161616;
 }
 
 [data-theme='dark'] {
@@ -142,6 +148,12 @@
 
   --board-list-text: rgba(255, 255, 255, 0.5);
   --board-list-text-active: #ffffff;
+
+  --help-text: #ffffff;
+  --help-text-span: #bedbb0;
+
+  --logout-icon: #bedbb0;
+  --logout-text: #ffffff;
 }
 
 [data-theme='violet'] {
@@ -212,4 +224,10 @@
 
   --board-list-text: rgba(255, 255, 255, 0.5);
   --board-list-text-active: #ffffff;
+
+  --help-text: #ffffff;
+  --help-text-span: #5255bc;
+
+  --logout-icon: #ffffff;
+  --logout-text: #ffffff;
 }
