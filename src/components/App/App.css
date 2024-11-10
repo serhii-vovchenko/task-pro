@@ -67,6 +67,9 @@
   --calendar-bg: #fff;
   --disabled-day-calendar: rgba(22, 22, 22, 0.2);
   --selected-day-calendar-text-color: #161616;
+
+  --bg-empty-board: #f6f6f7;
+  --accent-empty-board: #bedbb0;
 }
 
 [data-theme='dark'] {
@@ -130,6 +133,9 @@
   --calendar-bg: #1f1f1f;
   --disabled-day-calendar: rgba(255, 255, 255, 0.2);
   --selected-day-calendar-text-color: #1f1f1f;
+
+  --bg-empty-board: #1f1f1f;
+  --accent-empty-board: #bedbb0;
 }
 
 [data-theme='violet'] {
@@ -193,4 +199,7 @@
   --calendar-bg: #fff;
   --disabled-day-calendar: rgba(22, 22, 22, 0.2);
   --selected-day-calendar-text-color: #fcfcfc;
+
+  --bg-empty-board: #ecedfd;
+  --accent-empty-board: #5255bc;
 }

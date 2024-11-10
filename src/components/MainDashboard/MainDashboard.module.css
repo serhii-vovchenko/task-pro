@@ -2,6 +2,8 @@
   display: flex;
   gap: 14px;
   overflow-x: auto;
+  padding: 1px;
+  width: 100%;
 }
 
 .list {
@@ -52,4 +54,11 @@
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;
+}
+
+
+@media (min-width: 1440px) {
+  .wrapper {
+    width: calc(100% - 260px);
+  }
 }
