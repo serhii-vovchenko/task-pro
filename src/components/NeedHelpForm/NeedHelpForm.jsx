@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
     .max(300, 'Comment cannot exceed 300 characters'),
 });
 
-const NeedHelpForm = () => {
+const NeedHelpForm = ({onClose}) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectNeedHelpLoading);
@@ -44,6 +44,7 @@ const NeedHelpForm = () => {
       dispatch(submitNeedHelpThunk(modifiedValues));
 
       actions.resetForm();
+      onClose();
     } catch (error) {
       console.error('Error during form submission:', error);
     }

@@ -30,6 +30,7 @@
   border: 1px solid var(--primary-main-transparent);
   border-radius: 8px;
   padding: 14px 18px;
+  height: 49px;
   background-color: transparent;
   transition: border var(--transition-time) var(--transition-func);
 }
