@@ -12,7 +12,8 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         overflow: 'auto',
         borderRadius: '8px',
-        borderColor: 'transparent',
+        borderColor: 'var(--modal-border)',
+        borderWidth: '2px',
         backgroundColor: 'var(--modal-bg)'
     },
   overlay: {
