@@ -8,7 +8,7 @@ import s from './ScreensPage.module.css';
 const ScreensPage = () => {
   const { currentBoard } = useSelector(selectCurrentBoard);
 
-  return currentBoard ? (
+  return !currentBoard?.loading ? (
     <div
       className={s.screenPage}
       style={{
