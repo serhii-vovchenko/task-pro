@@ -83,7 +83,7 @@ export const logoutThunk = createAsyncThunk(
 );
 
 export const updateUserProfile = createAsyncThunk(
-  'auth/updateEdit',
+  'auth/updateUserProfile',
   async (formData, { rejectWithValue, getState }) => {
     try {
       const response = await api.patch('users/edit', formData, {

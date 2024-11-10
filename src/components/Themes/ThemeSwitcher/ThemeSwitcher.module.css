@@ -17,35 +17,31 @@
 
 .arrowIcon {
   width: 20px;
-  height: 20px; 
+  height: 20px;
   stroke: var(--text-primary);
-  display: inline-flex;
-  align-items: center;
+  display: flex;
   gap: 4px;
-  
-
 }
 
 .dropdownMenu {
   display: flex;
+  padding: 18px 44px 18px 18px;
   flex-direction: column;
+  justify-content: center;
+  gap: 4px;
   position: absolute;
   top: 100%;
-  left: 50%;
-  width: 160px;
+  left: 0;
+  width: 100px;
   background-color: var(--background-paper);
   border-radius: 8px;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 16px 0px var(--modal-overlay);
   z-index: 10;
   border: 1px solid var(--primary-main);
-  color: var(--text-primary);
 }
-
-.themeButton {
-  padding: 10px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  text-align: center;
-  color: var(--text-primary);
+.themeText {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.28px;
+  color: var(--drop-down-text);
 }

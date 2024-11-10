@@ -13,19 +13,13 @@ const ThemeSwitcher = () => {
   );
   const dropdownRef = useRef(null);
 
-  const changeTheme = theme => ({
-    type: 'CHANGE_THEME',
-    payload: theme,
-  });
-
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', currentTheme);
     localStorage.setItem('theme', currentTheme);
     dispatch(changeTheme(currentTheme));
   }, [currentTheme, dispatch]);
 
-  const handleThemeChange = async event => {
-    const newTheme = event.target.value;
+  const handleThemeChange = async newTheme => {
     setCurrentTheme(newTheme);
     setIsOpen(false);
     await dispatch(updateThemeInDatabase(newTheme));
@@ -44,6 +38,17 @@ const ThemeSwitcher = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+  const getActiveThemeColor = () => {
+    switch (currentTheme) {
+      case 'light':
+      case 'dark':
+        return '#BEDBB0';
+      case 'violet':
+        return '#8A63B9';
+      default:
+        return '#000';
+    }
+  };
 
   return (
     <div className={s.themeContainer} onClick={() => setIsOpen(!isOpen)}>
@@ -54,25 +59,22 @@ const ThemeSwitcher = () => {
       {isOpen && (
         <div ref={dropdownRef} className={s.dropdownMenu}>
           {['light', 'dark', 'violet'].map(theme => (
-            <button
+            <span 
               key={theme}
-              value={theme}
-              onClick={handleThemeChange}
-              className={s.themeButton}
+              onClick={() => handleThemeChange(theme)}
+              className={s.themeText}
               style={{
                 color:
                   currentTheme === theme
-                    ? '#BEDBB0'
+                    ? getActiveThemeColor()
                     : currentTheme === 'dark'
                     ? '#FFF'
-                    : '#000', // Текст зеленый для выбранной темы, белый для темной темы, черный для остальных
-                backgroundColor: 'transparent', // Фон прозрачный
-                border: 'none', // Убираем границу
-                cursor: 'pointer', // Курсор указывает на возможность клика
+                    : '#000',
+                cursor: 'pointer',
               }}
             >
               {theme.charAt(0).toUpperCase() + theme.slice(1)}
-            </button>
+            </span>
           ))}
         </div>
       )}
