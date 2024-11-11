@@ -15,7 +15,7 @@ const HeaderDashboard = () => {
 
   return (
     <div className={s.headBoard}>
-      <h2>{activeBoard?.title}</h2>
+      <h2 className={s.title}>{activeBoard?.title}</h2>
 
       <div className={s.wrapper} onClick={handleOpen}>
         <svg className={s.icon}>

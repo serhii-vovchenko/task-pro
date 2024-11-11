@@ -4,6 +4,7 @@
   overflow-x: auto;
   padding: 1px;
   width: 100%;
+  padding: 0 20px;
 }
 
 .list {
@@ -56,8 +57,14 @@
   letter-spacing: -0.02em;
 }
 
-/* @media screen and (min-width: 1440px) {
+@media screen and (min-width: 768px) {
   .wrapper {
-    width: calc(100% - 260px);
+    padding: 0 32px;
   }
-} */
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    padding: 0 24px;
+  }
+}
