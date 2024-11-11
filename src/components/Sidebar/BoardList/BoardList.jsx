@@ -27,26 +27,58 @@ const BoardList = () => {
   };
 
   useEffect(() => {
-    dispatch(getBoardThunk())
-      .then(res => {
-        const boards = res.payload;
-        if (Array.isArray(boards) && boards.length > 0) {
-          const activeBoard = boards.find(board => board.isActive);
+    const fetchBoardsAndSetActive = async () => {
+      dispatch(getBoardThunk())
+        .then(res => {
+          const boards = res.payload;
+          if (Array.isArray(boards) && boards.length > 0) {
+            const currentBoardId = localStorage.getItem('currentId');
 
-          if (activeBoard) {
-            dispatch(getCurrentBoard(activeBoard._id));
+            if (currentBoardId) {
+              const currentBoard = boards.find(
+                board => board._id === JSON.parse(currentBoardId)
+              );
+
+              if (currentBoard) {
+                dispatch(getCurrentBoard(currentBoard._id));
+              } else {
+                dispatch(clearCurrentBoard());
+                localStorage.removeItem('currentId');
+              }
+            } else {
+              const activeBoard = boards.find(board => board.isActive);
+
+              if (activeBoard) {
+                dispatch(getCurrentBoard(activeBoard._id));
+              } else {
+                dispatch(getCurrentBoard(boards[0]._id));
+                localStorage.setItem(
+                  'currentId',
+                  JSON.stringify(boards[0]._id)
+                );
+              }
+            }
           } else {
             dispatch(clearCurrentBoard());
+            localStorage.removeItem('currentId');
+
+            if (boards.length > 0) {
+              dispatch(getCurrentBoard(boards[0]._id));
+              localStorage.setItem('currentId', JSON.stringify(boards[0]._id));
+            }
           }
-        } else {
+        })
+        .catch(error => {
+          console.error('Error fetching boards:', error);
           dispatch(clearCurrentBoard());
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching boards:', error);
-        dispatch(clearCurrentBoard());
-      });
-  }, [dispatch]);
+          localStorage.removeItem('currentId');
+        });
+    };
+
+    if (boards.length === 0 || !boards.some(board => board.isActive)) {
+      fetchBoardsAndSetActive();
+    }
+  }, [dispatch, boards]);
 
   const handleDelete = boardId => {
     const isLastBoard = boards.length === 1;

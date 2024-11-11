@@ -18,12 +18,14 @@ const boardsSlice = createSlice({
   initialState,
   reducers: {
     setActiveBoard: (state, action) => {
-      state.boards.forEach(board => (board.isActive = false));
-      const activeBoard = state.boards.find(
-        board => board._id === action.payload
-      );
-      if (activeBoard) activeBoard.isActive = true;
-      state.currentBoard = activeBoard;
+      const updatedBoards = state.boards.map(board => ({
+        ...board,
+        isActive: board._id === action.payload,
+      }));
+
+      state.boards = updatedBoards;
+
+      state.currentBoard = updatedBoards.find(board => board.isActive) || null;
     },
   },
   extraReducers: builder => {

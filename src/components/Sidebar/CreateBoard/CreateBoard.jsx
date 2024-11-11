@@ -5,7 +5,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import sprite from '../../../img/icons.svg';
-import noBack from '../../../img/bg/bg-10-desk.jpg';
 import { addBoard } from '../../../redux/dashboard/boards/operations.js';
 import { icons } from '../../../../public/db/icons.js';
 import { backgrounds } from '../../../../public/db/backgrounds.js';
@@ -14,16 +13,21 @@ import SvgIcon from '../../SvgIcon/SvgIcon';
 import { setActiveBoard } from '../../../redux/dashboard/boards/slice.js';
 import { getCurrentBoard } from '../../../redux/dashboard/currentBoard/operations.js';
 
+const validationSchema = Yup.object().shape({
+  title: Yup.string()
+    .min(3, 'Too short!')
+    .max(70, 'Too Long!')
+    .required('This field is required!'),
+});
+
 export const NewBoard = ({ closeModal }) => {
   const dispatch = useDispatch();
 
   const [iconsSelected, setIconsSelected] = useState(
     icons[0]?.name || '1_icon-project'
   );
-  const [backgroundSelected, setBackgroundSelected] = useState(
-    backgrounds[0]?.name || 'bg-0'
-  );
-  const [title, setTitle] = useState('');
+
+  const [backgroundSelected, setBackgroundSelected] = useState('bg-0');
   const modalRef = useRef(null);
 
   const handleIconChange = (event, setFieldValue) => {
@@ -52,14 +56,8 @@ export const NewBoard = ({ closeModal }) => {
     };
   }, [closeModal]);
 
-  const newBoardObject = {
-    title,
-    iconName: iconsSelected,
-    backgroundName: backgroundSelected,
-  };
-
-  const createNewBoard = async () => {
-    dispatch(addBoard(newBoardObject)).then(res => {
+  const createNewBoard = async values => {
+    dispatch(addBoard(values)).then(res => {
       if (res.type.includes('fulfilled')) {
         const newBoardId = res.payload?._id;
         dispatch(setActiveBoard(newBoardId));
@@ -68,6 +66,13 @@ export const NewBoard = ({ closeModal }) => {
     });
     closeModal();
   };
+  const reorderedBackgrounds = backgrounds.sort((a, b) => {
+    if (a.name === 'bg-0') return -1;
+    if (b.name === 'bg-0') return 1;
+    const nameA = parseInt(a.name.replace('bg-', ''), 10);
+    const nameB = parseInt(b.name.replace('bg-', ''), 10);
+    return nameA - nameB;
+  });
 
   return (
     <div className={s.modalOverlay} ref={modalRef}>
