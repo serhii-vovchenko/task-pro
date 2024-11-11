@@ -4,21 +4,20 @@ import { useDispatch } from 'react-redux';
 
 import sprite from '../../../img/icons.svg';
 import noBack from '../../../img/bg/bg-10-desk.jpg';
-import {
-  addBoard,
-  getBoardThunk,
-} from '../../../redux/dashboard/boards/operations.js';
+import { addBoard } from '../../../redux/dashboard/boards/operations.js';
 import { icons } from '../../../../public/db/icons.js';
 import { backgrounds } from '../../../../public/db/backgrounds.js';
 
 import SvgIcon from '../../SvgIcon/SvgIcon';
+import { setActiveBoard } from '../../../redux/dashboard/boards/slice.js';
+import { getCurrentBoard } from '../../../redux/dashboard/currentBoard/operations.js';
 
 export const NewBoard = ({ closeModal }) => {
   const [iconsSelected, setIconsSelected] = useState(
     icons[0]?.name || '1_icon-project'
   );
   const [backgroundSelected, setBackgroundSelected] = useState(
-    backgrounds[0]?.name || 'bg-2'
+    backgrounds[0]?.name || 'bg-0'
   );
   const [title, setTitle] = useState('');
   const modalRef = useRef(null);
@@ -53,9 +52,14 @@ export const NewBoard = ({ closeModal }) => {
   };
 
   const createNewBoard = async () => {
-    await dispatch(addBoard(newBoardObject));
+    dispatch(addBoard(newBoardObject)).then(res => {
+      if (res.type.includes('fulfilled')) {
+        const newBoardId = res.payload?._id;
+        dispatch(setActiveBoard(newBoardId));
+        dispatch(getCurrentBoard(newBoardId));
+      }
+    });
     closeModal();
-    dispatch(getBoardThunk());
   };
 
   return (

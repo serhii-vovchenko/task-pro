@@ -14,6 +14,7 @@ import { selectCurrentBoard } from '../../../redux/dashboard/currentBoard/select
 import { clearCurrentBoard } from '../../../redux/dashboard/currentBoard/slice';
 import EditBoard from '../EditBoard/EditBoard';
 import { useState } from 'react';
+import { setActiveBoard } from '../../../redux/dashboard/boards/slice';
 
 const BoardList = () => {
   const { boards, selectLoading } = useSelector(selectBoards);
@@ -26,31 +27,44 @@ const BoardList = () => {
   };
 
   useEffect(() => {
-    dispatch(getBoardThunk());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (!selectLoading) {
-      if (boards.length > 0) {
-        const activeBoard = boards.find(board => board.isActive);
-        const boardToDispatch = activeBoard || boards[0];
-        getBoardInfo(boardToDispatch._id);
-      }
-    } else {
-      dispatch(clearCurrentBoard());
-    }
-  }, [dispatch, boards, selectLoading]);
-
-  const handleDelete = boardId => {
-    dispatch(deleteBoard(boardId))
+    dispatch(getBoardThunk())
       .then(res => {
-        if (res.type.includes('fulfilled') && boards.length > 0) {
-          getBoardInfo(boards[0]._id);
+        const boards = res.payload;
+        if (Array.isArray(boards) && boards.length > 0) {
+          const activeBoard = boards.find(board => board.isActive);
+
+          if (activeBoard) {
+            dispatch(getCurrentBoard(activeBoard._id));
+          } else {
+            dispatch(clearCurrentBoard());
+          }
+        } else {
+          dispatch(clearCurrentBoard());
         }
       })
       .catch(error => {
-        console.error('Error during board delete:', error);
+        console.error('Error fetching boards:', error);
+        dispatch(clearCurrentBoard());
       });
+  }, [dispatch]);
+
+  const handleDelete = boardId => {
+    const isLastBoard = boards.length === 1;
+    const boardIndex = boards.findIndex(board => board._id === boardId);
+
+    if (isLastBoard) {
+      dispatch(deleteBoard(boardId)).then(() => dispatch(clearCurrentBoard()));
+    } else {
+      dispatch(deleteBoard(boardId)).then(() => {
+        if (boardIndex === 0 && boards.length > 1) {
+          dispatch(setActiveBoard(boards[1]._id));
+          dispatch(getCurrentBoard(boards[1]._id));
+        } else if (boardIndex === boards.length - 1) {
+          dispatch(setActiveBoard(boards[boards.length - 2]._id));
+          dispatch(getCurrentBoard(boards[boards.length - 2]._id));
+        }
+      });
+    }
   };
 
   const handleEdit = () => {
