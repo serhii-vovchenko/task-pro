@@ -57,10 +57,10 @@ const currentBoardSlice = createSlice({
         );
       })
       .addCase(createTask.fulfilled, (state, action) => {
-        const { columnId, ...newTask } = action.payload;
+        const newTask  = action.payload;
 
         state.currentBoard.columns = state.currentBoard.columns.map(column => {
-          if (column._id === columnId) {
+          if (column._id === newTask.columnId) {
             const updatedTasks = Array.isArray(column.tasks)
               ? [...column.tasks, newTask]
               : [newTask];
