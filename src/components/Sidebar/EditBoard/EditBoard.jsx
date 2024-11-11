@@ -1,10 +1,10 @@
 import s from './EditBoard.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 import sprite from '../../../img/icons.svg';
-import noBack from '../../../img/bg/bg-10-desk.jpg';
 import {
   updateBoard,
   getBoardThunk,
@@ -15,26 +15,35 @@ import { selectCurrentBoard } from '../../../redux/dashboard/currentBoard/select
 
 import SvgIcon from '../../SvgIcon/SvgIcon';
 
+const validationSchema = Yup.object().shape({
+  title: Yup.string()
+    .min(3, 'Too short!')
+    .max(70, 'Too Long!')
+    .required('This field is required!'),
+});
+
 export const EditBoard = ({ closeModal }) => {
   const { currentBoard } = useSelector(selectCurrentBoard);
   const [iconsSelected, setIconsSelected] = useState(
     currentBoard?.iconName || icons[0]?.name || '1_icon-project'
   );
   const [backgroundSelected, setBackgroundSelected] = useState(
-    currentBoard?.backgroundName || backgrounds[0]?.name || 'bg-2'
+    currentBoard?.backgroundName || 'bg-0'
   );
-  const [title, setTitle] = useState(currentBoard?.title || '');
   const modalRef = useRef(null);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleTitleChange = event => setTitle(event.target.value);
-  const handleIconChange = event => {
-    setIconsSelected(event.currentTarget.dataset.source);
+  const handleIconChange = (event, setFieldValue) => {
+    const newIcon = event.currentTarget.dataset.source;
+    setIconsSelected(newIcon);
+    setFieldValue('iconName', newIcon);
   };
-  const handleBackgroundChange = event =>
-    setBackgroundSelected(event.currentTarget.dataset.source);
+  const handleBackgroundChange = (event, setFieldValue) => {
+    const newBackground = event.currentTarget.dataset.source;
+    setBackgroundSelected(newBackground);
+    setFieldValue('backgroundName', newBackground);
+  };
 
   useEffect(() => {
     const handleClickOutside = event => {
@@ -50,22 +59,23 @@ export const EditBoard = ({ closeModal }) => {
     };
   }, [closeModal]);
 
-  const updatedBoardObject = {
-    _id: currentBoard?._id,
-    title,
-    iconName: iconsSelected,
-    backgroundName: backgroundSelected,
-  };
-
-  const updateExistingBoard = async () => {
+  const updateExistingBoard = async values => {
     try {
-      await dispatch(updateBoard(updatedBoardObject));
+      await dispatch(updateBoard(values));
       closeModal();
       dispatch(getBoardThunk());
     } catch (error) {
       console.error('Error updating board:', error);
     }
   };
+
+  const reorderedBackgrounds = backgrounds.sort((a, b) => {
+    if (a.name === 'bg-0') return -1;
+    if (b.name === 'bg-0') return 1;
+    const nameA = parseInt(a.name.replace('bg-', ''), 10);
+    const nameB = parseInt(b.name.replace('bg-', ''), 10);
+    return nameA - nameB;
+  });
 
   return (
     <div className={s.modalOverlay} ref={modalRef}>
@@ -75,89 +85,102 @@ export const EditBoard = ({ closeModal }) => {
           if (e.target === e.currentTarget) closeModal();
         }}
       >
-        <div className={s.divCard}>
-          <h2 className={s.textNew}>Edit board</h2>
-          <button onClick={closeModal}>
-            <svg className={s.iconClose} height="32" width="32">
-              <use href={`${sprite}#icon-x-close`} />
-            </svg>
-          </button>
-          <input
-            className={s.titleInput}
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={handleTitleChange}
-          />
+        <Formik
+          initialValues={{
+            _id: currentBoard?._id,
+            title: currentBoard?.title || '',
+            iconName: iconsSelected,
+            backgroundName: backgroundSelected,
+          }}
+          onSubmit={updateExistingBoard}
+          validationSchema={validationSchema}
+        >
+          {({ values, setFieldValue }) => (
+            <Form>
+              <div className={s.divCard}>
+                <h2 className={s.textNew}>Edit board</h2>
+                <button onClick={closeModal}>
+                  <svg className={s.iconClose} height="32" width="32">
+                    <use href={`${sprite}#icon-x-close`} />
+                  </svg>
+                </button>
+                <div className={s.fieldCont}>
+                  <Field
+                    className={s.titleInput}
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                  />
+                  <ErrorMessage
+                    name="title"
+                    component="div"
+                    className={s.errorMsg}
+                  />
+                </div>
 
-          <h3 className={s.textIcons}>Icons</h3>
-          <ul className={s.listDarkIcons}>
-            {icons.map((icon, index) => (
-              <li key={index}>
-                {' '}
-                <input
-                  type="radio"
-                  value={icon.name}
-                  name="icons"
-                  className={s.inputRad}
-                  data-source={icon.name}
-                  checked={iconsSelected === icon.name}
-                  onChange={handleIconChange}
-                />
-                <SvgIcon
-                  url={icon.iconUrl}
-                  active={iconsSelected === icon.name}
-                />
-              </li>
-            ))}
-          </ul>
-          <h3 className={s.textBackground}>Background</h3>
-          <ul className={s.listColorIcons}>
-            <li
-              className={
-                backgroundSelected === 'no-background'
-                  ? s.listItemActive
-                  : s.listItem
-              }
-            >
-              <input
-                type="radio"
-                name="backgrounds"
-                data-source="no-background"
-                className={s.inputBack}
-                checked={backgroundSelected === 'no-background'}
-                onChange={handleBackgroundChange}
-              />
-              <img src={noBack} alt="no-background" className={s.img_back} />
-            </li>
-            {backgrounds.map((bg, index) => (
-              <li
-                key={index}
-                className={
-                  backgroundSelected === bg.name ? s.listItemActive : s.listItem
-                }
-              >
-                <input
-                  type="radio"
-                  name="backgrounds"
-                  data-source={bg.name}
-                  className={s.inputBack}
-                  checked={backgroundSelected === bg.name}
-                  onChange={handleBackgroundChange}
-                />
-                <img src={bg.modalUrl} alt={bg.name} className={s.img_back} />
-              </li>
-            ))}
-          </ul>
-          <button className={s.mainButton} onClick={updateExistingBoard}>
-            <div className={s.plusBtnOff}>
-              <svg className={s.addBtnIcon} height="32" width="32">
-                <use href={`${sprite}#icon-plus`} />
-              </svg>
-            </div>
-            Edit
-          </button>
-        </div>
+                <h3 className={s.textIcons}>Icons</h3>
+                <ul className={s.listDarkIcons}>
+                  {icons.map((icon, index) => (
+                    <li key={index}>
+                      <input
+                        type="radio"
+                        value={icon.name}
+                        name="iconName"
+                        className={s.inputRad}
+                        data-source={icon.name}
+                        checked={values.iconName === icon.name}
+                        onChange={event =>
+                          handleIconChange(event, setFieldValue)
+                        }
+                      />
+                      <SvgIcon
+                        url={icon.iconUrl}
+                        active={values.iconName === icon.name}
+                      />
+                    </li>
+                  ))}
+                </ul>
+                <h3 className={s.textBackground}>Background</h3>
+                <ul className={s.listColorIcons}>
+                  {reorderedBackgrounds.map((bg, index) => (
+                    <li
+                      key={index}
+                      className={
+                        values.backgroundName === bg.name
+                          ? s.listItemActive
+                          : s.listItem
+                      }
+                    >
+                      <input
+                        type="radio"
+                        name="backgroundName"
+                        data-source={bg.name}
+                        className={s.inputBack}
+                        checked={values.backgroundName === bg.name}
+                        onChange={event =>
+                          handleBackgroundChange(event, setFieldValue)
+                        }
+                      />
+                      <img
+                        src={bg.modalUrl}
+                        alt={bg.name}
+                        className={s.img_back}
+                      />
+                    </li>
+                  ))}
+                </ul>
+                <button className={s.mainButton} type="submit">
+                  <div className={s.plusBtnOff}>
+                    <svg className={s.addBtnIcon} height="32" width="32">
+                      <use href={`${sprite}#icon-plus`} />
+                    </svg>
+                  </div>
+                  Edit
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );
