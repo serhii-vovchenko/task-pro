@@ -1,10 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { selectCurrentBoard } from '../../redux/dashboard/currentBoard/selectors';
 import MainDashboard from '../MainDashboard/MainDashboard';
 import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
 import DefaultTextHome from '../DefaultTextHome/DefaultTextHome';
 import s from './ScreensPage.module.css';
+import {
+  toggleCreateBoard,
+  toggleUpdateBoar,
+} from '../../redux/dashboard/modals/slice';
+import CreateBoard from './../Sidebar/CreateBoard/CreateBoard';
+import { setActiveBoard } from '../../redux/dashboard/boards/slice';
+import { getCurrentBoard } from '../../redux/dashboard/currentBoard/operations';
+import EditBoard from '../Sidebar/EditBoard/EditBoard';
 
 const ScreensPage = () => {
   const { currentBoard } = useSelector(selectCurrentBoard);
@@ -30,6 +38,31 @@ const ScreensPage = () => {
     return `url(${currentBoard?.backgrounds?.resolution?.[resolution]})`;
   };
 
+  // ===============================================================================
+  // const [isEditing, setIsEditing] = useState(false);
+  const isAddBoardOpen = useSelector(state => state.modals.isCreateBoardOpen);
+  const updateBoardIsOpen = useSelector(
+    state => state.modals.isUpdateBoardOpen
+  );
+
+  const dispatch = useDispatch();
+  const toggleAddBoard = () => {
+    dispatch(toggleCreateBoard());
+  };
+
+  const closeEditModal = async () => {
+    // setIsEditing(false);
+    dispatch(toggleUpdateBoar());
+
+    const updatedBoardId = currentBoard?._id;
+    if (updatedBoardId) {
+      dispatch(setActiveBoard(updatedBoardId));
+      dispatch(getCurrentBoard(updatedBoardId));
+    }
+  };
+
+  // =================================================================================
+
   return !currentBoard?.loading ? (
     <div
       className={s.screenPage}
@@ -40,9 +73,14 @@ const ScreensPage = () => {
     >
       <HeaderDashboard />
       <MainDashboard />
+      {isAddBoardOpen && <CreateBoard closeModal={toggleAddBoard} />}
+      {updateBoardIsOpen && <EditBoard closeModal={closeEditModal} />}
     </div>
   ) : (
-    <DefaultTextHome />
+    <>
+      <DefaultTextHome />
+      {updateBoardIsOpen && <CreateBoard closeModal={toggleAddBoard} />}
+    </>
   );
 };
 
