@@ -166,6 +166,11 @@
   background-color: var(--fresh-green);
 }
 
+.formBottom:disabled {
+  background-color: var(--soft-gray);
+  cursor: not-allowed;
+}
+
 @media (min-width: 768px) {
   .formBlock {
     width: 424px;

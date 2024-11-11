@@ -14,6 +14,7 @@ import { selectCurrentBoard } from '../../../redux/dashboard/currentBoard/select
 import { clearCurrentBoard } from '../../../redux/dashboard/currentBoard/slice';
 import EditBoard from '../EditBoard/EditBoard';
 import { useState } from 'react';
+import { setActiveBoard } from '../../../redux/dashboard/boards/slice';
 
 const BoardList = () => {
   const { boards, selectLoading } = useSelector(selectBoards);
@@ -26,31 +27,76 @@ const BoardList = () => {
   };
 
   useEffect(() => {
-    dispatch(getBoardThunk());
-  }, [dispatch]);
+    const fetchBoardsAndSetActive = async () => {
+      dispatch(getBoardThunk())
+        .then(res => {
+          const boards = res.payload;
+          if (Array.isArray(boards) && boards.length > 0) {
+            const currentBoardId = localStorage.getItem('currentId');
 
-  useEffect(() => {
-    if (!selectLoading) {
-      if (boards.length > 0) {
-        const activeBoard = boards.find(board => board.isActive);
-        const boardToDispatch = activeBoard || boards[0];
-        getBoardInfo(boardToDispatch._id);
-      }
-    } else {
-      dispatch(clearCurrentBoard());
+            if (currentBoardId) {
+              const currentBoard = boards.find(
+                board => board._id === JSON.parse(currentBoardId)
+              );
+
+              if (currentBoard) {
+                dispatch(getCurrentBoard(currentBoard._id));
+              } else {
+                dispatch(clearCurrentBoard());
+                localStorage.removeItem('currentId');
+              }
+            } else {
+              const activeBoard = boards.find(board => board.isActive);
+
+              if (activeBoard) {
+                dispatch(getCurrentBoard(activeBoard._id));
+              } else {
+                dispatch(getCurrentBoard(boards[0]._id));
+                localStorage.setItem(
+                  'currentId',
+                  JSON.stringify(boards[0]._id)
+                );
+              }
+            }
+          } else {
+            dispatch(clearCurrentBoard());
+            localStorage.removeItem('currentId');
+
+            if (boards.length > 0) {
+              dispatch(getCurrentBoard(boards[0]._id));
+              localStorage.setItem('currentId', JSON.stringify(boards[0]._id));
+            }
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching boards:', error);
+          dispatch(clearCurrentBoard());
+          localStorage.removeItem('currentId');
+        });
+    };
+
+    if (boards.length === 0 || !boards.some(board => board.isActive)) {
+      fetchBoardsAndSetActive();
     }
-  }, [dispatch, boards, selectLoading]);
+  }, [dispatch, boards]);
 
   const handleDelete = boardId => {
-    dispatch(deleteBoard(boardId))
-      .then(res => {
-        if (res.type.includes('fulfilled') && boards.length > 0) {
-          getBoardInfo(boards[0]._id);
+    const isLastBoard = boards.length === 1;
+    const boardIndex = boards.findIndex(board => board._id === boardId);
+
+    if (isLastBoard) {
+      dispatch(deleteBoard(boardId)).then(() => dispatch(clearCurrentBoard()));
+    } else {
+      dispatch(deleteBoard(boardId)).then(() => {
+        if (boardIndex === 0 && boards.length > 1) {
+          dispatch(setActiveBoard(boards[1]._id));
+          dispatch(getCurrentBoard(boards[1]._id));
+        } else if (boardIndex === boards.length - 1) {
+          dispatch(setActiveBoard(boards[boards.length - 2]._id));
+          dispatch(getCurrentBoard(boards[boards.length - 2]._id));
         }
-      })
-      .catch(error => {
-        console.error('Error during board delete:', error);
       });
+    }
   };
 
   const handleEdit = () => {

@@ -329,4 +329,23 @@ export const backgrounds = [
       $date: '2024-11-01T13:54:30.882Z',
     },
   },
+  {
+    _id: {
+      $oid: '67313927f3b4836f0e19c695',
+    },
+    name: 'bg-0',
+    modalUrl:
+      'https://res.cloudinary.com/dxlahrm0m/image/upload/v1731279141/backgrounds/v1rytu58dnbnwjucdori.png',
+    resolution: {
+      mobile: 'none',
+      tablet: 'none',
+      desktop: 'none',
+    },
+    createdAt: {
+      $date: '2024-11-10T22:52:23.840Z',
+    },
+    updatedAt: {
+      $date: '2024-11-10T22:52:23.840Z',
+    },
+  },
 ];

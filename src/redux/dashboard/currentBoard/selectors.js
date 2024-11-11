@@ -15,7 +15,7 @@ export const selectBoardColumns = createSelector(
     return currentBoard.columns.map(column => {
       const filteredTasks =
         column.tasks?.filter(task => {
-          if (selectedPriority === 'without') return true;
+          if (selectedPriority === 'all') return true;
           return task.priority === selectedPriority;
         }) || [];
       return { ...column, tasks: filteredTasks };
@@ -23,7 +23,7 @@ export const selectBoardColumns = createSelector(
   }
 );
 
-export const selectorBoardId = state => state.currentBoard.currentBoard._id;
+export const selectorBoardId = state => state.currentBoard.currentBoard?._id;
 
 export const selectTasksByColumnId = columnId =>
   createSelector([selectBoardColumns], columns => {

@@ -36,6 +36,10 @@
 }
 
 @media (min-width: 1440px) {
+  .header {
+    padding-right: 24px;
+  }
+
   .menuIcon {
     display: none;
   }

@@ -3,45 +3,60 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  color: var(--text-primary);
-  font-size: 18px;
-  font-weight: 500;
-  font-family: Poppins;
+  padding: 14px 20px;
+  background-color: rgba(0, 0, 0, 0.333);
+  margin-bottom: 24px;
 }
 
-.filterBoard {
+.title {
   font-family: Poppins;
   font-size: 14px;
+  font-style: normal;
   font-weight: 500;
-  line-height: 21px;
+  line-height: normal;
   letter-spacing: -0.02em;
+  color: white;
 }
 
 .wrapper {
-  position: relative;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  background: transparent;
-  border: none;
-  outline: none;
 }
 
 .icon {
-  width: 18px;
-  height: 18px;
-  stroke: var(--text-primary);
-  transition: all 250ms linear;
+  width: 16px;
+  height: 16px;
+  stroke: white;
   fill: transparent;
 }
 
 .text {
   font-family: Poppins;
-  color: var(--text-primary);
-  font-size: 18px;
+  font-size: 14px;
+  font-style: normal;
   font-weight: 500;
-  letter-spacing: -0.28px;
+  line-height: normal;
+  letter-spacing: 0.02em;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .headBoard {
+    padding: 26px 32px 20px 32px;
+    margin-bottom: 6px;
+  }
+
+  .title {
+    font-family: Poppins;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .headBoard {
+    padding: 26px 24px 20px 24px;
+  }
 }
