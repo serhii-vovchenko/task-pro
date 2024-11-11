@@ -103,8 +103,13 @@ const BoardList = () => {
     setIsEditing(true);
   };
 
-  const closeEditModal = () => {
+  const closeEditModal = async () => {
     setIsEditing(false);
+    const updatedBoardId = currentBoard?._id;
+    if (updatedBoardId) {
+      dispatch(setActiveBoard(updatedBoardId));
+      dispatch(getCurrentBoard(updatedBoardId));
+    }
   };
 
   return (

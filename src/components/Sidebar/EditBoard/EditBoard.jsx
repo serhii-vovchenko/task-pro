@@ -89,8 +89,9 @@ export const EditBoard = ({ closeModal }) => {
           initialValues={{
             _id: currentBoard?._id,
             title: currentBoard?.title || '',
-            iconName: iconsSelected,
-            backgroundName: backgroundSelected,
+            iconName:
+              currentBoard?.icon?.name || icons[0]?.name || '1_icon-project',
+            backgroundName: currentBoard?.backgrounds?.name || 'bg-0',
           }}
           onSubmit={updateExistingBoard}
           validationSchema={validationSchema}

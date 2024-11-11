@@ -25,6 +25,9 @@ const currentBoardSlice = createSlice({
     setSelectedPriority: (state, action) => {
       state.selectedPriority = action.payload;
     },
+    updateCurrentBoard: (state, action) => {
+      state.currentBoard = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -159,6 +162,6 @@ const currentBoardSlice = createSlice({
   },
 });
 
-export const { clearCurrentBoard, setSelectedPriority } =
+export const { clearCurrentBoard, setSelectedPriority, updateCurrentBoard } =
   currentBoardSlice.actions;
 export const getCurrentBoardReducer = currentBoardSlice.reducer;
