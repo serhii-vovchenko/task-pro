@@ -33,21 +33,21 @@ const NeedHelpForm = ({ onClose }) => {
   };
 
   const handleSubmit = async (values, actions) => {
-    try {
-      const { comment, ...restValues } = values;
-      const modifiedValues = {
-        ...restValues,
-        userMessage: values.comment,
-      };
 
-      await dispatch(submitNeedHelpThunk(modifiedValues));
-
-      actions.resetForm();
-      toast.success('Form submitted successfully!');
-      onClose();
-    } catch (error) {
-      toast.error('Something went wrong. Please try again.');
+    const { comment, ...restValues } = values;
+    const modifiedValues = {
+      ...restValues,
+      userMessage: values.comment,
     }
+
+    await dispatch(submitNeedHelpThunk(modifiedValues)).then(() => {
+      toast.success('Form submitted successfully!');
+    })
+      .catch(() => {
+        toast.error('Something went wrong. Please try again.');
+      });
+    actions.resetForm();
+    onClose();
   };
 
   return (<> {isLoading && <Loader width="100" height="100" />}
@@ -74,7 +74,7 @@ const NeedHelpForm = ({ onClose }) => {
             className={`${css.input} ${css.comment}`}
           />
           <ErrorMessage name="comment" component="span" className={css.error} />
-          <button type="submit" className={css['form-button']}>
+          <button type="submit" className={css['form-button']} disabled={isLoading}>
             Send
           </button>
         </Form>
