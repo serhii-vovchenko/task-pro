@@ -30,6 +30,7 @@
     font-weight: 600;
     line-height: 120%;
     padding: 18px;
+    scale: 0.8;
 }
 
 .customCal>button {
@@ -109,4 +110,10 @@
     line-height: normal;
     letter-spacing: -0.28px;
     margin: 0;
+}
+
+@media screen and (min-width:375px) {
+    .customCal {
+        scale: 1;
+    }
 }
