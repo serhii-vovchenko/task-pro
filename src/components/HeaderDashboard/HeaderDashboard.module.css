@@ -9,7 +9,6 @@
 }
 
 .title {
-  font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -34,7 +33,6 @@
 }
 
 .text {
-  font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -50,7 +48,7 @@
   }
 
   .title {
-    font-family: Poppins;
+
     font-size: 18px;
   }
 }

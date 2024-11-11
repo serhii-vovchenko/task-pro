@@ -23,7 +23,6 @@
     box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
     color: var(--text-primary);
     background-color: transparent;
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -55,7 +54,6 @@
     box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
     height: 154px;
     color: var(--text-primary);
-    font-family: Poppins;
     font-size: 14px;
     background-color: transparent;
     font-style: normal;
