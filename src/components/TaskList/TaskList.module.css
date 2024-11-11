@@ -5,7 +5,7 @@
     max-width: 280px;
     height: 478px;
     overflow-y: auto;
-    flex-grow: 0;
+    flex-grow: 1;
     padding-right: 4px;
 }
 
