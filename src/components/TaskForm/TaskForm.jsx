@@ -30,8 +30,7 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
     if (typeOfPopUp === 'Edit') {
       dispatch(updateTask({ taskId: taskId, values: formData }));
     } else {
-      formData.columnId = columnId;
-      dispatch(createTask(formData));
+      dispatch(createTask({...formData, columnId: columnId}));
     }
     handleClose();
   };
