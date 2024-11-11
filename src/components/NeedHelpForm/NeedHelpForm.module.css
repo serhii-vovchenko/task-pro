@@ -60,7 +60,7 @@
 
 .error {
   font-size: 14px;
-  color: #FF4D4F;
+  color: var( --soft-pink);
 }
 
 .form-button {
