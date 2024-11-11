@@ -5,14 +5,14 @@
   justify-content: space-between;
   background-color: transparent;
   gap: 14px;
-  max-width: 336px;
+  max-width: 280px;
   width: 100vw;
   height: calc(100vh - 160px);
 }
 
 .wrapper {
   padding: 18px 20px;
-  max-width: 336px;
+  max-width: 268px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -28,6 +28,7 @@
   font-weight: 500;
   letter-spacing: -0.02em;
 }
+
 .buttons {
   /* background-color: var(--modal-bg); */
   background-color: transparent;
@@ -47,4 +48,14 @@
   fill: transparent;
   opacity: 0.5;
   padding: 0;
+}
+
+@media screen and (min-width: 375px) {
+  .wrapper {
+    max-width: 335px;
+  }
+
+  .column {
+    max-width: 350px;
+  }
 }
