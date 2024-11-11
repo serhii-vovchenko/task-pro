@@ -8,11 +8,18 @@ import { createTask, updateTask } from '../../redux/dashboard/tasks/operations';
 import sprite from '../../img/icons.svg';
 import s from './TaskForm.module.css';
 
-const validationSchema = Yup.object({
-  title: Yup.string().required('Title is required'),
+const createValidationSchema = Yup.object({
+  title: Yup.string().min(3, "Title must be at least 3 characters").max(60, "Title must be at most 60 characters").required('Title is required'),
   description: Yup.string(),
   priority: Yup.string().default('none'),
   deadline: Yup.date().nullable().required('Deadline is required'),
+});
+
+const editValidationSchema = Yup.object({
+  title: Yup.string().min(3, "Title must be at least 3 characters").max(60, "Title must be at most 60 characters"),
+  description: Yup.string(),
+  priority: Yup.string().default('none'),
+  deadline: Yup.date().nullable(),
 });
 
 const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
@@ -47,19 +54,17 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
       <Formik
         initialValues={initialTaskValue}
         onSubmit={handleSubmit}
-        validationSchema={typeOfPopUp === 'Add' ? validationSchema : null}
+        validationSchema={typeOfPopUp === 'Add' ? createValidationSchema : editValidationSchema}
       >
         {({ values, setFieldValue }) => (
           <Form>
             <div className={s.fieldCont}>
               <Field className={s.fieldTitle} type="text" name="title" placeholder="Title"/>
-              {typeOfPopUp === 'Add' && (
                 <ErrorMessage
                   name="title"
                   component="span"
                   className={s.errorMsg}
                 />
-              )}
             </div>
             <div className={s.textFieldCont}>
               <Field
@@ -121,13 +126,11 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
                 component={DatePickerField}
                 minDate={new Date()}
               />
-              {typeOfPopUp === 'Add' && (
                 <ErrorMessage
                   name="deadline"
                   component="span"
                   className={s.errorMsg}
                 />
-              )}
             </div>
             <button className={s.btnSubmit} type="submit">
               <span>
