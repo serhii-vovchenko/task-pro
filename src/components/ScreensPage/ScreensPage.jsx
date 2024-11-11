@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { selectCurrentBoard } from '../../redux/dashboard/currentBoard/selectors';
 import MainDashboard from '../MainDashboard/MainDashboard';
 import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
@@ -7,6 +8,8 @@ import s from './ScreensPage.module.css';
 
 const ScreensPage = () => {
   const { currentBoard } = useSelector(selectCurrentBoard);
+
+  useEffect(() => {}, [currentBoard]);
 
   const getBackgroundImageUrl = () => {
     if (currentBoard?.backgrounds?.name === 'bg-0') {
