@@ -12,15 +12,19 @@ import clsx from 'clsx';
 import { getCurrentBoard } from '../../../redux/dashboard/currentBoard/operations';
 import { selectCurrentBoard } from '../../../redux/dashboard/currentBoard/selectors';
 import { clearCurrentBoard } from '../../../redux/dashboard/currentBoard/slice';
-import EditBoard from '../EditBoard/EditBoard';
+// import EditBoard from '../EditBoard/EditBoard';
 import { useState } from 'react';
 import { setActiveBoard } from '../../../redux/dashboard/boards/slice';
+import { toggleUpdateBoar } from '../../../redux/dashboard/modals/slice';
 
 const BoardList = () => {
-  const { boards, selectLoading } = useSelector(selectBoards);
+  const { boards } = useSelector(selectBoards);
   const { currentBoard } = useSelector(selectCurrentBoard);
   const dispatch = useDispatch();
-  const [isEditing, setIsEditing] = useState(false);
+
+  //
+  // const [isEditing, setIsEditing] = useState(false);
+  //
 
   const getBoardInfo = id => {
     dispatch(getCurrentBoard(id));
@@ -100,18 +104,24 @@ const BoardList = () => {
   };
 
   const handleEdit = () => {
-    setIsEditing(true);
+    // setIsEditing(true);
+    dispatch(toggleUpdateBoar());
   };
 
-  const closeEditModal = async () => {
-    setIsEditing(false);
-    const updatedBoardId = currentBoard?._id;
-    if (updatedBoardId) {
-      dispatch(setActiveBoard(updatedBoardId));
-      dispatch(getCurrentBoard(updatedBoardId));
-    }
-  };
+  //
+  // const handleEdit = () => {
+  //   setIsEditing(true);
+  // };
 
+  // const closeEditModal = async () => {
+  //   setIsEditing(false);
+  //   const updatedBoardId = currentBoard?._id;
+  //   if (updatedBoardId) {
+  //     dispatch(setActiveBoard(updatedBoardId));
+  //     dispatch(getCurrentBoard(updatedBoardId));
+  //   }
+  // };
+  //
   return (
     <div>
       <ul className={s.boardList}>
@@ -163,7 +173,7 @@ const BoardList = () => {
           </li>
         ))}
       </ul>
-      {isEditing && <EditBoard closeModal={closeEditModal} />}
+      {/* {isEditing && <EditBoard closeModal={closeEditModal} />} */}
     </div>
   );
 };

@@ -45,14 +45,17 @@ const slice = createSlice({
         state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(logoutThunk.fulfilled, state => {
         state.user = {
