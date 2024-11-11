@@ -5,14 +5,13 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import sprite from '../../../img/icons.svg';
-import {
-  addBoard,
-  getBoardThunk,
-} from '../../../redux/dashboard/boards/operations.js';
+import { addBoard } from '../../../redux/dashboard/boards/operations.js';
 import { icons } from '../../../../public/db/icons.js';
 import { backgrounds } from '../../../../public/db/backgrounds.js';
 
 import SvgIcon from '../../SvgIcon/SvgIcon';
+import { setActiveBoard } from '../../../redux/dashboard/boards/slice.js';
+import { getCurrentBoard } from '../../../redux/dashboard/currentBoard/operations.js';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string()
@@ -27,6 +26,7 @@ export const NewBoard = ({ closeModal }) => {
   const [iconsSelected, setIconsSelected] = useState(
     icons[0]?.name || '1_icon-project'
   );
+
   const [backgroundSelected, setBackgroundSelected] = useState('bg-0');
   const modalRef = useRef(null);
 
@@ -57,15 +57,15 @@ export const NewBoard = ({ closeModal }) => {
   }, [closeModal]);
 
   const createNewBoard = async values => {
-    try {
-      await dispatch(addBoard(values));
-      closeModal();
-      dispatch(getBoardThunk());
-    } catch (error) {
-      console.error('Error creating board:', error);
-    }
+    dispatch(addBoard(values)).then(res => {
+      if (res.type.includes('fulfilled')) {
+        const newBoardId = res.payload?._id;
+        dispatch(setActiveBoard(newBoardId));
+        dispatch(getCurrentBoard(newBoardId));
+      }
+    });
+    closeModal();
   };
-
   const reorderedBackgrounds = backgrounds.sort((a, b) => {
     if (a.name === 'bg-0') return -1;
     if (b.name === 'bg-0') return 1;

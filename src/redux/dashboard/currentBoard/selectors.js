@@ -23,7 +23,7 @@ export const selectBoardColumns = createSelector(
   }
 );
 
-export const selectorBoardId = state => state.currentBoard.currentBoard._id;
+export const selectorBoardId = state => state.currentBoard.currentBoard?._id;
 
 export const selectTasksByColumnId = columnId =>
   createSelector([selectBoardColumns], columns => {

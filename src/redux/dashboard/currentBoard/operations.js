@@ -28,6 +28,7 @@ export const getCurrentBoard = createAsyncThunk(
           Authorization: `Bearer ${accessToken}`,
         },
       });
+      localStorage.setItem('currentId', JSON.stringify(data.data._id));
       return data.data;
     } catch (error) {
       console.log(error);
