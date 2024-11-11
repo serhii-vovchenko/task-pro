@@ -1,10 +1,8 @@
 import s from './EditBoard.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
 
 import sprite from '../../../img/icons.svg';
-import noBack from '../../../img/bg/bg-10-desk.jpg';
 import {
   updateBoard,
   getBoardThunk,
@@ -21,12 +19,11 @@ export const EditBoard = ({ closeModal }) => {
     currentBoard?.iconName || icons[0]?.name || '1_icon-project'
   );
   const [backgroundSelected, setBackgroundSelected] = useState(
-    currentBoard?.backgroundName || backgrounds[0]?.name || 'bg-2'
+    currentBoard?.backgroundName || 'bg-0'
   );
   const [title, setTitle] = useState(currentBoard?.title || '');
   const modalRef = useRef(null);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleTitleChange = event => setTitle(event.target.value);
@@ -67,6 +64,14 @@ export const EditBoard = ({ closeModal }) => {
     }
   };
 
+  const reorderedBackgrounds = backgrounds.sort((a, b) => {
+    if (a.name === 'bg-0') return -1;
+    if (b.name === 'bg-0') return 1;
+    const nameA = parseInt(a.name.replace('bg-', ''), 10);
+    const nameB = parseInt(b.name.replace('bg-', ''), 10);
+    return nameA - nameB;
+  });
+
   return (
     <div className={s.modalOverlay} ref={modalRef}>
       <div
@@ -94,7 +99,6 @@ export const EditBoard = ({ closeModal }) => {
           <ul className={s.listDarkIcons}>
             {icons.map((icon, index) => (
               <li key={index}>
-                {' '}
                 <input
                   type="radio"
                   value={icon.name}
@@ -113,24 +117,7 @@ export const EditBoard = ({ closeModal }) => {
           </ul>
           <h3 className={s.textBackground}>Background</h3>
           <ul className={s.listColorIcons}>
-            <li
-              className={
-                backgroundSelected === 'no-background'
-                  ? s.listItemActive
-                  : s.listItem
-              }
-            >
-              <input
-                type="radio"
-                name="backgrounds"
-                data-source="no-background"
-                className={s.inputBack}
-                checked={backgroundSelected === 'no-background'}
-                onChange={handleBackgroundChange}
-              />
-              <img src={noBack} alt="no-background" className={s.img_back} />
-            </li>
-            {backgrounds.map((bg, index) => (
+            {reorderedBackgrounds.map((bg, index) => (
               <li
                 key={index}
                 className={

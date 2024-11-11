@@ -11,7 +11,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 90%;
+  /* width: 90%; */
   max-width: 335px;
   min-width: 300px;
   border-radius: 8px;
@@ -38,7 +38,20 @@
   letter-spacing: -0.02em;
   margin-bottom: 24px;
 }
+.titleInput {
+  width: 90%;
+  min-width: 256px;
+  max-width: 287px;
+  height: 49px;
+  padding: 18px;
+  font-size: 14px;
 
+  background-color: rgb(246, 246, 247);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  opacity: 0.4;
+  transition: border var(--primary-transition);
+}
 .titleInput:hover {
   opacity: 1;
   border: 1px solid var(--btn-and-hover-color);
@@ -186,6 +199,7 @@
   height: 100%;
   z-index: 999;
   opacity: 0;
+  color: var(--board-icon);
 }
 
 .inputBack {
@@ -198,7 +212,7 @@
 }
 
 .svgIcon {
-  fill: var(--inactive-icon-color);
+  fill: var(--border-icon);
   stroke: var(--inactive-icon-border-color);
   transition: fill 0.2s, stroke 0.2s;
 }
