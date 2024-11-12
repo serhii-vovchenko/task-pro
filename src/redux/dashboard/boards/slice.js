@@ -67,7 +67,6 @@ const boardsSlice = createSlice({
       .addCase(getBoardById.fulfilled, (state, action) => {
         state.loading = false;
         const updatedBoard = action.payload;
-
         state.boards = state.boards.map(board =>
           board._id === updatedBoard._id
             ? { ...board, ...updatedBoard, isActive: true }

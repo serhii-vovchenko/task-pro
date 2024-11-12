@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { selectCurrentBoard } from '../../redux/dashboard/currentBoard/selectors';
 import MainDashboard from '../MainDashboard/MainDashboard';
 import HeaderDashboard from '../HeaderDashboard/HeaderDashboard';
 import DefaultTextHome from '../DefaultTextHome/DefaultTextHome';
-import s from './ScreensPage.module.css';
 import {
   toggleCreateBoard,
   toggleUpdateBoar,
@@ -13,11 +12,22 @@ import CreateBoard from './../Sidebar/CreateBoard/CreateBoard';
 import { setActiveBoard } from '../../redux/dashboard/boards/slice';
 import { getCurrentBoard } from '../../redux/dashboard/currentBoard/operations';
 import EditBoard from '../Sidebar/EditBoard/EditBoard';
+import s from './ScreensPage.module.css';
 
 const ScreensPage = () => {
   const { currentBoard } = useSelector(selectCurrentBoard);
 
   useEffect(() => {}, [currentBoard]);
+  const boards = useSelector(state => state?.boards?.boards);
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowContent(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const getBackgroundImageUrl = () => {
     if (currentBoard?.backgrounds?.name === 'bg-0') {
@@ -38,8 +48,6 @@ const ScreensPage = () => {
     return `url(${currentBoard?.backgrounds?.resolution?.[resolution]})`;
   };
 
-  // ===============================================================================
-  // const [isEditing, setIsEditing] = useState(false);
   const isAddBoardOpen = useSelector(state => state.modals.isCreateBoardOpen);
   const updateBoardIsOpen = useSelector(
     state => state.modals.isUpdateBoardOpen
@@ -51,7 +59,6 @@ const ScreensPage = () => {
   };
 
   const closeEditModal = async () => {
-    // setIsEditing(false);
     dispatch(toggleUpdateBoar());
 
     const updatedBoardId = currentBoard?._id;
@@ -61,9 +68,7 @@ const ScreensPage = () => {
     }
   };
 
-  // =================================================================================
-
-  return !currentBoard?.loading ? (
+  return boards?.length >= 1 ? (
     <div
       className={s.screenPage}
       style={{
@@ -78,8 +83,8 @@ const ScreensPage = () => {
     </div>
   ) : (
     <>
-      <DefaultTextHome />
-      {updateBoardIsOpen && <CreateBoard closeModal={toggleAddBoard} />}
+      {showContent && <DefaultTextHome />}
+      {isAddBoardOpen && <CreateBoard closeModal={toggleAddBoard} />}
     </>
   );
 };

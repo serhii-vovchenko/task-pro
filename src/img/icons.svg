@@ -23,7 +23,7 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M16.867 11.533l4.466 4.467-4.466 4.467"></path>
 </symbol>
 <symbol id="icon-filter" viewBox="0 0 32 32">
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M29.334 4h-26.668l10.668 12.614v8.72l5.332 2.666v-11.386l10.668-12.614z"></path>
+  <path stroke-linejoin="round" fill='transparent' stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M29.334 4h-26.668l10.668 12.614v8.72l5.332 2.666v-11.386l10.668-12.614z"></path>
 </symbol>
 <symbol id="icon-chevron-down" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.8235" d="M8.471 12.235l7.529 7.529 7.529-7.529"></path>

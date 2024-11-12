@@ -1,9 +1,7 @@
-import s from './EditBoard.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
 import sprite from '../../../img/icons.svg';
 import {
   updateBoard,
@@ -12,8 +10,8 @@ import {
 import { icons } from '../../../../public/db/icons.js';
 import { backgrounds } from '../../../../public/db/backgrounds.js';
 import { selectCurrentBoard } from '../../../redux/dashboard/currentBoard/selectors';
-
 import SvgIcon from '../../SvgIcon/SvgIcon';
+import s from './EditBoard.module.css';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string()

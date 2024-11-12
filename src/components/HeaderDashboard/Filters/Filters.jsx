@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import sprite from '../../../img/icons.svg';
-import s from './Filters.module.css';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSelectedPriority } from '../../../redux/dashboard/currentBoard/selectors';
 import { setSelectedPriority } from '../../../redux/dashboard/currentBoard/slice';
+import sprite from '../../../img/icons.svg';
+import s from './Filters.module.css';
 
 const Filters = ({ handleClose }) => {
-  const [modalClass, setModalClass] = useState('');
+  const [modalClass, setModalClass] = useState('medium');
   const dispatch = useDispatch();
   const selectedPriority = useSelector(selectSelectedPriority);
 

@@ -1,4 +1,3 @@
-import s from './BoardList.module.css';
 import sprite from '../../../../src/img/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBoards } from '../../../redux/dashboard/boards/selectors';
@@ -12,19 +11,14 @@ import clsx from 'clsx';
 import { getCurrentBoard } from '../../../redux/dashboard/currentBoard/operations';
 import { selectCurrentBoard } from '../../../redux/dashboard/currentBoard/selectors';
 import { clearCurrentBoard } from '../../../redux/dashboard/currentBoard/slice';
-// import EditBoard from '../EditBoard/EditBoard';
-import { useState } from 'react';
 import { setActiveBoard } from '../../../redux/dashboard/boards/slice';
 import { toggleUpdateBoar } from '../../../redux/dashboard/modals/slice';
+import s from './BoardList.module.css';
 
 const BoardList = () => {
   const { boards } = useSelector(selectBoards);
   const { currentBoard } = useSelector(selectCurrentBoard);
   const dispatch = useDispatch();
-
-  //
-  // const [isEditing, setIsEditing] = useState(false);
-  //
 
   const getBoardInfo = id => {
     dispatch(getCurrentBoard(id));
@@ -104,24 +98,9 @@ const BoardList = () => {
   };
 
   const handleEdit = () => {
-    // setIsEditing(true);
     dispatch(toggleUpdateBoar());
   };
 
-  //
-  // const handleEdit = () => {
-  //   setIsEditing(true);
-  // };
-
-  // const closeEditModal = async () => {
-  //   setIsEditing(false);
-  //   const updatedBoardId = currentBoard?._id;
-  //   if (updatedBoardId) {
-  //     dispatch(setActiveBoard(updatedBoardId));
-  //     dispatch(getCurrentBoard(updatedBoardId));
-  //   }
-  // };
-  //
   return (
     <div>
       <ul className={s.boardList}>
@@ -173,7 +152,6 @@ const BoardList = () => {
           </li>
         ))}
       </ul>
-      {/* {isEditing && <EditBoard closeModal={closeEditModal} />} */}
     </div>
   );
 };

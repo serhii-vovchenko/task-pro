@@ -1,7 +1,5 @@
-import s from './Sidebar.module.css';
 import BoardList from './BoardList/BoardList';
 import Logo from './Logo/Logo';
-// import CreateBoard from './CreateBoard/CreateBoard';
 import NeedHelp from './NeedHelp/NeedHelp';
 import Logout from './Logout/Logout';
 import clsx from 'clsx';
@@ -10,8 +8,8 @@ import {
   toggleCreateBoard,
   toggleSidebar,
 } from '../../redux/dashboard/modals/slice';
-// import { useState } from 'react';
 import sprite from '../../img/icons.svg';
+import s from './Sidebar.module.css';
 
 const Sidebar = () => {
   const isSidebarOpen = useSelector(state => state.modals.isSidebarOpen);
@@ -24,14 +22,6 @@ const Sidebar = () => {
   const toggleAddBoard = () => {
     dispatch(toggleCreateBoard());
   };
-
-  // =====================================================
-  // const isAddBoardOpen = useSelector(state => state.modals.isCreateBoardOpen);
-  // const [isAddBoardOpen, setIsAddBoardOpen] = useState(false);
-  // const openAddBoard = () => setIsAddBoardOpen(true);
-  // const closeAddBoard = () => setIsAddBoardOpen(false);
-
-  // =====================================================
 
   return (
     <>
@@ -55,11 +45,6 @@ const Sidebar = () => {
           <NeedHelp />
           <Logout />
         </div>
-        {/* {isAddBoardOpen && (
-          <div>
-            <CreateBoard closeModal={toggleAddBoard} />
-          </div>
-        )} */}
       </aside>
       <div
         className={clsx(s.overlay, isSidebarOpen && s.overlayIsVisible)}
