@@ -87,6 +87,7 @@ export const logoutThunk = createAsyncThunk(
 
       if (response.status === 204 || response.status === 200) {
         thunkAPI.dispatch(resetAuthState());
+        localStorage.removeItem('currentId');
         return { message: 'Logout successful' };
       } else {
         throw new Error(`Logout failed with status code ${response.status}`);

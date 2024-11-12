@@ -73,11 +73,11 @@ const BoardList = () => {
           localStorage.removeItem('currentId');
         });
     };
-    if (!hasFetchedOnce.current) {
+    if (boards.length === 0 || !hasFetchedOnce.current) {
       fetchBoardsAndSetActive();
       hasFetchedOnce.current = true;
     }
-  }, [dispatch, isLoggedIn, isLoading]);
+  }, [dispatch, isLoggedIn, isLoading, boards]);
 
   const handleDelete = boardId => {
     const isLastBoard = boards.length === 1;
