@@ -1,6 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
-import css from './RegisterForm.module.css';
+import s from './RegisterForm.module.css';
 import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
@@ -69,7 +69,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className={css.pageContainer}>
+    <div className={s.pageContainer}>
       <Toaster position="top-center" reverseOrder={false} />
       {isLoading && <Loader width="100" height="100" />}
       <Formik
@@ -77,15 +77,15 @@ const RegisterForm = () => {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <Form className={css.formBlock}>
-          <div className={css.linksContainer}>
+        <Form className={s.formBlock}>
+          <div className={s.linksContainer}>
             <Link
               to="/auth/register"
-              className={`${css.formLink} ${css.activeLink}`}
+              className={`${s.formLink} ${s.activeLink}`}
             >
               Registration
             </Link>
-            <Link to="/auth/login" className={`${css.formLink}`}>
+            <Link to="/auth/login" className={`${s.formLink}`}>
               Log In
             </Link>
           </div>
@@ -93,39 +93,39 @@ const RegisterForm = () => {
             type="text"
             name="name"
             placeholder="Enter your name"
-            className={css.formInput}
+            className={s.formInput}
           />
           <ErrorMessage
             name="name"
             component="span"
-            className={`${css.error} ${css.errorName}`}
+            className={`${s.error} ${s.errorName}`}
           />
           <Field
             type="email"
             name="email"
             placeholder="Enter your email"
-            className={css.formInput}
+            className={s.formInput}
           />
           <ErrorMessage
             name="email"
             component="span"
-            className={`${css.error} ${css.errorEmail}`}
+            className={`${s.error} ${s.errorEmail}`}
           />
 
-          <div className={css.passwordContainer}>
-            <div className={css.passwordBlock}>
+          <div className={s.passwordContainer}>
+            <div className={s.passwordBlock}>
               <Field
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Create a password"
-                className={`${css.formInput} ${css.formInputPassword}`}
+                className={`${s.formInput} ${s.formInputPassword}`}
               />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className={css.iconButton}
+                className={s.iconButton}
               >
-                <svg className={css.icon}>
+                <svg className={s.icon}>
                   <use href={`${sprite}#icon-eye`} />
                 </svg>
               </button>
@@ -133,11 +133,11 @@ const RegisterForm = () => {
             <ErrorMessage
               name="password"
               component="span"
-              className={`${css.error} ${css.errorPassword}`}
+              className={`${s.error} ${s.errorPassword}`}
             />
           </div>
 
-          <button type="submit" className={css.formBottom} disabled={isLoading}>
+          <button type="submit" className={s.formBottom} disabled={isLoading}>
             Register Now
           </button>
         </Form>

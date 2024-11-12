@@ -1,6 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   currentUserThunk,
+  googleLoginThunk,
   loginThunk,
   logoutThunk,
   registerThunk,
@@ -48,6 +49,12 @@ const slice = createSlice({
         state.isLoading = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.accessToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(googleLoginThunk.fulfilled, (state, action) => {
         state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;

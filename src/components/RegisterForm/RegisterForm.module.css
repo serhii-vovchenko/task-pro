@@ -170,7 +170,6 @@
 }
 
 .formBottom:disabled {
-  background-color: var(--soft-gray);
   cursor: not-allowed;
 }
 
