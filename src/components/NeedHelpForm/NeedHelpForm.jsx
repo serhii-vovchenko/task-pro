@@ -1,6 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import css from './NeedHelpForm.module.css';
+import s from './NeedHelpForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { submitNeedHelpThunk } from '../../redux/dashboard/need-help-form/operations';
 import { selectNeedHelpLoading } from '../../redux/dashboard/need-help-form/selectors';
@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
   comment: Yup.string()
     .trim()
     .required('Comment is required')
-    .min(6, 'Comment must be at least 2 characters')
+    .min(2, 'Comment must be at least 2 characters')
     .max(300, 'Comment cannot exceed 300 characters'),
 });
 
@@ -50,31 +50,31 @@ const NeedHelpForm = ({ onClose }) => {
     onClose();
   };
 
-  return (<> {isLoading && <Loader width="100" height="100" />}
-    <div className={css['form-container']}>
-      <h2 className={css.title}>Need help</h2>
+  return (<> {isLoading && <Loader width="100" height="100" color='var(--loader-color)' />}
+    <div className={s['form-container']}>
+      <h2 className={s.title}>Need help</h2>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <Form className={css.form}>
+        <Form className={s.form}>
           <Field
             type="email"
             name="email"
             placeholder="Email address"
-            className={css.input}
+            className={s.input}
           />
-          <ErrorMessage name="email" component="span" className={css.error} />
+          <ErrorMessage name="email" component="span" className={s.error} />
           <Field
             as="textarea"
             name="comment"
             placeholder="Comment"
             rows="6"
-            className={`${css.input} ${css.comment}`}
+            className={`${s.input} ${s.comment}`}
           />
-          <ErrorMessage name="comment" component="span" className={css.error} />
-          <button type="submit" className={css['form-button']} disabled={isLoading}>
+          <ErrorMessage name="comment" component="span" className={s.error} />
+          <button type="submit" className={s['form-button']} disabled={isLoading}>
             Send
           </button>
         </Form>

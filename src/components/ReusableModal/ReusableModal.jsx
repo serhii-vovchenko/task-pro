@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import css from './ReusableModal.module.css';
+import s from './ReusableModal.module.css';
 import sprite from '../../img/icons.svg';
 
 const customStyles = {
@@ -35,8 +35,8 @@ function ReusableModal({ isOpen, onClose, children }) {
       style={customStyles}
       contentLabel="Modal"
     >
-      <button onClick={onClose} className={css.button}>
-        <svg className={css.icon}>
+      <button onClick={onClose} className={s.button}>
+        <svg className={s.icon}>
           <use href={`${sprite}#icon-x-close`} />
         </svg>
       </button>
