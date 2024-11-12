@@ -31,6 +31,22 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
+export const googleLoginThunk = createAsyncThunk(
+  'auth/confirm-oauth',
+  async (credentials, thunkAPI) => {
+    try {
+      console.log('Credentials from asynk thunk', credentials);
+      const { data } = await api.post('auth/confirm-oauth', credentials);
+      setToken(data.data.accessToken);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
+
 export const currentUserThunk = createAsyncThunk(
   'users/current',
   async (_, thunkAPI) => {

@@ -130,7 +130,6 @@
   left: 44px;
   transform: translateY(-50%);
   z-index: 100;
-  background: var(--very-dark-grey);
 }
 .errorEmail {
   position: absolute;
@@ -138,7 +137,6 @@
   left: 44px;
   transform: translateY(-50%);
   z-index: 100;
-  background: var(--very-dark-grey);
 }
 
 .errorPassword {
@@ -147,7 +145,6 @@
   left: 18px;
   transform: translateY(-50%);
   z-index: 100;
-  background: var(--very-dark-grey);
 }
 
 .formBottom {
@@ -173,7 +170,6 @@
 }
 
 .formBottom:disabled {
-  background-color: var(--soft-gray);
   cursor: not-allowed;
 }
 
