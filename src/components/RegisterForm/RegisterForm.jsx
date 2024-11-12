@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
     .email('Invalid email format')
     .matches(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      'Email should contain only one "@" and at least one "." in the domain part'
+      'Email must have one "@" and a "."'
     )
     .required('Email is required'),
   password: Yup.string()

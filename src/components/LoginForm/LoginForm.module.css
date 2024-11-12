@@ -123,11 +123,10 @@
   width: 75%;
   font-size: 11px;
   position: absolute;
-  top: 49.1%;
+  top: 40.5%;
   left: 43px;
   transform: translateY(-50%);
   z-index: 100;
-  background: var(--very-dark-grey);
 }
 
 .errorPassword {
@@ -141,7 +140,6 @@
   left: 18px;
   transform: translateY(-50%);
   z-index: 100;
-  background: var(--very-dark-grey);
 }
 
 .formBottom {
@@ -169,6 +167,55 @@
 .formBottom:disabled {
   background-color: var(--soft-gray);
   cursor: not-allowed;
+}
+
+.googleBtn {
+  background-color: var(--pale-green);
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  color: var(--almost-black);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  transition: opacity 0.3s ease, border 0.3s ease;
+  width: 100%;
+  margin-top: 14px;
+}
+
+.customGoogleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: var(--pale-green);
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  color: var(--almost-black);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  transition: opacity 0.3s ease, border 0.3s ease;
+}
+
+.customGoogleBtn:hover,
+.customGoogleBtn:focus {
+  background-color: var(--fresh-green);
+}
+
+.customGoogleBtn:disabled {
+  background-color: var(--soft-gray);
+  cursor: not-allowed;
+}
+
+.googleIcon {
+  width: 20px;
+  height: 20px;
 }
 
 @media (min-width: 768px) {

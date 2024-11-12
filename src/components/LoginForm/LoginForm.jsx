@@ -5,16 +5,17 @@ import { useState } from 'react';
 import sprite from '../../../src/img/icons.svg';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { loginThunk } from '../../redux/auth/operations.js';
+import { googleLoginThunk, loginThunk } from '../../redux/auth/operations.js';
 import Loader from '../Loader/Loader.jsx';
 import { toast, Toaster } from 'react-hot-toast';
+import { useGoogleLogin } from '@react-oauth/google';
 
 const validationSchema = Yup.object({
   email: Yup.string()
     .email('Invalid email format')
     .matches(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      'Email should contain only one "@" and at least one "." in the domain part'
+      'Email must have one "@" and a "."'
     )
     .required('Email is required'),
   password: Yup.string()
@@ -60,6 +61,36 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
+  const googleLogin = useGoogleLogin({
+    onSuccess: async response => {
+      console.log('Google Response:', response);
+      setIsLoading(true);
+      try {
+        const result = await dispatch(
+          googleLoginThunk({ code: response.code })
+        );
+        if (googleLoginThunk.fulfilled.match(result)) {
+          toast.success('Google login successful!');
+        } else {
+          toast.error('Google login failed');
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    onError: () => {
+      console.log('Google login failed');
+      setIsLoading(false);
+    },
+    flow: 'auth-code',
+    // ux_mode: 'redirect',
+    // redirect_uri: 'http://localhost:5173',
+    // redirect_uri:
+    //   'https://task-pro-backend-mcfs.onrender.com/confirm-google-auth',
+  });
+
   return (
     <div className={css.pageContainer}>
       <Toaster position="top-center" reverseOrder={false} />
@@ -71,12 +102,17 @@ const LoginForm = () => {
       >
         <Form className={css.formBlock}>
           <div className={css.linksContainer}>
-            <Link to="/auth/register" className={`${css.formLink}`}>
+            <Link
+              to="/auth/register"
+              className={`${css.formLink}`}
+              tabIndex={isLoading ? -1 : 0}
+            >
               Registration
             </Link>
             <Link
               to="/auth/login"
               className={`${css.formLink} ${css.activeLink}`}
+              tabIndex={isLoading ? -1 : 0}
             >
               Log In
             </Link>
@@ -86,6 +122,7 @@ const LoginForm = () => {
             name="email"
             placeholder="Enter your email"
             className={`${css.formInput} ${css.firstInput}`}
+            disabled={isLoading}
           />
           <ErrorMessage
             name="email"
@@ -100,12 +137,15 @@ const LoginForm = () => {
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Confirm a password"
                 className={css.formInput}
+                disabled={isLoading}
               />
 
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
                 className={css.iconButton}
+                disabled={isLoading}
+                tabIndex={isLoading ? -1 : 0}
               >
                 <svg className={css.icon}>
                   <use href={`${sprite}#icon-eye`} />
@@ -119,9 +159,29 @@ const LoginForm = () => {
             />
           </div>
 
-          <button type="submit" className={css.formBottom} disabled={isLoading}>
+          <button
+            type="submit"
+            className={css.formBottom}
+            disabled={isLoading}
+            tabIndex={isLoading ? -1 : 0}
+          >
             Log In Now
           </button>
+
+          <div className={css.googleBtn}>
+            <button
+              onClick={() => googleLogin()}
+              className={css.customGoogleBtn}
+              disabled={isLoading}
+              tabIndex={isLoading ? -1 : 0}
+              type="button"
+            >
+              <svg className={css.googleIcon}>
+                <use href={`${sprite}#icon-google`} />
+              </svg>
+              Continue with Google
+            </button>
+          </div>
         </Form>
       </Formik>
     </div>
