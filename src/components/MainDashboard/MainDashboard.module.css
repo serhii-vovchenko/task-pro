@@ -1,8 +1,12 @@
 .wrapper {
   display: flex;
-  gap: 18px;
   overflow-x: auto;
   width: 100%;
+  padding-right: 18px;
+}
+
+.wrapper:last-child {
+  padding-right: 0;
 }
 
 .list {
