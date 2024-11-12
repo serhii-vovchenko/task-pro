@@ -2,7 +2,8 @@
   display: flex;
   overflow-x: auto;
   width: 100%;
-  padding-right: 18px;
+  /* padding-right: 18px; */
+  padding: 0 20px;
 }
 
 .wrapper:last-child {
@@ -57,4 +58,16 @@
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    padding: 0 24px;
+  }
 }

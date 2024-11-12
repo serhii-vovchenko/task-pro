@@ -22,52 +22,51 @@ const App = () => {
   }, []);
 
   return (
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID}>
-      {' '}
-      <div>
-        <Suspense fallback={<Loader width="100" height="100" />}>
-          <Routes>
-            <Route path="/" element={<Navigate to="/welcome" replace />} />
-            <Route
-              path="/welcome"
-              element={
-                <PublicRoute>
-                  <WelcomePage />
-                </PublicRoute>
-              }
-            />
-
-            <Route
-              path="/auth/:id"
-              element={
-                <PublicRoute>
-                  <AuthPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/home/:boardId"
-              element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
-              }
-            />
-            <Route path="/*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </div>
+    <>
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID}>
+        <div>
+          <Suspense fallback={<Loader width="100" height="100" color="var(--loader-color)" />}>
+            <Routes>
+              <Route path="/" element={<Navigate to="/welcome" replace />} />
+              <Route
+                path="/welcome"
+                element={
+                  <PublicRoute>
+                    <WelcomePage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/auth/:id"
+                element={
+                  <PublicRoute>
+                    <AuthPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/home"
+                element={
+                  <PrivateRoute>
+                    <HomePage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/home/:boardId"
+                element={
+                  <PrivateRoute>
+                    <HomePage />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="/*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </div>
+      </GoogleOAuthProvider>
       <Toaster position="top-center" reverseOrder={false} />
-    </GoogleOAuthProvider>
+    </>
   );
-};
-
+}
 export default App;
