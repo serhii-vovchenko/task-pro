@@ -71,13 +71,15 @@ const BoardList = () => {
           console.error('Error fetching boards:', error);
           dispatch(clearCurrentBoard());
           localStorage.removeItem('currentId');
+        })
+        .finally(() => {
+          hasFetchedOnce.current = true;
         });
     };
-    if (boards.length === 0 || !hasFetchedOnce.current) {
+    if (isLoggedIn && !isLoading && !hasFetchedOnce.current) {
       fetchBoardsAndSetActive();
-      hasFetchedOnce.current = true;
     }
-  }, [dispatch, isLoggedIn, isLoading, boards]);
+  }, [dispatch, isLoggedIn, isLoading]);
 
   const handleDelete = boardId => {
     const isLastBoard = boards.length === 1;
