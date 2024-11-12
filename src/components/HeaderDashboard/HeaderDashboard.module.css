@@ -3,7 +3,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 0;
+  padding: 14px 20px;
   margin-bottom: 24px;
 }
 
@@ -47,7 +47,7 @@
 
 @media (min-width: 768px) {
   .headBoard {
-    padding: 26px 0 20px 0;
+    padding: 26px 32px 20px 32px;
     margin-bottom: 6px;
   }
 
@@ -58,6 +58,6 @@
 
 @media (min-width: 1440px) {
   .headBoard {
-    padding: 26px 0 20px 0;
+    padding: 26px 24px 20px 24px;
   }
 }

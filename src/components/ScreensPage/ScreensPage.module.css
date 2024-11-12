@@ -2,7 +2,7 @@
   height: 100vh;
   background-color: var(--bg-screen);
   height: calc(100vh - 60px);
-  padding: 0 20px;
+  /* padding: 0; */
 }
 
 @media (min-width: 768px) {
@@ -11,14 +11,14 @@
   }
 }
 
-@media screen and (min-width: 768px) {
-  .wrapper {
+/* @media screen and (min-width: 768px) {
+  .screenPage {
     padding: 0 32px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .wrapper {
+  .screenPage {
     padding: 0 24px;
   }
-}
+} */
