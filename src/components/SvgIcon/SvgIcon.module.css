@@ -1,11 +1,11 @@
 .icon {
-  color: var(--board-list-text);
+  color: var(--board-icons);
   transition: color 0.3s ease;
 }
 
 .icon :hover,
 .icon.active {
-  color: var(--board-list-text-active);
+  color: var(--board-icons-active);
 }
 
 .icon svg {

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    max-width: 350px;
+    max-width: 280px;
     height: 478px;
     overflow-y: auto;
     flex-grow: 1;
@@ -25,4 +25,10 @@
     max-height: 478px;
     background-color: var(--bg-scroll-track);
     border-radius: 12px;
+}
+
+@media screen and (min-width: 375px) {
+    .taskList {
+        max-width: 350px;
+    }
 }

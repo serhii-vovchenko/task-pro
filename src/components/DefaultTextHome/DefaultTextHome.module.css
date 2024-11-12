@@ -1,6 +1,6 @@
 .wrapper {
   width: 100%;
-  height: сalc(100% -60px);
+  height: calc(100vh - 60px);
   background-color: var(--bg-empty-board);
   display: flex;
   justify-content: center;
@@ -19,6 +19,7 @@
 
 .span {
   color: var(--accent-empty-board);
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
@@ -29,12 +30,12 @@
   }
 
   .wrapper {
-    height: calc(100% - 68px);
+    height: calc(100vh - 68px);
   }
 }
 
 @media (min-width: 1440px) {
   .wrapper {
-    width: calc(100%-260px);
+    width: calc(100vx-260px);
   }
 }

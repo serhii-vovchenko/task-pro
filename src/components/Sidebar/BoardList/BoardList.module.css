@@ -45,13 +45,17 @@
 }
 
 .titleBoxTitle {
-  font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
   color: var(--board-list-text);
+
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .titleBoxTitleActive {
@@ -86,6 +90,10 @@
 
   .boardItem {
     padding: 0 24px;
+  }
+
+  .titleBoxTitle {
+    width: 135px;
   }
 }
 

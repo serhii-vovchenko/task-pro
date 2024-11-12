@@ -20,13 +20,14 @@
 
 .taskTitle {
     color: var(--text-primary);
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     letter-spacing: -0.28px;
     margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .taskDescription {
@@ -35,7 +36,6 @@
     color: var(--text-secondary);
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: Poppins;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

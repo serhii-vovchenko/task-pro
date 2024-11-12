@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../../config/api';
-import { clearCurrentBoard } from '../currentBoard/slice';
+import { clearCurrentBoard, updateCurrentBoard } from '../currentBoard/slice';
+import { getCurrentBoard } from '../currentBoard/operations';
 
 export const getBoardThunk = createAsyncThunk('boards', async (_, thunkAPI) => {
   try {
@@ -34,7 +35,7 @@ export const getBoardById = createAsyncThunk(
       if (error.response && error.response.status === 404) {
         console.log('Board not found');
         thunkAPI.dispatch(clearCurrentBoard());
-        return {}; // Return an empty object or null
+        return {};
       }
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);
@@ -56,7 +57,10 @@ export const addBoard = createAsyncThunk(
       const response = await api.post('boards', data, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
-      return response.data;
+
+      thunkAPI.dispatch(getCurrentBoard(response.data.data._id));
+
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -79,7 +83,10 @@ export const updateBoard = createAsyncThunk(
       const response = await api.patch(`/boards/${_id}`, data, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
-      return response.data;
+
+      thunkAPI.dispatch(updateCurrentBoard(response.data.data));
+
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -94,13 +101,12 @@ export const deleteBoard = createAsyncThunk(
       const accessToken = state.auth.token;
 
       console.log('Deleting board with ID:', boardId);
-      const response = await api.delete(`/boards/${boardId}`, {
+      await api.delete(`/boards/${boardId}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
 
-      // console.log('API response:', response);
+      thunkAPI.dispatch(clearCurrentBoard());
 
-      // Ensure you are returning the correct data (e.g., boardId)
       return boardId;
     } catch (error) {
       console.error('Error deleting board:', error);

@@ -58,6 +58,7 @@
   --logo-title: #161616;
 
   --board-icons: rgba(22, 22, 22, 0.5);
+  --board-icons-active: rgba(22, 22, 22, 1);
 
   --add-column-bg: #fff;
   --add-column-icon: #161616;
@@ -79,6 +80,12 @@
 
   --logout-icon: #bedbb0;
   --logout-text: #161616;
+
+  --filter-bg: #fcfcfc;
+  --filter-text: rgba(22, 22, 22, 0.5);
+  --filter-text-accent: #161616;
+  --filter-border: rgba(22, 22, 22, 0.1);
+  --filter-close: rgba(22, 22, 22, 0.05);
 }
 
 [data-theme='dark'] {
@@ -133,6 +140,7 @@
   --logo-title: #fff;
 
   --board-icons: rgba(255, 255, 255, 0.5);
+  --board-icons-active: rgba(255, 255, 255, 1);
 
   --add-column-bg: #121212;
   --add-column-icon: #ffffff;
@@ -154,6 +162,12 @@
 
   --logout-icon: #bedbb0;
   --logout-text: #ffffff;
+
+  --filter-bg: #151515;
+  --filter-text: rgba(255, 255, 255, 0.5);
+  --filter-text-accent: #fff;
+  --filter-border: rgba(255, 255, 255, 0.1);
+  --filter-close: #ffffff;
 }
 
 [data-theme='violet'] {
@@ -209,6 +223,7 @@
   --logo-title: #fff;
 
   --board-icons: rgba(22, 22, 22, 0.5);
+  --board-icons-active: rgba(22, 22, 22, 1);
 
   --add-column-bg: #fff;
   --add-column-icon: #5255bc;
@@ -230,4 +245,10 @@
 
   --logout-icon: #ffffff;
   --logout-text: #ffffff;
+
+  --filter-bg: #fcfcfc;
+  --filter-text: rgba(22, 22, 22, 0.5);
+  --filter-text-accent: #161616;
+  --filter-border: rgba(22, 22, 22, 0.1);
+  --filter-close: rgba(22, 22, 22, 0.05);
 }
