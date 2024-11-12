@@ -47,6 +47,8 @@
   --modal-plus-icon: #fff;
   --modal-icon-wrap: #161616;
 
+  --loader-color: #9dc888;
+
   --drop-down-text: #161616;
   --btn: #bedbb0;
   --btn-hover: #9dc888;
@@ -128,6 +130,8 @@
   --modal-border: rgba(190, 219, 176, 0.4);
   --modal-plus-icon: #fff;
   --modal-icon-wrap: #161616;
+
+  --loader-color: #9dc888;
 
   --drop-down-text: rgba(255, 255, 255, 0.5);
   --btn: #bedbb0;
@@ -211,6 +215,8 @@
   --modal-border: transparent;
   --modal-plus-icon: #161616;
   --modal-icon-wrap: #fff;
+
+  --loader-color: #5255bc;
 
   --drop-down-text: #161616;
   --btn: #5255bc;
