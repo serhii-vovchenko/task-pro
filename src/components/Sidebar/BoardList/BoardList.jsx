@@ -1,7 +1,7 @@
 import sprite from '../../../../src/img/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBoards } from '../../../redux/dashboard/boards/selectors';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   deleteBoard,
   getBoardThunk,
@@ -13,11 +13,15 @@ import { selectCurrentBoard } from '../../../redux/dashboard/currentBoard/select
 import { clearCurrentBoard } from '../../../redux/dashboard/currentBoard/slice';
 import { setActiveBoard } from '../../../redux/dashboard/boards/slice';
 import { toggleUpdateBoar } from '../../../redux/dashboard/modals/slice';
+import { selectIsLoggedIn, selectLoading } from '../../../redux/auth/selectors';
 import s from './BoardList.module.css';
 
 const BoardList = () => {
   const { boards } = useSelector(selectBoards);
   const { currentBoard } = useSelector(selectCurrentBoard);
+  const hasFetchedOnce = useRef(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoading = useSelector(selectLoading);
   const dispatch = useDispatch();
 
   const getBoardInfo = id => {
@@ -26,6 +30,8 @@ const BoardList = () => {
 
   useEffect(() => {
     const fetchBoardsAndSetActive = async () => {
+      if (!isLoggedIn || isLoading || hasFetchedOnce.current) return;
+
       dispatch(getBoardThunk())
         .then(res => {
           const boards = res.payload;
@@ -59,11 +65,6 @@ const BoardList = () => {
           } else {
             dispatch(clearCurrentBoard());
             localStorage.removeItem('currentId');
-
-            if (boards.length > 0) {
-              dispatch(getCurrentBoard(boards[0]._id));
-              localStorage.setItem('currentId', JSON.stringify(boards[0]._id));
-            }
           }
         })
         .catch(error => {
@@ -72,11 +73,11 @@ const BoardList = () => {
           localStorage.removeItem('currentId');
         });
     };
-
-    if (boards.length === 0 || !boards.some(board => board.isActive)) {
+    if (!hasFetchedOnce.current) {
       fetchBoardsAndSetActive();
+      hasFetchedOnce.current = true;
     }
-  }, [dispatch, boards]);
+  }, [dispatch, isLoggedIn, isLoading]);
 
   const handleDelete = boardId => {
     const isLastBoard = boards.length === 1;
@@ -92,6 +93,9 @@ const BoardList = () => {
         } else if (boardIndex === boards.length - 1) {
           dispatch(setActiveBoard(boards[boards.length - 2]._id));
           dispatch(getCurrentBoard(boards[boards.length - 2]._id));
+        } else {
+          dispatch(setActiveBoard(boards[boardIndex - 1]._id));
+          dispatch(getCurrentBoard(boards[boardIndex - 1]._id));
         }
       });
     }
