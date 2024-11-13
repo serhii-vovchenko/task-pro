@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { AnimatePresence, motion } from 'framer-motion';
 import Column from '../Column/Column.jsx';
 import AddColumn from '../AddColumn/AddColumn.jsx';
 import ReusableModal from '../ReusableModal/ReusableModal.jsx';
@@ -17,7 +18,6 @@ const ColumnList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const columns = useSelector(selectBoardColumns);
-
   const activeBoard = useSelector(currentBoard);
   const isLoading = useSelector(state => selectCurrentBoard(state).isLoading);
   const navigate = useNavigate();
@@ -41,15 +41,23 @@ const ColumnList = () => {
   return (
     <div className={s.wrapper}>
       <ul className={s.list}>
-        {columns.map(item => (
-          <li key={item._id}>
-            <Column
-              title={item.title}
-              id={item._id}
-              onDelete={() => dispatch(deleteColumn(item._id))}
-            />
-          </li>
-        ))}
+        <AnimatePresence>
+          {columns.map(item => (
+            <motion.li
+              key={item._id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Column
+                title={item.title}
+                id={item._id}
+                onDelete={() => dispatch(deleteColumn(item._id))}
+              />
+            </motion.li>
+          ))}
+        </AnimatePresence>
       </ul>
       <button className={s.button} type="button" onClick={openModal}>
         <svg className={s.icon} height="28" width="28">

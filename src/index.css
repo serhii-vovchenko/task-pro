@@ -179,3 +179,35 @@ button {
   border-radius: 8px;
   transition: all var(--transition-time) var(--transition-func);
 }
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(50px); 
+  opacity: 0; 
+  transition: transform 500ms ease-out, opacity 500ms ease-in-out; 
+}
+
+.ReactModal__Content--after-open {
+  transform: translate(-50%, -50%) translateY(0);
+  opacity: 1;
+}
+
+.ReactModal__Content--before-close {
+  transform: translate(-50%, -50%) translateY(50px); 
+  opacity: 0;
+}
+
