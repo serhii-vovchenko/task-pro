@@ -88,7 +88,7 @@
   margin-bottom: 4px;
 }
 
-.priorityCont > ul {
+.priorityCont>ul {
   display: flex;
   gap: 8px;
   align-items: center;
@@ -117,12 +117,12 @@ input[name='priority'] {
   display: block;
 }
 
-input[name='priority']:checked + .radioLabel {
+input[name='priority']:checked+.radioLabel {
   border-color: transparent;
   background-color: var(--customColor);
 }
 
-input[name='priority']:checked + .radioLabel::before {
+input[name='priority']:checked+.radioLabel::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -170,7 +170,7 @@ input[name='deadline'] {
   }
 }
 
-.btnSubmit > span {
+.btnSubmit>span {
   background-color: var(--modal-icon-wrap);
   padding: 7px;
   border-radius: 5px;
@@ -179,12 +179,12 @@ input[name='deadline'] {
   display: inline-block;
 }
 
-.btnSubmit > span > svg {
+.btnSubmit>span>svg {
   stroke: var(--modal-plus-icon);
 }
 
 .errorMsg {
-  color: red;
+  color: var(--soft-pink);
   font-size: 12px;
 }
 
