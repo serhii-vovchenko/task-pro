@@ -97,7 +97,7 @@ const TaskCard = ({ taskObj }) => {
                 <use href={`${sprite}#icon-bell`} />
               </svg>
             </li>}
-            <li>
+            {columns.length !== 1 && <li>
               <button onClick={toggleDropdown}  onBlur={handleBlur}>
                 <svg className={s.icon} width="16px" height="16px">
                   <use href={`${sprite}#icon-arrow-circle-broken-right`} />
@@ -123,7 +123,7 @@ const TaskCard = ({ taskObj }) => {
                   </ul>
                 </div>
               )}
-            </li>
+            </li>}
             <li>
               <button onClick={() => handleEdit()}>
                 <svg className={s.icon} width="16px" height="16px">

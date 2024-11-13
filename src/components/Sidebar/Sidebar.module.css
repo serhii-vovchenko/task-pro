@@ -89,7 +89,7 @@
   border-radius: 8px;
   margin-bottom: 24px;
   opacity: 0.4;
-  transition: border var(--primary-transition);
+  transition: all var(--primary-transition);
 }
 
 .textBackground {

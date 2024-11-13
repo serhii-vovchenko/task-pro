@@ -68,7 +68,6 @@ const LoginForm = () => {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async response => {
-      console.log('Google Response:', response);
       try {
         const result = await dispatch(
           googleLoginThunk({ code: response.code })

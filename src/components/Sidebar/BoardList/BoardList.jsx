@@ -123,7 +123,12 @@ const BoardList = () => {
               }
             }}
           >
-            <div className={s.titleBox}>
+            <div
+              className={clsx(
+                s.titleBox,
+                board._id === currentBoard?._id && s.svgActive
+              )}
+            >
               <SvgIcon
                 url={board.icon?.iconUrl}
                 active={board._id === currentBoard?._id}
@@ -139,7 +144,11 @@ const BoardList = () => {
             </div>
             {board._id === currentBoard?._id && (
               <div className={s.btnBox}>
-                <button className={s.btnBoxButton} onClick={handleEdit}>
+                <button
+                  className={s.btnBoxButton}
+                  onClick={handleEdit}
+                  aria-label="Edit Board"
+                >
                   <svg className={s.btnBoxIcon} height="16" width="16">
                     <use href={`${sprite}#icon-pencil`} />
                   </svg>
@@ -148,6 +157,7 @@ const BoardList = () => {
                   type="button"
                   className={s.btnBoxButton}
                   onClick={() => handleDelete(board._id || index)}
+                  aria-label="Delete Board"
                 >
                   <svg className={s.btnBoxIcon} height="16" width="16">
                     <use href={`${sprite}#icon-trash`} />

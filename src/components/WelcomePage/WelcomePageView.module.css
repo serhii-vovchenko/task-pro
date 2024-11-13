@@ -97,7 +97,6 @@
   letter-spacing: -0.28px;
 }
 
-/* media screens */
 @media (min-width: 769px) and (max-width: 1440px) {
   .container {
     padding: 0 148px;

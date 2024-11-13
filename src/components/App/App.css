@@ -81,6 +81,7 @@
   --help-text-span: #bedbb0;
 
   --logout-icon: #bedbb0;
+  --logout-icon-hover: #9dc888;
   --logout-text: #161616;
 
   --filter-bg: #fcfcfc;
@@ -165,6 +166,7 @@
   --help-text-span: #bedbb0;
 
   --logout-icon: #bedbb0;
+  --logout-icon-hover: #9dc888;
   --logout-text: #ffffff;
 
   --filter-bg: #151515;
@@ -250,6 +252,7 @@
   --help-text-span: #5255bc;
 
   --logout-icon: #ffffff;
+  --logout-icon-hover: #b8bcfd;
   --logout-text: #ffffff;
 
   --filter-bg: #fcfcfc;
