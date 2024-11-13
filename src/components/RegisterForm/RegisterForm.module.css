@@ -66,7 +66,7 @@
   background: var(--charcoal);
   box-shadow: 0px 4px 16px 0px var(--charcoal-shadow);
   width: 100%;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   color: var(--white);
   font-size: 14px;
   font-style: normal;
@@ -133,7 +133,7 @@
 }
 .errorEmail {
   position: absolute;
-  top: 58%;
+  top: 58.5%;
   left: 44px;
   transform: translateY(-50%);
   z-index: 100;
@@ -141,7 +141,7 @@
 
 .errorPassword {
   position: absolute;
-  top: 116%;
+  top: 125%;
   left: 18px;
   transform: translateY(-50%);
   z-index: 100;
