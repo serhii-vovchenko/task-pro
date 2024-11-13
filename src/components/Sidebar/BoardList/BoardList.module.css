@@ -62,6 +62,18 @@
   color: var(--board-list-text-active);
 }
 
+.titleBox {
+  & svg * {
+    stroke: var(--board-list-text);
+  }
+}
+
+.svgActive {
+  & svg * {
+    stroke: var(--board-list-text-active);
+  }
+}
+
 .btnBox {
   display: flex;
   gap: 8px;

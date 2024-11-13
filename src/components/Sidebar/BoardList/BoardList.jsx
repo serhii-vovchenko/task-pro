@@ -123,7 +123,12 @@ const BoardList = () => {
               }
             }}
           >
-            <div className={s.titleBox}>
+            <div
+              className={clsx(
+                s.titleBox,
+                board._id === currentBoard?._id && s.svgActive
+              )}
+            >
               <SvgIcon
                 url={board.icon?.iconUrl}
                 active={board._id === currentBoard?._id}
