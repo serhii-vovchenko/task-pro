@@ -33,7 +33,12 @@ const Sidebar = () => {
           <h2 className={s.sidebarTitle}>My boards</h2>
           <div className={s.createBoard}>
             <p className={s.createBoardTitle}>Create a new board</p>
-            <button type="submit" className={s.addBtn} onClick={toggleAddBoard}>
+            <button
+              type="submit"
+              className={s.addBtn}
+              onClick={toggleAddBoard}
+              aria-label="Add Board"
+            >
               <svg className={s.logoIcon} height="32" width="32">
                 <use href={`${sprite}#icon-plus`} />
               </svg>
