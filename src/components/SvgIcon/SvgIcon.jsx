@@ -8,9 +8,8 @@ import s from './SvgIcon.module.css';
 const SvgIcon = ({ url, active, width = 18, height = 18 }) => {
   const currentTheme = useSelector(selectUserTheme);
 
-  // Check if url is defined before rendering ReactSVG
   if (!url) {
-    return null; // Or a placeholder/fallback icon
+    return null;
   }
 
   return (
