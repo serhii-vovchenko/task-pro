@@ -188,7 +188,7 @@ input[name="deadline"] {
 }
 
 .errorMsg {
-    color: red;
+    color: var(--soft-pink);
     font-size: 12px;
 }
 
