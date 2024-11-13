@@ -55,9 +55,15 @@ const RegisterForm = () => {
         setIsLoading(false);
       }, 1500);
     } else if (registerThunk.rejected.match(result)) {
-      toast.error(
-        'Registration failed. Please check your details and try again.'
-      );
+      if (result.payload === 409) {
+        toast.error('Registration failed. Email in use.');
+      } else if (result.payload >= 400 && result.payload < 500) {
+        toast.error('Registration failed. Please check your details.');
+      } else if (result.payload >= 500) {
+        toast.error(
+          'Registration failed. Server error. Please try again later.'
+        );
+      }
       setIsLoading(false);
     }
   };
