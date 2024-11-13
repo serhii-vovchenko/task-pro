@@ -10,7 +10,7 @@ import s from './TaskForm.module.css';
 
 const createValidationSchema = Yup.object({
   title: Yup.string().min(3, "Title must be at least 3 characters").max(60, "Title must be at most 60 characters").required('Title is required'),
-  description: Yup.string(),
+  description: Yup.string().optional(),
   priority: Yup.string().default('none'),
   deadline: Yup.date().nullable().required('Deadline is required'),
 });
@@ -30,13 +30,18 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
   const handleSubmit = values => {
     const formData = {
       title: values.title,
-      description: values.description,
       priority: values.priority,
       deadline: format(values.deadline, 'yyyy-MM-dd'),
     };
+
+    if (values.description) {
+      formData.description = values.description;
+    } 
+    
     if (typeOfPopUp === 'Edit') {
       dispatch(updateTask({ taskId: taskId, values: formData }));
     } else {
+      
       dispatch(createTask({...formData, columnId: columnId}));
     }
     handleClose();
