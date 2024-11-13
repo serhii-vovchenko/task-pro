@@ -21,7 +21,7 @@
   stroke: var(--text-primary);
   display: flex;
   gap: 4px;
-  fill: var(--background-paper);
+  fill: transparent;
 }
 
 .dropdownMenu {
