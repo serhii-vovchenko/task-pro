@@ -35,7 +35,6 @@ export const googleLoginThunk = createAsyncThunk(
   'auth/confirm-oauth',
   async (credentials, thunkAPI) => {
     try {
-      console.log('Credentials from asynk thunk', credentials);
       const { data } = await api.post('auth/confirm-oauth', credentials);
       setToken(data.data.accessToken);
       return data;

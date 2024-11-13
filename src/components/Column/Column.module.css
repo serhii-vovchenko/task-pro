@@ -27,6 +27,11 @@
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;
+
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buttons {
@@ -56,5 +61,8 @@
 
   .column {
     max-width: 350px;
+  }
+  .title {
+    width: 240px;
   }
 }

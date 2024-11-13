@@ -14,7 +14,6 @@ export const getBoardThunk = createAsyncThunk('boards', async (_, thunkAPI) => {
     });
     return data.data;
   } catch (error) {
-    console.log(error);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -99,8 +98,6 @@ export const deleteBoard = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const accessToken = state.auth.token;
-
-      console.log('Deleting board with ID:', boardId);
       await api.delete(`/boards/${boardId}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });

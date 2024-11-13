@@ -10,8 +10,8 @@ import {
   selectBoardColumns,
   selectCurrentBoard,
 } from '../../redux/dashboard/currentBoard/selectors.js';
-import s from './MainDashboard.module.css';
 import { useNavigate } from 'react-router-dom';
+import s from './MainDashboard.module.css';
 
 const ColumnList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +23,7 @@ const ColumnList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoading && activeBoard?._id) {
+    if ((isLoading && activeBoard?._id) || activeBoard === null) {
       navigate(`/home`);
     } else if (activeBoard?._id) {
       navigate(`/home/${activeBoard._id}`, { replace: true });

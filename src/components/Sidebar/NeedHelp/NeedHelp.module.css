@@ -44,7 +44,7 @@
 
   & span {
     color: var(--accent-sidebar-color);
-    transition: color var(--transition-time) var(--transition-time);
+    transition: all 0.3s ease;
   }
 
   &:hover span {
@@ -56,7 +56,7 @@
   width: 20px;
   height: 20px;
   stroke: var(--accent-sidebar-color);
-  transition: stroke var(--transition-time) var(--transition-time);
+  transition: all 0.3s ease;
 }
 
 .helpButton:hover .helpBtnIcon {

@@ -2,7 +2,7 @@
   height: 100vh;
   background-color: var(--bg-screen);
   height: calc(100vh - 60px);
-  /* padding: 0; */
+  /* padding: 0 20px; */
 }
 
 @media (min-width: 768px) {

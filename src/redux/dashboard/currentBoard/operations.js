@@ -9,14 +9,12 @@ export const getCurrentBoard = createAsyncThunk(
     const boards = state.boards.boards;
 
     if (!boardId) {
-      console.log('Board ID is undefined');
       thunkAPI.dispatch(clearCurrentBoard());
       return;
     }
 
     const boardExists = boards.some(board => board._id === boardId);
     if (!boardExists) {
-      console.log('Board not found');
       thunkAPI.dispatch(clearCurrentBoard());
       return;
     }

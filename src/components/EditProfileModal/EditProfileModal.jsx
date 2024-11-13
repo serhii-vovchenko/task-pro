@@ -4,12 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { updateUserProfile } from '../../redux/auth/operations';
 import s from './EditProfileModal.module.css';
-import sprite from '../../../src/img/icons.svg'; 
+import sprite from '../../../src/img/icons.svg';
 import { selectUser } from '../../redux/auth/selectors';
 
 const EditProfileModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser); 
+  const user = useSelector(selectUser);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const validationSchema = Yup.object({
@@ -21,62 +21,57 @@ const EditProfileModal = ({ isOpen, onClose }) => {
     email: Yup.string()
       .email('Invalid email format')
       .required('Email is required'),
-    password: Yup.string()
-      
+    password: Yup.string(),
   });
 
-
-  const handleSubmit = (values) => {
+  const handleSubmit = values => {
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('email', values.email);
     formData.append('password', values.password);
     if (selectedFile) {
-      formData.append('photoUrl', selectedFile); 
+      formData.append('photoUrl', selectedFile);
     }
-    console.log(formData);
     dispatch(updateUserProfile(formData))
-    .then((response) => {
-      if (response.payload) {
-        
-        dispatch({ type: 'UPDATE_USER_PROFILE', payload: response.payload });
-      }
-    })
-    .catch((error) => {
-      console.error("Error in updating profile:", error);
-    });
+      .then(response => {
+        if (response.payload) {
+          dispatch({ type: 'UPDATE_USER_PROFILE', payload: response.payload });
+        }
+      })
+      .catch(error => {
+        console.error('Error in updating profile:', error);
+      });
 
     onClose();
   };
 
   if (!isOpen || !user) return null;
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.currentTarget.files[0]); 
+  const handleFileChange = event => {
+    setSelectedFile(event.currentTarget.files[0]);
   };
 
   const handlePlusClick = () => {
-    document.getElementById('file-input').click(); 
+    document.getElementById('file-input').click();
   };
 
   const userIcon =
-  user.theme === 'light'
-    ? 'icon-user-light'
-    : user.theme === 'violet'
-    ? 'icon-user-violet'
-    : user.theme === 'dark'
-    ? 'icon-user-dark'
-    : 'icon-user';
+    user.theme === 'light'
+      ? 'icon-user-light'
+      : user.theme === 'violet'
+      ? 'icon-user-violet'
+      : user.theme === 'dark'
+      ? 'icon-user-dark'
+      : 'icon-user';
 
-    const userAvatar =
-    user.photoUrl ? (
-      <img className={s.userAvatar} src={user.photoUrl} alt="User Avatar" />
-    ) : (
-      <svg className={s.avatarIcon} height="32" width="32">
-        <use href={`${sprite}#${userIcon}`} />
-      </svg>
-    );
-  
+  const userAvatar = user.photoUrl ? (
+    <img className={s.userAvatar} src={user.photoUrl} alt="User Avatar" />
+  ) : (
+    <svg className={s.avatarIcon} height="32" width="32">
+      <use href={`${sprite}#${userIcon}`} />
+    </svg>
+  );
+
   return (
     <div className={s.modalOverlay}>
       <div className={s.modal}>
@@ -88,13 +83,21 @@ const EditProfileModal = ({ isOpen, onClose }) => {
         <h2 className={s.modalTitle}>Edit Profile</h2>
         <div className={s.imageUpload}>
           <div className={s.imgBox}>
-          {selectedFile || user.photoUrl ? (
-        <img src={selectedFile ? URL.createObjectURL(selectedFile) : user.photoUrl} alt="User Avatar" className={s.avatarImage} />
-      ) : (
-        <svg className={s.avatarIcon} height="32" width="32">
-          <use href={`${sprite}#${userIcon}`} />
-        </svg>
-      )}
+            {selectedFile || user.photoUrl ? (
+              <img
+                src={
+                  selectedFile
+                    ? URL.createObjectURL(selectedFile)
+                    : user.photoUrl
+                }
+                alt="User Avatar"
+                className={s.avatarImage}
+              />
+            ) : (
+              <svg className={s.avatarIcon} height="32" width="32">
+                <use href={`${sprite}#${userIcon}`} />
+              </svg>
+            )}
           </div>
           <label className={s.uploadButton} onClick={handlePlusClick}>
             <svg className={s.plusIcon}>
@@ -106,10 +109,10 @@ const EditProfileModal = ({ isOpen, onClose }) => {
             id="file-input"
             accept="image/*"
             onChange={handleFileChange}
-            style={{ display: 'none' }} 
+            style={{ display: 'none' }}
           />
         </div>
-     
+
         <Formik
           initialValues={{
             name: user.name || '',
@@ -121,29 +124,33 @@ const EditProfileModal = ({ isOpen, onClose }) => {
         >
           {({ isSubmitting }) => (
             <Form className={s.form}>
-              <Field 
-                type="text" 
-                name="name" 
-                className={s.inputField} 
-                placeholder="Enter your name" 
+              <Field
+                type="text"
+                name="name"
+                className={s.inputField}
+                placeholder="Enter your name"
               />
               <ErrorMessage name="name" component="div" className={s.error} />
 
-              <Field 
-                type="email" 
-                name="email" 
-                className={s.inputField} 
-                placeholder="Enter your email" 
+              <Field
+                type="email"
+                name="email"
+                className={s.inputField}
+                placeholder="Enter your email"
               />
               <ErrorMessage name="email" component="div" className={s.error} />
 
-              <Field 
-                type="password" 
-                name="password" 
-                className={s.inputField} 
-                placeholder="Create a password" 
+              <Field
+                type="password"
+                name="password"
+                className={s.inputField}
+                placeholder="Create a password"
               />
-              <ErrorMessage name="password" component="div" className={s.error} />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className={s.error}
+              />
 
               <button
                 className={s.modalButton}
