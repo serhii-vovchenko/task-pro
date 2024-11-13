@@ -30,12 +30,13 @@ const TaskForm = ({ columnId, handleClose, initialTaskValue, typeOfPopUp }) => {
   const handleSubmit = values => {
     const formData = {
       title: values.title,
+      description: values.description,
       priority: values.priority,
       deadline: format(values.deadline, 'yyyy-MM-dd'),
     };
 
-    if (values.description) {
-      formData.description = values.description;
+    if (!formData.description) {
+      delete formData.description
     } 
     
     if (typeOfPopUp === 'Edit') {
