@@ -88,6 +88,7 @@
 .icon {
     fill: transparent;
     stroke: var(--text-secondary);
+    opacity: 0.4;
 }
 
 .iconBell {
@@ -97,6 +98,7 @@
 
 .icon:hover {
     stroke: var(--primary-main);
+    opacity: 1;
 }
 
 .contWithMarkings {
