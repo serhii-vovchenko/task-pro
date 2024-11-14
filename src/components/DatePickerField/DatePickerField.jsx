@@ -1,6 +1,6 @@
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import { FaChevronDown } from "react-icons/fa6";
+import sprite from "../../img/icons.svg"
 import "./DatePickerField.css"
 const DatePickerField = ({field, form, ...props}) => {
     return (
@@ -12,12 +12,15 @@ const DatePickerField = ({field, form, ...props}) => {
             onChange={(val) => form.setFieldValue(field.name, val)}
             showIcon
             toggleCalendarOnIconClick
-            icon={<FaChevronDown className="iconCalendar" />}
+            icon={
+                <svg className="iconCalendar">
+                    <use href={`${sprite}#icon-chevron-down`} />
+                </svg>
+            }
             calendarClassName={"customCal"}
             dayClassName={date => "dayCalendar"}
             weekDayClassName={date => "weekCalendar"}
             weekClassName={date => "week"}
-            shouldCloseOnSelect={false}
             disabledKeyboardNavigation
             wrapperClassName={"calendarWrapper"}
             popperClassName={"popperCalendar"}

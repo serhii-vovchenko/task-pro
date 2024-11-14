@@ -1,17 +1,26 @@
 .calendarWrapper .iconCalendar {
     position: static;
-    fill: var(--modal-btn);
+    stroke: var(--modal-btn);
     cursor: pointer;
+    scale: 1.7;
+    fill: transparent;
+    padding: 0;
+    box-sizing: border-box;
 
     &:hover {
-        fill: var(--hover-modal-btn);
+        stroke: var(--hover-modal-btn);
     }
+}
+
+.react-datepicker-wrapper {
+    display: flex;
 }
 
 .calendarWrapper>div {
     display: flex;
     gap: 8px;
-    position: static;
+    width: auto;
+    align-items: center;
 }
 
 .calendarWrapper+div>.popperCalendar {
