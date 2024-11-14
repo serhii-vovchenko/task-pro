@@ -7,7 +7,8 @@ import sprite from '../../../img/icons.svg';
 import s from './Filters.module.css';
 
 const Filters = ({ handleClose }) => {
-  const [modalClass, setModalClass] = useState('medium');
+  const [modalClass, setModalClass] = useState('');
+  const [activeFilter, setActiveFilter] = useState('');
   const dispatch = useDispatch();
   const selectedPriority = useSelector(selectSelectedPriority);
 
@@ -19,6 +20,7 @@ const Filters = ({ handleClose }) => {
 
   const handleLabelSelection = label => {
     dispatch(setSelectedPriority(label));
+    setActiveFilter(label);
   };
 
   if (!handleClose) return null;
@@ -61,13 +63,13 @@ const Filters = ({ handleClose }) => {
                 >
                   <label
                     className={`${s.label} ${
-                      selectedPriority === priority ? 'active' : ''
+                      activeFilter === priority ? s.active : ''
                     }`}
                     value={priority}
                   >
                     <div
                       className={`${s.labelItem} ${
-                        selectedPriority === priority ? 'active' : ''
+                        activeFilter === priority ? s.active : ''
                       } ${
                         priority === 'none'
                           ? s.priorityWithout
@@ -91,7 +93,7 @@ const Filters = ({ handleClose }) => {
 
                   <p
                     className={`${s.labelText} ${
-                      selectedPriority === priority ? 'active' : ''
+                      activeFilter === priority ? s.active : ''
                     }`}
                   >
                     {priority === 'none'

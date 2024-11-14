@@ -83,7 +83,7 @@
 }
 
 .label:active {
-  border: 2px solid rgb(56, 53, 53);
+  border: none;
 }
 
 .showAllLabel {
@@ -127,11 +127,6 @@
   right: 0;
 }
 
-.labelItem:active {
-  width: 6px;
-  height: 6px;
-}
-
 .labelText {
   color: var(--filter-text);
   font-family: Poppins;
@@ -142,16 +137,30 @@
   letter-spacing: -0.02em;
 }
 
-.labelText:active {
+.labelText.active {
   color: var(--filter-text-accent);
 }
 
 .labelItem {
-  width: 8px;
-  height: 8px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   position: relative;
   transition: all 0.3s;
+}
+
+.labelItem.active {
+  &::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 1px;
+    left: 1px;
+    border: 2px solid white;
+    z-index: 2;
+    border-radius: 50%;
+  }
 }
 
 .priorityWithout {
