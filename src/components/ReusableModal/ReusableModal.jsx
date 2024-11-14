@@ -9,12 +9,11 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     padding: '24px',
-    transform: 'translate(-50%, -50%)',
     overflow: 'auto',
     borderRadius: '8px',
     borderColor: 'var(--modal-border)',
     borderWidth: '1px',
-    backgroundColor: 'var(--modal-bg)'
+    backgroundColor: 'var(--modal-bg)',
   },
   overlay: {
     backgroundColor: 'var(--backdrop)',
@@ -25,13 +24,13 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function ReusableModal({ isOpen, onClose, children }) {
-
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
       shouldCloseOnEsc
       shouldCloseOnOverlayClick
+      closeTimeoutMS={200} 
       style={customStyles}
       contentLabel="Modal"
     >
@@ -42,7 +41,6 @@ function ReusableModal({ isOpen, onClose, children }) {
       </button>
       {children}
     </Modal>
-
   );
 }
 
