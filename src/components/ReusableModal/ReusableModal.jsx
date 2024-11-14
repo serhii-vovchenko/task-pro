@@ -9,7 +9,7 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     padding: '24px',
-    overflow: 'auto',
+    overflow: 'hidden',
     borderRadius: '8px',
     borderColor: 'var(--modal-border)',
     borderWidth: '1px',
