@@ -132,6 +132,10 @@ const BoardList = () => {
               <SvgIcon
                 url={board.icon?.iconUrl}
                 active={board._id === currentBoard?._id}
+                className={clsx(
+                  s.boardIcon,
+                  board._id === currentBoard?._id && s.active
+                )}
               />
               <p
                 className={clsx(

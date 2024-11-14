@@ -94,6 +94,19 @@
   stroke: var(--board-list-text);
 }
 
+.btnBoxIcon:hover {
+  stroke: var(--board-list-text-active);
+  transition: all 0.3s ease;
+}
+
+.boardItem .boardIcon {
+  color: var(--board-list-text);
+}
+
+.boardIcon.active {
+  color: var(--board-list-text-active);
+}
+
 @media (min-width: 768px) {
   .boardList {
     margin-left: -24px;
