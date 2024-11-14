@@ -21,7 +21,10 @@ const EditProfileModal = ({ isOpen, onClose }) => {
     email: Yup.string()
       .email('Invalid email format')
       .required('Email is required'),
-    password: Yup.string(),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters')
+      .max(64, 'Password must be at most 64 characters')
+      .matches(/^[^\s]*$/, 'Password should not contain spaces'),
   });
 
   const handleSubmit = values => {
