@@ -112,9 +112,9 @@
 
 @media (min-width: 1440px) {
   .sidebar {
-    /* position: initial;
+    position: initial;
     left: initial;
-    top: initial; */
+    top: initial;
     transform: translateX(0);
     z-index: 0;
   }
