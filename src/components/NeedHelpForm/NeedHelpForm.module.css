@@ -26,13 +26,21 @@
 
 .input {
   font-size: 14px;
-  color:  var(--text-primary);
+  color: var(--text-primary);
   border: 1px solid var(--primary-main-transparent);
   border-radius: 8px;
   padding: 14px 18px;
   height: 49px;
   background-color: transparent;
   transition: border var(--transition-time) var(--transition-func);
+  outline: none;
+}
+
+.input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px var(--modal-bg) inset;
+  box-shadow: 0 0 0 30px var(--modal-bg) inset;
+  -webkit-text-fill-color: var(--text-primary);
+  caret-color: var(--text-primary);
 }
 
 .input::placeholder {
@@ -60,7 +68,7 @@
 
 .error {
   font-size: 14px;
-  color: var( --soft-pink);
+  color: var(--soft-pink);
 }
 
 .form-button {
@@ -72,6 +80,6 @@
 
 .form-button:hover,
 .form-button:focus,
-.form-button:active{
+.form-button:active {
   background-color: var(--btn-hover);
 }
