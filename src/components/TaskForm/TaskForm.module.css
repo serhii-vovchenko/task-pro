@@ -146,6 +146,8 @@ input[name='deadline'] {
   color: var(--modal-btn);
   pointer-events: none;
   padding: 0;
+  outline: transparent;
+  pointer-events: none;
 }
 
 .btnSubmit {
