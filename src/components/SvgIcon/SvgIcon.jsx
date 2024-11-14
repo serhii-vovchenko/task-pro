@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectUserTheme } from '../../redux/auth/selectors';
 import s from './SvgIcon.module.css';
 
-const SvgIcon = ({ url, active, width = 18, height = 18 }) => {
+const SvgIcon = ({ url, active, width = 18, height = 18, className }) => {
   const currentTheme = useSelector(selectUserTheme);
 
   if (!url) {
