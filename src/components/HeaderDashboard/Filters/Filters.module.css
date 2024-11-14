@@ -157,7 +157,9 @@
     height: 12px;
     top: 1px;
     left: 1px;
-    border: 2px solid white;
+    right: 1px;
+    bottom: 1px;
+    border: 2px solid var(--filter--radio-accent);
     z-index: 2;
     border-radius: 50%;
   }

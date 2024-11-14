@@ -89,6 +89,7 @@
   --filter-text-accent: #161616;
   --filter-border: rgba(22, 22, 22, 0.1);
   --filter-close: rgba(22, 22, 22, 0.05);
+  --filter--radio-accent: #fcfcfc;
 }
 
 [data-theme='dark'] {
@@ -174,6 +175,7 @@
   --filter-text-accent: #fff;
   --filter-border: rgba(255, 255, 255, 0.1);
   --filter-close: #ffffff;
+  --filter--radio-accent: #151515;
 }
 
 [data-theme='violet'] {
@@ -260,4 +262,5 @@
   --filter-text-accent: #161616;
   --filter-border: rgba(22, 22, 22, 0.1);
   --filter-close: rgba(22, 22, 22, 0.05);
+  --filter--radio-accent: #fcfcfc;
 }
