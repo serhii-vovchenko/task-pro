@@ -13,7 +13,7 @@
   left: 0;
   top: 0;
   transform: translateX(-101%);
-  z-index: 9;
+  z-index: 200;
 }
 
 .sidebarIsOpen {
@@ -120,7 +120,7 @@
     left: initial;
     top: initial;
     transform: translateX(0);
-    z-index: initial;
+    z-index: 0;
   }
 
   .overlay {
