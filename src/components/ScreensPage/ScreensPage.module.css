@@ -1,5 +1,4 @@
 .screenPage {
-  height: 100vh;
   background-color: var(--bg-screen);
   height: calc(100vh - 60px);
 }
